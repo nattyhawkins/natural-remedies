@@ -1,0 +1,32 @@
+[
+{
+  "model": "recipes.recipe",
+  "pk": 2,
+  "fields": {
+    "name": "Lavender Salve",
+    "image": "https://i0.wp.com/homesteadandchill.com/wp-content/uploads/2020/08/homemade-lavender-salve-feature.jpeg?fit=2048%2C1536&ssl=1",
+    "description": "Lavender salve is a little miracle-worker in a tin. It heals and moisturizes skin, soothes irritation, burns and itching, and can even help heal acne, scrapes, and eczema. Let’s not forget how out-of-this-world wonderful it smells, loaded with essential oils and an aroma that is scientifically-proven to ease anxiety, stress, and sleepless nights. The best news is, it is very easy to make lavender salve! You don’t need to be an experienced herbalist or apothecary regular to do this.",
+    "inventory": "Lavender Infused Oil\r\nBeeswax – Using beeswax in pastilles form makes it easy, but use what you have! If you prefer not to use beeswax, carnauba wax can often be used in salves as a substitute, but I haven’t tried that specifically in this recipe.\r\nShea butter – Refined shea butter will make an odorless and wonderful moisturizing addition to this herbal salve.\r\nLavender essential oil – The addition of lavender essential oil is optional and just depends on how strong of a lavender scent you want.",
+    "steps": "Use a kitchen scale to measure the beeswax and shea butter. \r\n If you don’t have a digital scale, you can convert the suggested ½ ounces into measuring spoons. For this recipe, the equivalent would be about 3 teaspoons.\r\nUsing a double boiler, or a makeshift double boiler with a measuring cup resting inside a pot half filled with water, heat the boiler on medium heat.\r\nAdd the beeswax first since it takes the longest to melt. Once the beeswax is melted to liquid, add the shea butter.\r\nBeeswax pellets pouring into a makeshift double boiler. \r\nNext, add the lavender-infused oil and essential oil drops (if using) and stir together until everything is liquefied.\r\nLavender infused oil pouring into the double boiler with the beeswax.\r\nLine up the tins and carefully pour the lavender salve liquid into each one.\r\nMelted salve pouring into tins with a measuring cup.\r\nAllow the tins plenty of time to cool and solidify which usually takes a few hours.",
+    "active_ingredients": [
+      1
+    ],
+    "mediums": []
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 3,
+  "fields": {
+    "name": "Lavender Oil",
+    "image": "https://homesteadandchill.com/wp-content/uploads/2020/07/how-to-make-homemade-lavender-infused-oil-feature.jpeg",
+    "description": "Lavender essential oil is known the world round for its gorgeous scent and calming properties. It's used to promote sleep, ease anxiety and also as a bug deterrent.",
+    "inventory": "A large jar (for the infusion)\r\nLavender (cut and dried)\r\nA carrier oil (olive oil or mineral oils)\r\nCheesecloth or muslin (for straining)\r\nA bottle or glass container (for storage)",
+    "steps": "Step 1: Harvest and dry\r\n\r\nIf your plant is in full bloom great, but if not, you can use lavender leaves instead.\r\nCut off at least six inches from the flower. At the base of your cuttings, tie the sprigs together.\r\nHang the lavender cuttings upside down in a warm, dry location with good air circulation.\r\nLeave it for 12 to 14 days. The time lavender takes to dry can vary (it could take up to a month in some conditions.) You’ll know it’s fully dry if when you break a stem it snaps cleanly in half rather than bending.\r\n\r\n\r\n\r\nStep 2: Infuse\r\n\r\nThe carrier oil you choose will depend on the use you have in mind.\r\nFor example, if you’re looking to apply lavender oil topically to your skin, choose an oil that has the right characteristics for your complexion.\r\nAnd if you’d like the option to use your lavender oil in cooking, you’ll need to select an edible carrier oil.\r\n\r\nPlace your dried lavender into a clean jar. Fill until at least three-quarters full.\r\n\r\nAdd enough oil to completely cover the lavender and allow it to move around. Then secure the lid of your jar.\r\n\r\nPlace your jar on a windowsill that allows exposure to direct sunlight. Leave it there for at least 1 week (or up to 3 weeks.) Try to remember to lightly shake it occasionally.10\r\n\r\nThe best oil to use really depends on what you're going to use it for.\r\n\r\nFor example, Extra virgin olive oil is both edible and suitable for skincare. This makes the best multi-use lavender oil. However, it’s not always suitable for oilier skin types as it can block pores if applied too heavily.\r\nGrapeseed oil and jojoba oil create lightweight and non-greasy moisturisers. They are better options for oily, combination, and blemish-prone skin types.\r\nIf you’re looking for a richer moisturiser for dryer skin, sweet almond oil and argan oil both work well.\r\n\r\n\r\n\r\nStep 3: Strain\r\n\r\nOnce you’re happy that enough infusion has occurred, use your cheesecloth to strain the lavender flowers.\r\n\r\nStore the infused oil in a glass container.",
+    "active_ingredients": [
+      1
+    ],
+    "mediums": []
+  }
+}
+]

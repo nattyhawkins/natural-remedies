@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'recipes',
     'active_ingredients',
     'benefits',
+    'mediums',
     'comments'
 ]
 
