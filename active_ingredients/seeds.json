@@ -1,0 +1,32 @@
+[
+{
+  "model": "active_ingredients.active_ingredient",
+  "pk": 1,
+  "fields": {
+    "name": "Lavender",
+    "latin_name": "Lavandula angustifolia",
+    "common_names": "English lavender, common lavender, French lavender",
+    "image": "lavender-oil-transparent.png",
+    "bg_image": "https://images.pexels.com/photos/5126456/pexels-photo-5126456.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "description": "Lavender is native to countries in the Mediterranean region, including France, Spain, and Italy. The name lavender comes from the Latin verb “lavare,” meaning “to wash.” In ancient Rome, lavender was used as a bath additive. Lavender is used to flavor foods and beverages and as a fragrance ingredient in soaps and cosmetics. It is promoted as a dietary supplement for anxiety, depression, digestive symptoms, and other conditions. It is also promoted for topical use (application to the skin) and use in aromatherapy.",
+    "benefits": [
+      3
+    ]
+  }
+},
+{
+  "model": "active_ingredients.active_ingredient",
+  "pk": 2,
+  "fields": {
+    "name": "Turmeric",
+    "latin_name": "Curcuma longa",
+    "common_names": "turmeric root, Indian saffron",
+    "image": "turmeric-trans.png",
+    "bg_image": "https://images.pexels.com/photos/4198656/pexels-photo-4198656.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "description": "Turmeric, a plant in the ginger family, is native to Southeast Asia and is grown commercially in that region, primarily in India. Its rhizome (underground stem) is used as a culinary spice and traditional medicine. Historically, turmeric was used in Ayurveda and other traditional Indian medical systems, as well as Eastern Asian medical systems such as traditional Chinese medicine. In India, it was traditionally used for disorders of the skin, upper respiratory tract, joints, and digestive system. Today, turmeric is promoted as a dietary supplement for a variety of conditions, including arthritis, digestive disorders, respiratory infections, allergies, liver disease, depression, and many others. Turmeric is a common spice and a major ingredient in curry powder. Curcumin is a major component of turmeric, and the activities of turmeric are commonly attributed to curcuminoids (curcumin and closely related substances). Curcumin gives turmeric its yellow color. Turmeric dietary supplements a",
+    "benefits": [
+      4
+    ]
+  }
+}
+]

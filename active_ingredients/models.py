@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-class Remedy(models.Model):
+class Active_Ingredient(models.Model):
     name = models.CharField(max_length=50)
     latin_name = models.CharField(max_length=50)
     common_names = models.CharField(max_length=100)
@@ -11,11 +11,11 @@ class Remedy(models.Model):
     description = models.CharField(max_length=1000)
     benefits = models.ManyToManyField(
         'benefits.Benefit',
-        related_name="remedies",
+        related_name="active_ingredients",
     )
-    # methods = models.ManyToManyField(
-    #     'methods.Method',
-    #     related_name="remedies",
+    # type = models.ManyToManyField(
+    #     'types.Type',
+    #     related_name="active_ingredients",
     # )
 
     def __str__(self):

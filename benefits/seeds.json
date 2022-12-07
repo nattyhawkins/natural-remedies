@@ -1,0 +1,1 @@
+[{"model": "benefits.benefit", "pk": 1, "fields": {"name": "Digestion"}}, {"model": "benefits.benefit", "pk": 2, "fields": {"name": "Immunity"}}, {"model": "benefits.benefit", "pk": 3, "fields": {"name": "Relaxation"}}, {"model": "benefits.benefit", "pk": 4, "fields": {"name": "Inflamation"}}, {"model": "benefits.benefit", "pk": 5, "fields": {"name": "Headache / Migraine"}}]
