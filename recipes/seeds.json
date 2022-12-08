@@ -11,7 +11,9 @@
     "active_ingredients": [
       1
     ],
-    "mediums": []
+    "mediums": [
+      3
+    ]
   }
 },
 {
@@ -26,7 +28,9 @@
     "active_ingredients": [
       1
     ],
-    "mediums": []
+    "mediums": [
+      1
+    ]
   }
 }
 ]

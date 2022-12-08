@@ -1,24 +1,26 @@
 from .models import Recipe
 from .serializers.common import RecipeSerializer # convert data on query to python data type
-from .serializers.populated import PopulatedRecipeSerializer
+from .serializers.populated import PopulatedRecipeSerializer, SemiPopulatedRecipeSerializer
+from jwt_auth.serializers.common import UserSerializer
 
 from rest_framework.views import APIView #predefined view class to set http verb methods
 from rest_framework.response import Response #to end an active req by writing to stream and sending back headers t client, like json() method
 from rest_framework import status
-from rest_framework.exceptions import NotFound
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
+from rest_framework.exceptions import NotFound, PermissionDenied
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 # Create your views here.
 class RecipeListView(APIView):
-  # permission_classes = (IsAuthenticatedOrReadOnly, )
+  permission_classes = (IsAuthenticatedOrReadOnly, )
   def get(self, _request):
       recipes = Recipe.objects.all()
-      serialized_recipes = RecipeSerializer(recipes, many=True)
+      serialized_recipes = SemiPopulatedRecipeSerializer(recipes, many=True)
       return Response(serialized_recipes.data, status.HTTP_200_OK)
 
   def post(self, request):
-      new_recipe = RecipeSerializer(data=request.data)
+      request.data['owner'] = request.user.id
       try:
+        new_recipe = RecipeSerializer(data=request.data)
         if new_recipe.is_valid():
           new_recipe.save()
           return Response(new_recipe.data, status.HTTP_201_CREATED)
@@ -29,7 +31,7 @@ class RecipeListView(APIView):
 
 
 class RecipeDetailView(APIView):
-  # permission_classes = (IsAuthenticatedOrReadOnly, )
+  permission_classes = (IsAuthenticatedOrReadOnly, )
   def get_recipe(self, pk):
       try:
         return Recipe.objects.get(pk=pk)
@@ -47,6 +49,9 @@ class RecipeDetailView(APIView):
       recipe = self.get_recipe(pk)
       try:
         recipe = RecipeSerializer(recipe, request.data, partial=True)
+        if recipe.owner != request.user:
+            raise PermissionDenied('Unauthorised')
+
         if recipe.is_valid():
           recipe.save()
           return Response(recipe.data, status.HTTP_202_ACCEPTED)
@@ -55,11 +60,43 @@ class RecipeDetailView(APIView):
       except Exception as e:
         return Response(str(e), status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-  def delete(self, _request, pk):
-      recipe = self.get_recipe(pk)
+  def delete(self, request, pk):
       try:
-          recipe.delete()
-          return Response(status=status.HTTP_204_NO_CONTENT)
+        recipe = self.get_recipe(pk)
+        if recipe.owner != request.user:
+          raise PermissionDenied('Unauthorised')
+
+        recipe.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
       except Exception as e:
         return Response(str(e), status.HTTP_500_INTERNAL_SERVER_ERROR)
-   
+
+  # favourite
+  # def post(self, request, pk):
+  #     # return Response(print('incoming---', request.user.id))
+  #     request.data['owner'] = request.user.id
+  #     recipe = self.get_recipe(pk)
+  #     try:
+  #       fav_owner = UserSerializer(pk=request.user.id)
+  #       if fav_owner.is_valid():
+  #         if 
+  #         fav_owner.save()
+  #         return Response(fav_owner.data, status.HTTP_201_CREATED)
+  #       else: 
+  #         return Response(fav_owner.errors, status.HTTP_422_UNPROCESSABLE_ENTITY)
+  #     except Exception as e:
+  #       return Response(str(e), status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+  #     except Recipe.DoesNotExist as e:
+  #       return Response(str(e))
+
+      # request.data['owner'] = request.user.id
+      # try:
+      #   new_recipe = RecipeSerializer(data=request.data)
+      #   if new_recipe.is_valid():
+      #     new_recipe.save()
+      #     return Response(new_recipe.data, status.HTTP_201_CREATED)
+      #   else: 
+      #     return Response(new_recipe.errors, status.HTTP_422_UNPROCESSABLE_ENTITY)
+      # except Exception as e:
+      #   return Response(str(e), status.HTTP_500_INTERNAL_SERVER_ERROR)

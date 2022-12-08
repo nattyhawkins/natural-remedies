@@ -1,8 +1,17 @@
-from comments.serializers.common import CommentSerializer
-from .common import RecipeSerializer
+from comments.serializers.populated import OwnedCommentSerializer
+from favourites.serializers.populated import OwnedFavouriteSerializer
+from favourites.serializers.common import FavouriteSerializer
 from active_ingredients.serializers.common import Active_IngredientSerializer
+from mediums.serializers.common import MediumSerializer
+from .common import RecipeSerializer
 
 class PopulatedRecipeSerializer(RecipeSerializer):
-    comments = CommentSerializer(many=True)
+    comments = OwnedCommentSerializer(many=True)
+    favourites = OwnedFavouriteSerializer(many=True)
     active_ingredients = Active_IngredientSerializer(many=True)
-    # types = TypeSerializer(many=True)
+    mediums = MediumSerializer(many=True)
+
+class SemiPopulatedRecipeSerializer(RecipeSerializer):
+    favourites = FavouriteSerializer(many=True)
+    active_ingredients = Active_IngredientSerializer(many=True)
+    mediums = MediumSerializer(many=True)

@@ -1,0 +1,30 @@
+[
+{
+  "model": "mediums.medium",
+  "pk": 1,
+  "fields": {
+    "name": "Infused oils"
+  }
+},
+{
+  "model": "mediums.medium",
+  "pk": 2,
+  "fields": {
+    "name": "Tea"
+  }
+},
+{
+  "model": "mediums.medium",
+  "pk": 3,
+  "fields": {
+    "name": "Balm"
+  }
+},
+{
+  "model": "mediums.medium",
+  "pk": 4,
+  "fields": {
+    "name": "Edibles"
+  }
+}
+]

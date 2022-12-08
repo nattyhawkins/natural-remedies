@@ -28,7 +28,10 @@
     "benefits": [
       4
     ],
-    "mediums": []
+    "mediums": [
+      2,
+      4
+    ]
   }
 }
 ]

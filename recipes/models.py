@@ -18,6 +18,10 @@ class Recipe(models.Model):
         'mediums.Medium',
         related_name="recipes",
     )
+    # favourite = models.ManyToManyField(
+    #     'favourite.Medium',
+    #     related_name="recipes",
+    # )
 
     def __str__(self):
         return f"{self.name}"
