@@ -4,10 +4,10 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import TheNavbar from './components/TheNavbar'
 import Home from './pages/Home'
-import IngredientIndex from './pages/IngredientIndex'
-import SingleIngredient from './pages/SingleIngredient'
 import Profile from './pages/Profile'
 import NotFound from './pages/NotFound'
+import SinglePage from './pages/SinglePage'
+import IndexPage from './pages/IndexPage'
 
 const App = () => {
   useEffect(() => {
@@ -26,8 +26,8 @@ const App = () => {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/profile' element={<Profile />} />
-            <Route path='/ingredientIndex' element={<IngredientIndex />} />
-            <Route path='/ingredientIndex/:ingredientId' element={<SingleIngredient />} />
+            <Route path='/:model' element={<IndexPage />} />
+            <Route path='/:model/:itemId' element={<SinglePage />} />
             <Route path='*' element={<NotFound />} />
           </Routes>
         </div>

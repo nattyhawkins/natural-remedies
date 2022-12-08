@@ -4,9 +4,9 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { getToken, isAuthenticated, isOwner } from '../helpers/auth'
 
 
-const SingleIngredient = () => {
-  const [ ingredient, setIngredient ] = useState(null)
-  const [ ingredientError, setIngredientError ] = useState(false)
+const SinglePage = () => {
+  const [ item, setItem ] = useState(null)
+  const [ itemError, setItemError ] = useState(false)
   const [ postError, setPostError ] = useState(false)
   const [ refresh, setRefresh ] = useState(false)
   const [ toEdit, setToEdit ] = useState(false)
@@ -15,27 +15,27 @@ const SingleIngredient = () => {
   })
   const [ favouriteStatus, setFavouriteStatus ] = useState(204)
 
-  const { ingredientId } = useParams()
+  const { model, itemId } = useParams()
   const navigate = useNavigate()
 
   useEffect(() => {
-    const getIngredient = async () => {
+    const getItem = async () => {
       try {
-        const { data } = await axios.get(`/api/active_ingredients/${ingredientId}`)
-        setIngredient(data)
+        const { data } = await axios.get(`/api/${model}/${itemId}`)
+        setItem(data)
       } catch (err) {
-        setIngredientError(err.message ? err.message : err.response.data.message)
+        setItemError(err.message ? err.message : err.response.data.message)
       }
     }
-    getIngredient()
-  }, [ingredientId, refresh])
+    getItem()
+  }, [itemId, refresh])
 
   // check if user is already a member of group on page load
   // useEffect(() => {
-  //   console.log(ingredient)
-  //   if (isAuthenticated() && ingredient.favourites && ingredient.favourites.some(member => isOwner(member.owner))) return setFavouriteStatus(200)
+  //   console.log(item)
+  //   if (isAuthenticated() && item.favourites && item.favourites.some(member => isOwner(member.owner))) return setFavouriteStatus(200)
   //   setFavouriteStatus(204)
-  // }, [ingredient])
+  // }, [item])
 
   //submit brand new post
   async function handlePostSubmit(e) {
@@ -69,15 +69,15 @@ const SingleIngredient = () => {
   //     setFavouriteStatus(status)
   //     setRefresh(!refresh)
   //   } catch (err) {
-  //     setIngredientError(err.message ? err.message : err.response.data.message)
+  //     setItemError(err.message ? err.message : err.response.data.message)
   //   }
   // }
 
 
   return (
-    <main className='single-ingredient'>
-      <h1>single ing</h1>
+    <main className='single'>
+      <h1>single</h1>
     </main>
   )
 }
-export default SingleIngredient
+export default SinglePage
