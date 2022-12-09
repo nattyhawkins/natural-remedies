@@ -26,5 +26,12 @@
   "fields": {
     "name": "Edibles"
   }
+},
+{
+  "model": "mediums.medium",
+  "pk": 5,
+  "fields": {
+    "name": "Shot"
+  }
 }
 ]

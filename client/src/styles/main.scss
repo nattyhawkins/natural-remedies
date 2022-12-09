@@ -9,6 +9,9 @@ body, html {
   min-width: 100vw;
   margin: 0;
 }
+a{
+  text-decoration: none;
+}
 
 .navbar {
   position: sticky;
@@ -28,7 +31,45 @@ body, html {
   .logo {
     font-size: 30px;
   }
+}
 
-
-
+.index{
+  .index-row{
+    min-height: 300px;
+  }
+  
+  .index-card{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 300px;
+    width: 100%;
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+  }
+  .fave, .card-title{
+    font-size: 50px;
+  }
+  
+}
+@media (max-width: 576px){
+  .index{
+    .fave, .card-title{
+      font-size: 12vw;
+    }
+    .index-detail{
+      font-size: 5vw;
+    }
+  }
+}
+@media (min-width: 576px) and (max-width: 992px){
+  .index{
+    .fave, .card-title{
+      font-size: 5vw;
+    }
+    .index-detail{
+      font-size: 2vw;
+    }
+  }
 }

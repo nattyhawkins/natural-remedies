@@ -6,13 +6,13 @@ from django.db import models
 class Recipe(models.Model):
     name = models.CharField(max_length=50)
     image = models.CharField(max_length=300)
-    description = models.TextField(max_length=1000)
+    description = models.TextField(max_length=2000)
     active_ingredients = models.ManyToManyField(
         'active_ingredients.Active_Ingredient',
         related_name="recipes",
     )
     # inventory = ArrayField(max_length=500)
-    inventory = models.TextField(max_length=1000)
+    inventory = models.TextField(max_length=2000)
     steps = models.TextField(max_length=10000)
     mediums = models.ManyToManyField(
         'mediums.Medium',

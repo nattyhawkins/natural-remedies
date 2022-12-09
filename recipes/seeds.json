@@ -32,5 +32,23 @@
       1
     ]
   }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 4,
+  "fields": {
+    "name": "Turmeric & Black Pepper Health Shot",
+    "image": "http://minimalistbaker.com/wp-content/uploads/2018/11/5-Ingredient-Turmeric-Wellness-Shots-Spicy-citrusy-and-sweet-and-incredibly-antiinflammatory-turmeric-vegan-glutenfree-minimalistbaker-recipe-juice-7.jpg",
+    "description": "The natural health benefits of turmeric are enhanced in this invigorating health shot by pairing it with a grind of black pepper (piperine in black pepper increases absorption of curcumin into the bloodstream), a dash of olive oil (curcumin is fat absorbent), fresh ginger with its anti-inflammatory benefits and the optional addition of honey, with its antibacterial and antifungal and antiviral properties. Not forgetting a delicious zesty dose of vitamin C from the fresh orange!",
+    "inventory": "1 thumb-sized piece of turmeric root\r\n2 grinds of black pepper\r\n1 tsp olive oil\r\nJust boiled water\r\n1/2 tsp honey  or maple syrup  (opt)\r\n1 thumb-sized piece of ginger\r\n1/2 an orange( juice & zest)",
+    "steps": "Crush both the turmeric and ginger using a garlic press into a small jug.\r\n\r\nAdd a grind of black pepper into your turmeric, along with the olive oil and stir to combine.\r\n\r\nFill your mug with hot water (just off the boil) and allow to stand for a minute or two. Add the orange juice and zest and stir. Taste and sweeten with honey or maple syrup if required.",
+    "active_ingredients": [
+      2,
+      3
+    ],
+    "mediums": [
+      5
+    ]
+  }
 }
 ]

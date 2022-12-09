@@ -33,5 +33,19 @@
   "fields": {
     "name": "Headache / Migraine"
   }
+},
+{
+  "model": "benefits.benefit",
+  "pk": 6,
+  "fields": {
+    "name": "Nausea"
+  }
+},
+{
+  "model": "benefits.benefit",
+  "pk": 7,
+  "fields": {
+    "name": "Antioxidant"
+  }
 }
 ]
