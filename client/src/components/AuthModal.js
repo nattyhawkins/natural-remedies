@@ -1,48 +1,51 @@
 import React, { useState } from 'react'
-import { Button, Form, Modal } from 'react-bootstrap'
+import { Button, Form, Modal, Tab, Tabs } from 'react-bootstrap'
+import Login from './Login'
+import Register from './Register'
+import { v4 as uuid } from 'uuid'
 
-const AuthModal = ({ show, setShow }) => {
-  const [ error, setError ] = useState(false)
+const AuthModal = ({ show, setShow, tab, setTab }) => {
+  const [ error, setError ] = useState([])
+  
+  
   const handleClose = () => setShow(false)
+  const handleTabChange = (k) => {
+    setTab(k)
+    setError(false)
+  }
+
 
   return (
-    <Modal show={show} onHide={handleClose}>
+    <Modal show={show} onHide={handleClose} centered >
       <Modal.Header closeButton>
-        <Modal.Title>Modal heading</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label>Username</Form.Label>
-            <Form.Control
-              type="username"
-              placeholder="Username"
-              // onChange={handleChange}
-              // value={formFields.username}
-              // required
-              autoFocus
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label>Username</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Password"
-              // onChange={handleChange}
-              // value={formFields.password}
-              // required
-            />
-          </Form.Group>
-        </Form>
-        {error && <small className='text-danger'>{error}</small>}
+        <Tabs 
+          id="controlled-tab-example"
+          activeKey={tab}
+          transition={false}
+          onSelect={handleTabChange}
+          className='d-flex'
+          justify
+        >
+          <Tab eventKey="register" title="Register">
+            <Register setShow={setShow} setTab={setTab} error={error} setError={setError} />
+          </Tab>
+          <Tab eventKey="login" title="Login">
+            <Login setShow={setShow} error={error} setError={setError} />
+          </Tab>
+        </Tabs>
       </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
-          Close
-        </Button>
-        <Button variant="primary" onClick={handleClose}>
-          Save Changes
-        </Button>
+      <Modal.Footer className='justify-content-start'>
+        {error.length > 0 && Array.isArray(error) ? 
+          error.map(message => {
+            return (
+              <small className='text-danger d-block' key={uuid()}>{message}</small>
+            )
+          })
+          :
+          <small className='text-danger'>{error}</small>
+        }
       </Modal.Footer>
     </Modal>
   )

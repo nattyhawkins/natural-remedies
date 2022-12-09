@@ -10,5 +10,5 @@ class User(AbstractUser):
         field = 'ForeignKey',
         to = 'comments.Comment',
         field_name = 'comments',
-        related_name="owner",
+        related_name="owner"
     )
