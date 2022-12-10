@@ -13,13 +13,19 @@ const IndexPage = () => {
   const { model } = useParams()
   const [ modelLoad, setModelLoad ] = useState(model)
   const [search, setSearch] = useState('')
+  const [ benefits, setBenefits ] = useState('')
+  const [ benefitFilter, setBenefitFilter ] = useState('')
 
+  useEffect(() => {
+    console.log(benefits)
+  }, [benefits])
   
   useEffect(() => {
     const getItems = async () => {
       try {
         console.log('model', model)
-        const { data } = await axios.get(`/api/${model}?${search}&/`)
+        setError(false)
+        const { data } = await axios.get(`/api/${model}?${search}&${benefitFilter}&/`)
         console.log(data)
         setItems(data)
       } catch (err) {
@@ -28,7 +34,7 @@ const IndexPage = () => {
       }
     }
     getItems()
-  }, [model, search])
+  }, [model, search, benefitFilter])
 
   useEffect(() => {
     setModelLoad(model)
@@ -37,17 +43,20 @@ const IndexPage = () => {
   return (
     <main className='index'>
       <Container className="mt-4">
-        <Filters model={model} setSearch={setSearch}/>
+        <Filters model={model} setSearch={setSearch} benefits={benefits} setBenefits={setBenefits} setBenefitFilter={setBenefitFilter} />
         <Row className="index-row text-center">
           
           {items.length > 0 && modelLoad === model ? 
             modelLoad === 'active_ingredients' ?
-              <IndexIngredients items={items} model={model} />
+              <IndexIngredients items={items} model={model} setBenefits={setBenefits}/>
               :
-              <IndexRecipes items={items} model={model}/>
+              <IndexRecipes items={items} model={model} setBenefits={setBenefits}/>
             :
             error ?
-              <h1>{error}</h1>
+              items.length === 0 ? 
+                <h1>No results</h1>
+                :
+                <h1>{error}</h1>
               : 
               <Spinner />
           }

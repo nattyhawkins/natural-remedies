@@ -1,8 +1,21 @@
+import { useEffect } from 'react'
 import { Card, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 
-const IndexIngredients = ({ items, model }) => {
+const IndexIngredients = ({ items, model, setBenefits }) => {
+
+  useEffect(() => {
+    const list = []
+    items.forEach(ingredient => {
+      return ingredient.benefits.forEach(benefit => {
+        if (!list.includes(benefit.name)){
+          list.push(benefit.name)
+        }
+      })
+    })
+    setBenefits(list)
+  }, [items])
 
   return (
     <>

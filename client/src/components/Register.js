@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Form } from 'react-bootstrap'
+import { Button, FloatingLabel, Form } from 'react-bootstrap'
 import axios from 'axios'
 
 const Register = ({ setTab, error, setError }) => {
@@ -39,56 +39,65 @@ const Register = ({ setTab, error, setError }) => {
     <>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="reg_user">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            type="username"
-            name="username"
-            placeholder="Username"
-            onChange={handleChange}
-            value={formFields.username}
-            required
-            autoFocus
-          />
+          {/* <Form.Label>Username</Form.Label> */}
+          <FloatingLabel
+            controlId="floatingInput"
+            label="Username"
+            className="mb-3">
+            <Form.Control
+              type="username"
+              name="username"
+              placeholder="Username"
+              onChange={handleChange}
+              value={formFields.username}
+              required
+              autoFocus
+            /></FloatingLabel>
         </Form.Group>
         <Form.Group className="mb-3" controlId="reg_email">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="email"
-            name="email"
-            placeholder="Email"
-            onChange={handleChange}
-            value={formFields.email}
-            required
-          />
+          {/* <Form.Label>Email</Form.Label> */}
+          <FloatingLabel
+            controlId="floatingInput"
+            label="Email"
+            className="mb-3">
+            <Form.Control
+              type="email"
+              name="email"
+              placeholder="Email"
+              onChange={handleChange}
+              value={formFields.email}
+              required
+            /></FloatingLabel>
         </Form.Group>
         <Form.Group className="mb-3" controlId="reg_pass">
-          <Form.Label>Password</Form.Label>
-          {/* <Form.Text>
-            <ul>
-              <li>Must contain at least 8 characters</li>
-              <li>Must be alphanumeric</li>
-              <li>Must not be too common</li>
-            </ul>
-          </Form.Text> */}
-          <Form.Control
-            type="password"
-            name="password"
-            placeholder="Password"
-            onChange={handleChange}
-            value={formFields.password}
-            required
-          />
+          {/* <Form.Label>Password</Form.Label> */}
+          <FloatingLabel
+            controlId="floatingInput"
+            label="Password"
+            className="mb-3">
+            <Form.Control
+              type="password"
+              name="password"
+              placeholder="Password"
+              onChange={handleChange}
+              value={formFields.password}
+              required
+            /></FloatingLabel>
         </Form.Group>
         <Form.Group className="mb-3" controlId="reg_confirm">
-          <Form.Label>Confirm Password</Form.Label>
-          <Form.Control
-            type="password"
-            name="password_confirmation"
-            placeholder="Confirm Password"
-            onChange={handleChange}
-            value={formFields.password_confirmation}
-            required
-          />
+          {/* <Form.Label>Confirm Password</Form.Label> */}
+          <FloatingLabel
+            controlId="floatingInput"
+            label="Confirm Password"
+            className="mb-3">
+            <Form.Control
+              type="password"
+              name="password_confirmation"
+              placeholder="Confirm Password"
+              onChange={handleChange}
+              value={formFields.password_confirmation}
+              required
+            /></FloatingLabel>
         </Form.Group>
         <Button variant="primary" type="submit" >
           Submit

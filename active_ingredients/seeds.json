@@ -47,5 +47,21 @@
       7
     ]
   }
+},
+{
+  "model": "active_ingredients.active_ingredient",
+  "pk": 4,
+  "fields": {
+    "name": "Peppermint",
+    "latin_name": "Mentha × piperita",
+    "common_names": "Mint",
+    "image": "https://c1.wallpaperflare.com/preview/24/710/366/peppermint-medicinal-plant-medicinal-herbs-mint.jpg",
+    "bg_image": "https://c1.wallpaperflare.com/preview/24/710/366/peppermint-medicinal-plant-medicinal-herbs-mint.jpg",
+    "description": "Peppermint is a hybrid of two types of mint - water mint and spearmint. Both the leaves and the natural oil from the peppermint plant are used for beneficial purposes. helps to relax muscles, ease stomach cramps and tackle constipation, keep teeth clean, relieve itchy skin and even deter insects well as a host of aromatherapy and culinary uses.\r\n\r\nPeppermint oil is under preliminary research for its potential as a short-term treatment for irritable bowel syndrome, and has supposed uses in traditional medicine for minor ailments. Peppermint oil and leaves have a cooling effect when used topically for muscle pain, nerve pain, relief from itching, or as a fragrance. High oral doses of peppermint oil (500 mg) can cause mucosal irritation and mimic heartburn. \r\n\r\nPeppermint oil can help to clear sinuses, soothe headaches and hangovers as it also uplifts and energises, focusing and sharpening the mind.\r\n\r\nPeppermint roots bioaccumulate radium, so the plant may be effective for phytoremediation of radioactively contaminated soil.",
+    "benefits": [
+      1,
+      3
+    ]
+  }
 }
 ]

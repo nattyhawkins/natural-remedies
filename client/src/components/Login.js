@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { Button, Form } from 'react-bootstrap'
+import { Button, FloatingLabel, Form } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { setToken } from '../helpers/auth'
 
@@ -33,27 +33,35 @@ const Login = ({ setShow, error, setError }) => {
     <>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="log_user">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            type="username"
-            name="username"
-            placeholder="Username"
-            onChange={handleChange}
-            value={formFields.username}
-            required
-            autoFocus
-          />
+          {/* <Form.Label>Username</Form.Label> */}
+          <FloatingLabel
+            controlId="floatingInput"
+            label="Username"
+            className="mb-3">
+            <Form.Control
+              type="username"
+              name="username"
+              placeholder="Username"
+              onChange={handleChange}
+              value={formFields.username}
+              required
+              autoFocus
+            /></FloatingLabel>
         </Form.Group>
         <Form.Group className="mb-3" controlId="log_pass">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            name="password"
-            placeholder="Password"
-            onChange={handleChange}
-            value={formFields.password}
-            required
-          />
+          {/* <Form.Label>Password</Form.Label> */}
+          <FloatingLabel
+            controlId="floatingInput"
+            label="Password"
+            className="mb-3">
+            <Form.Control
+              type="password"
+              name="password"
+              placeholder="Password"
+              onChange={handleChange}
+              value={formFields.password}
+              required
+            /></FloatingLabel>
         </Form.Group>
         <Button variant="primary" type="submit">
           Submit

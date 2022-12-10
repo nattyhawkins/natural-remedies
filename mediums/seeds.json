@@ -33,5 +33,12 @@
   "fields": {
     "name": "Shot"
   }
+},
+{
+  "model": "mediums.medium",
+  "pk": 6,
+  "fields": {
+    "name": "Candle"
+  }
 }
 ]

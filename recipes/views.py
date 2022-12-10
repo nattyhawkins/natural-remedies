@@ -13,10 +13,16 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 class RecipeListView(APIView):
   permission_classes = (IsAuthenticatedOrReadOnly, )
   def get(self, request):
-      search = request.query_params.get('search')
-      recipes = Recipe.objects.filter(name__icontains=search)
-      serialized_recipes = SemiPopulatedRecipeSerializer(recipes, many=True)
-      return Response(serialized_recipes.data, status.HTTP_200_OK)
+      # try:
+        search = request.query_params.get('search')
+        benefit = request.query_params.get('benefit')
+        recipes = Recipe.objects.filter(name__icontains=search)
+        serialized_recipes = SemiPopulatedRecipeSerializer(recipes, many=True)
+        # if len(serialized_recipes.data) == 0:
+        #   raise NotFound('No matches, please try something else...')
+        return Response(serialized_recipes.data, status.HTTP_200_OK)
+      # except NotFound as e:
+      #   return Response(str(e), status.HTTP_204_NO_CONTENT)
 
   def post(self, request):
       request.data['owner'] = request.user.id

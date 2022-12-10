@@ -12,14 +12,17 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticate
 class Active_IngredientListView(APIView):
   # permission_classes = (IsAuthenticatedOrReadOnly, )
   def get(self, request):
-      active_ingredients = Active_Ingredient.objects.all()
+      # active_ingredients = Active_Ingredient.objects.all()
       search = request.query_params.get('search')
+      benefit = request.query_params.get('benefit')
+      # print('benefit', benefit)
+      # def checkFilter():
+      #   return True
       active_ingredients = Active_Ingredient.objects.filter(name__icontains=search)
-      # print('search --', search)
-      # if search:
-      #   active_ingredients = list(filter(lambda result: search in result.name, active_ingredients))
-      serialized_active_ingredients = SemiPopulatedActive_IngredientSerializer(active_ingredients, many=True)
-      return Response(serialized_active_ingredients.data, status.HTTP_200_OK)
+      active_ingredients = SemiPopulatedActive_IngredientSerializer(active_ingredients, many=True)
+      # if benefit != 'default':
+      #   active_ingredients = []
+      return Response(active_ingredients.data, status.HTTP_200_OK)
 
 
 class Active_IngredientDetailView(APIView):

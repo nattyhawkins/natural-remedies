@@ -21,7 +21,7 @@
   "pk": 3,
   "fields": {
     "name": "Lavender Oil",
-    "image": "https://homesteadandchill.com/wp-content/uploads/2020/07/how-to-make-homemade-lavender-infused-oil-feature.jpeg",
+    "image": "https://i0.wp.com/homesteadandchill.com/wp-content/uploads/2020/07/how-to-make-lavender-infused-oil-sun-infusion.jpeg?resize=646%2C861&ssl=1",
     "description": "Lavender essential oil is known the world round for its gorgeous scent and calming properties. It's used to promote sleep, ease anxiety and also as a bug deterrent.",
     "inventory": "A large jar (for the infusion)\r\nLavender (cut and dried)\r\nA carrier oil (olive oil or mineral oils)\r\nCheesecloth or muslin (for straining)\r\nA bottle or glass container (for storage)",
     "steps": "Step 1: Harvest and dry\r\n\r\nIf your plant is in full bloom great, but if not, you can use lavender leaves instead.\r\nCut off at least six inches from the flower. At the base of your cuttings, tie the sprigs together.\r\nHang the lavender cuttings upside down in a warm, dry location with good air circulation.\r\nLeave it for 12 to 14 days. The time lavender takes to dry can vary (it could take up to a month in some conditions.) You’ll know it’s fully dry if when you break a stem it snaps cleanly in half rather than bending.\r\n\r\n\r\n\r\nStep 2: Infuse\r\n\r\nThe carrier oil you choose will depend on the use you have in mind.\r\nFor example, if you’re looking to apply lavender oil topically to your skin, choose an oil that has the right characteristics for your complexion.\r\nAnd if you’d like the option to use your lavender oil in cooking, you’ll need to select an edible carrier oil.\r\n\r\nPlace your dried lavender into a clean jar. Fill until at least three-quarters full.\r\n\r\nAdd enough oil to completely cover the lavender and allow it to move around. Then secure the lid of your jar.\r\n\r\nPlace your jar on a windowsill that allows exposure to direct sunlight. Leave it there for at least 1 week (or up to 3 weeks.) Try to remember to lightly shake it occasionally.10\r\n\r\nThe best oil to use really depends on what you're going to use it for.\r\n\r\nFor example, Extra virgin olive oil is both edible and suitable for skincare. This makes the best multi-use lavender oil. However, it’s not always suitable for oilier skin types as it can block pores if applied too heavily.\r\nGrapeseed oil and jojoba oil create lightweight and non-greasy moisturisers. They are better options for oily, combination, and blemish-prone skin types.\r\nIf you’re looking for a richer moisturiser for dryer skin, sweet almond oil and argan oil both work well.\r\n\r\n\r\n\r\nStep 3: Strain\r\n\r\nOnce you’re happy that enough infusion has occurred, use your cheesecloth to strain the lavender flowers.\r\n\r\nStore the infused oil in a glass container.",
@@ -48,6 +48,41 @@
     ],
     "mediums": [
       5
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 5,
+  "fields": {
+    "name": "Peppermint Oil",
+    "image": "https://www.sustainablecooks.com/wp-content/uploads/2011/11/Homemade-Peppermint-Extract-3-540x540.jpg",
+    "description": "Peppermint oil comes from both the flowers and leaves of peppermint plants. It can be applied topically to the skin, but make sure you dilute it first with a carrier oil, such as jojoba oil.\r\nYou can pop it in a diffuser and breathe in the refreshingly minty scent all around you. You can also bathe in it, either on its own or combined with other complementary essential oils, such as lavender and geranium.",
+    "inventory": "- Fresh peppermint\r\n- A mild carrier oil - mild oil so that the smell or taste doesn’t interfere with the peppermint. Olive oil is great, but any other household choice works great too such as grapeseed.\r\n- Optional: cheesecloth or a thin cloth. To strain out the leaves of mint. \r\n- Glass container - Preferably dark in colour to help maintain the purity of the oil.",
+    "steps": "Wash and dry the mint.\r\n\r\nCrush the mint with a spoon, your hands or a mortar and pestle.\r\n\r\nPack the crushed mint into your jar\r\n\r\nPour the oil in to fill the jar and secure the lid tightly\r\n\r\nLet steep in the oil for a minimum of 3 days to a maximum of 6 months in a cool, dark place \r\n\r\nShake whenever you remember, to help the process along\r\n\r\nStrain out the leaves from the oil when you are satisfied with the strength of the oil\r\nStore in a cool dark place in a preferably",
+    "active_ingredients": [
+      4
+    ],
+    "mediums": [
+      1
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 6,
+  "fields": {
+    "name": "Peppermint, Lavender & Clary Sage Candle",
+    "image": "https://gardentherapy.ca/wp-content/uploads/2022/06/pressed-lavender-candle-683x1024.jpg",
+    "description": "Aromatherapy candles are natural candles made with essential oils. As they burn, they  disperse the essential oils’ scent and healing properties throughout your room.Essential oils have various therapeutic qualities which you may incorporate into your day-to-day life. Depending on the candle scent, the aroma can be uplifting, reflective, or relaxing to the mind. Most commonly, aromatherapy candles aim to aid the emotional side of our well-being. \r\n\r\nClary Sage is closely related to garden sage. It has enjoyed a long reputation for its many medicinal benefits from balancing the hormones and the relief of depression. Peppermint Oil clears sinuses helping to soothe headaches and hangovers it also uplifts and energises, focusing and sharpening the mind.\r\n \r\nMost essential oil candles also like to use natural waxes as the candle base. Paired with natural soy wax as the base, these essential oil candles make a 100% non-toxic product.",
+    "inventory": "- Mason jars\r\n- A disposable stirrer\r\n- A chopstick or pencil (to anchor the wick in place)\r\n- Soy wax flakes\r\n- Natural Wicks\r\n- 100 drops of essential oils altogether for Peppermint, Lavender and Clarey Sage",
+    "steps": "Melt soy wax in a pot over low-medium heat. They should melt fairly easily but turn up heat slightly if taking more than a few minutes. Stir using wood stirring device (eg. a chopstick)\r\n\r\nOnce melted, add 80-100 drops of your favourite essential oils. Amount depends on type of essential oils and how potent they are.\r\n\r\nAnchor wicks to bottom of mason jars using a bit of wax.\r\n\r\nTape wick upright to a horizontal chopstick or pen (see picture above).\r\n\r\nPour wax into mason jar and then repeat until all jars are full. Depending on size of mason jars you may have some wax leftover.\r\n\r\nLet stand until solid (about 1 hour).\r\n\r\nCut wick to desired length\r\n\r\nEnjoy!!",
+    "active_ingredients": [
+      1,
+      4
+    ],
+    "mediums": [
+      6
     ]
   }
 }

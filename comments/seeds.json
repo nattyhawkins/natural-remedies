@@ -6,7 +6,8 @@
     "text": "Wow!",
     "created_at": "2022-12-07T18:40:14.170Z",
     "active_ingredient": 1,
-    "recipe": null
+    "recipe": null,
+    "owner": 1
   }
 },
 {
@@ -16,7 +17,19 @@
     "text": "Thanks for sharing - this worked so well!",
     "created_at": "2022-12-07T18:43:01.385Z",
     "active_ingredient": null,
-    "recipe": 3
+    "recipe": 3,
+    "owner": 1
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 6,
+  "fields": {
+    "text": "love this!",
+    "created_at": "2022-12-08T10:52:05.468Z",
+    "active_ingredient": 1,
+    "recipe": null,
+    "owner": 2
   }
 }
 ]
