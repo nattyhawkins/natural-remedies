@@ -12,8 +12,9 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 # Create your views here.
 class RecipeListView(APIView):
   permission_classes = (IsAuthenticatedOrReadOnly, )
-  def get(self, _request):
-      recipes = Recipe.objects.all()
+  def get(self, request):
+      search = request.query_params.get('search')
+      recipes = Recipe.objects.filter(name__icontains=search)
       serialized_recipes = SemiPopulatedRecipeSerializer(recipes, many=True)
       return Response(serialized_recipes.data, status.HTTP_200_OK)
 
