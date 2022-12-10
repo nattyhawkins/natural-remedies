@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Form, Modal, Tab, Tabs } from 'react-bootstrap'
+import { Modal, Tab, Tabs } from 'react-bootstrap'
 import Login from './Login'
 import Register from './Register'
 import { v4 as uuid } from 'uuid'

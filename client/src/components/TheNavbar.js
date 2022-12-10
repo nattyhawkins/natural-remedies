@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Navbar, Container, Nav } from 'react-bootstrap'
 import React, { useState } from 'react'
 import AuthModal from './AuthModal'
@@ -9,8 +9,8 @@ const TheNavbar = () => {
   const [show, setShow] = useState(false)
   const [tab, setTab] = useState('login')
 
-  const navigate = useNavigate()
 
+  const navigate = useNavigate()
   
   const handleShow = (e) => {
     console.log(e.target.title)

@@ -8,11 +8,17 @@ const IndexRecipes = ({ items, model }) => {
     <>
       {items.map(item => {
         const { id, name, favourites, image, active_ingredients: ingredients } = item
+        const list = []
         const ingredientBenefitsHTML = ingredients.map(ingredient => {
           const benefitHTML = ingredient.benefits.map(benefit => {
-            return (
-              <Card.Text className='m-0 px-2 text-end'key={benefit.id}>{benefit.name}</Card.Text>
-            )
+            if (list.includes(benefit.name)) return (<></>)
+            else {
+              list.push(benefit.name)
+              return (
+                <Card.Text className='m-0 px-2 text-end'key={benefit.id}>{benefit.name}</Card.Text>
+              )
+
+            }
           })
           return (
             <div key={ingredient.id}>{benefitHTML}</div>

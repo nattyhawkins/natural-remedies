@@ -9,13 +9,13 @@ import SinglePage from './pages/SinglePage'
 import IndexPage from './pages/IndexPage'
 
 const App = () => {
-  useEffect(() => {
-    const getData = async () => {
-      const { data } = await axios.get('/api/products/') // * <-- replace with your endpoint
-      console.log(data)
-    }
-    getData()
-  })
+//   useEffect(() => {
+//     const getData = async () => {
+//       const { data } = await axios.get('/api/products/') // * <-- replace with your endpoint
+//       console.log(data)
+//     }
+//     getData()
+//   })
 
   return (
     <div className="pageWrapper">
