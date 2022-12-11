@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { Card } from 'react-bootstrap'
-import { getToken, isOwner } from '../../helpers/auth'
-import { getTimeElapsed } from '../../helpers/general'
+import { getToken, isOwner } from '../helpers/auth'
+import { getTimeElapsed } from '../helpers/general'
 import PostForm from './PostForm'
 
 

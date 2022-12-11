@@ -63,6 +63,8 @@ a{
   }
 }
 
+
+
 .index{
   .index-row{
     min-height: 300px;
@@ -89,6 +91,21 @@ a{
     .index-detail{
       font-size: 5vw;
     }
+    .filters{
+      .search{
+        width: 100%;
+        // border: none;
+        font-size: 6vw;
+        font-weight: 900;
+      }
+      .select{
+        width: 50%;
+        align-self: end;
+        margin: 10px 0;
+        font-weight: 900;
+        font-size: 3vw;
+      }
+    }
   }
 }
 @media (min-width: 576px) and (max-width: 992px){
@@ -99,6 +116,9 @@ a{
     .index-detail{
       font-size: 2vw;
     }
+  }
+  .container{
+    max-width: none;
   }
 }
 
@@ -114,7 +134,9 @@ a{
   }
   .image{
     // width: 500px;
-    height: 500px;
+    min-height: 500px;
+    max-width: 600px;
+    margin: 0 auto;
     border-radius: 15px 0 0 15px;
   }
 }

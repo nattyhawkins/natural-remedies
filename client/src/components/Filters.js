@@ -23,7 +23,7 @@ const Filters = ({ model, setSearch, benefits, setBenefitFilter }) => {
   }, [searchInput, select])
 
   return (
-    <Row className='filters mb-3 d-flex justify-content-between'>
+    <Row className='filters mb-3 d-flex flex-column flex-sm-row justify-content-between'>
       {/* <div className='search-function d-inline'> */}
       {/* <FloatingLabel
         controlId="floatingInput"

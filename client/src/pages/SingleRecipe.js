@@ -9,7 +9,7 @@ const SingleRecipe = ({ item }) => {
         <Col className='flex-grow-1 p-3'>
           <h1>{item.name}</h1>
           {/* <h2>{item.mediums.name}</h2> */}
-          <Row className='image w-100 mx-0 my-2 d-md-none' style={{ backgroundImage: `url(${item.image})`, borderRadius: '15px' }}></Row> 
+          <Row className='image w-100 my-2 d-md-none' style={{ backgroundImage: `url(${item.image})`, borderRadius: '15px' }}></Row> 
           <p>{item.description}</p>
         </Col>
       </Row>

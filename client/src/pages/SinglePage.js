@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Col, Container, Image, Row } from 'react-bootstrap'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import Post from '../components/Post'
 import { getToken, isAuthenticated, isOwner } from '../helpers/auth'
 import SingleIngredient from './SingleIngredient'
 import SingleRecipe from './SingleRecipe'
@@ -82,14 +83,17 @@ const SinglePage = () => {
 
 
   return (
-    <main className='single'>
-      <Container >
+    <main className='single px-1 px-sm-2'>
+      <Container className=''>
         {item && 
           (modelLoad === 'active_ingredients' ?
             <SingleIngredient item={item} />
             :
             <SingleRecipe item={item}  />
           )}
+        <Row>
+          {/* <Post /> */}
+        </Row>
       </Container>
     </main>
   )
