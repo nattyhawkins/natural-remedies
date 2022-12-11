@@ -32,7 +32,7 @@ const Login = ({ setShow, error, setError }) => {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="log_user">
+        <Form.Group className="my-3" controlId="log_user">
           {/* <Form.Label>Username</Form.Label> */}
           <FloatingLabel
             controlId="floatingInput"

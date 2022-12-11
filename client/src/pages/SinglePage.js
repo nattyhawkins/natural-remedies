@@ -78,7 +78,7 @@ const SinglePage = () => {
 
   return (
     <main className='single px-1 px-sm-2'>
-      <Container className=''>
+      <Container style={{ maxWidth: '1100px', margin: '0 auto' }}>
         {item && 
           (modelLoad === 'active_ingredients' ?
             <SingleIngredient item={item} />

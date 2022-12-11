@@ -17,7 +17,6 @@ const TheNavbar = () => {
     setTab(e.target.title)
     setShow(true)
   }
-
   
   return (
     <Navbar className='navbar'>

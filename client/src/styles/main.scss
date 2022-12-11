@@ -23,6 +23,7 @@ a{
   background-repeat: no-repeat;
 }
 
+
 .navbar {
   position: sticky;
   top: 0;
@@ -81,6 +82,7 @@ a{
   .fave, .card-title{
     font-size: 50px;
   }
+
   
 }
 
@@ -100,6 +102,9 @@ a{
     margin: 0 auto;
     border-radius: 15px 0 0 15px;
   }
+  .fave{
+    font-size: 50px;
+  }
 }
 
 .comment {
@@ -117,7 +122,7 @@ a{
     background-color: lighten($primary, 40%);
     border-radius: 15px;
     padding: 10px;
-    color: rgb(27, 27, 27);
+    color: darken(grey, 5%);
     // margin-top: 15px;
     // max-width: 780px;
   }
@@ -141,12 +146,16 @@ a{
 .icon.small{
   width: 60px;
   height: 60px;
+  margin-top: -6px;
 }
 
 
 
 
 @media (max-width: 576px){
+  .btn{
+    width: 100%;
+  }
   .single{
     .image{
       min-height: 90vw;

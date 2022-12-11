@@ -136,9 +136,9 @@ const Comment = ({ commentId, comment, setRefresh, refresh, handleCommentSubmit 
                 </div>
               }
             </div>
-            <div className='infoBox'>
+            {/* <div className='infoBox'>
               <div className='d-flex flex-column flex-sm-row align-items-sm-center' style={{ minHeight: '50px' }}>
-                {/* like box
+                like box
                 <div className="d-flex align-items-center justify-content-end" style={{ width: '200px', height: '35px' }} onClick={handleCommentLike}>
                   {likeStatus === 204 ?
                     <p className='like-btn' >👍</p>
@@ -155,9 +155,9 @@ const Comment = ({ commentId, comment, setRefresh, refresh, handleCommentSubmit 
                       }
                     </small>
                   </div>
-                </div> */}
+                </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </Card.Body>

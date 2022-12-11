@@ -1,5 +1,6 @@
 
 import { Buffer } from 'buffer'
+import { useState } from 'react'
 
 const tokenName = 'remedies-token'
 

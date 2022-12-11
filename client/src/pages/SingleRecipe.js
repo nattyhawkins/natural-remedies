@@ -11,6 +11,18 @@ const SingleRecipe = ({ item }) => {
           {/* <h2>{item.mediums.name}</h2> */}
           <Row className='image w-100 my-2 d-md-none' style={{ backgroundImage: `url(${item.image})`, borderRadius: '15px' }}></Row> 
           <p>{item.description}</p>
+          <div className='text-end'>
+            {item && item.active_ingredients.map(ingredient => {
+              const benefits = ingredient.benefits.map(benefit => {
+                return (
+                  <p key={benefit.id} className='my-0'>{benefit.name}</p> 
+                )
+              })
+              return (
+                <div key={ingredient.id}>{benefits}</div>
+              )
+            })}
+          </div>
         </Col>
       </Row>
       <Row>

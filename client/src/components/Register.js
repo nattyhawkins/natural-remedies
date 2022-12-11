@@ -38,7 +38,7 @@ const Register = ({ setTab, error, setError }) => {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="reg_user">
+        <Form.Group className="my-3" controlId="reg_user">
           {/* <Form.Label>Username</Form.Label> */}
           <FloatingLabel
             controlId="floatingInput"

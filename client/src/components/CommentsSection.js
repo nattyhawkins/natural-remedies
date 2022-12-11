@@ -3,11 +3,13 @@ import { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { getToken, isAuthenticated } from '../helpers/auth'
 import { unixTimestamp } from '../helpers/general'
+import AuthModal from './AuthModal'
 import Comment from './Comment'
 import CommentForm from './CommentForm'
 
 const CommentsSection = ({ item, model, itemId, setRefresh, refresh }) => {
-
+  const [show, setShow] = useState(false)
+  const [tab, setTab] = useState('login')
   const [commentError, setCommentError] = useState(false)
   const [toEdit, setToEdit] = useState(false)
   const [commentFields, setCommentFields] = useState({
@@ -20,7 +22,7 @@ const CommentsSection = ({ item, model, itemId, setRefresh, refresh }) => {
   async function handleCommentSubmit(e) {
     try {
       e.preventDefault()
-      if (!isAuthenticated()) throw new Error('Please login')
+      if (!isAuthenticated()) return setShow(true)
       if (commentFields.text.length > 300) throw new Error('Character limit exceeded')
       console.log(commentFields)
       const { data } = await axios.post('/api/comments/', commentFields, {
@@ -35,21 +37,19 @@ const CommentsSection = ({ item, model, itemId, setRefresh, refresh }) => {
       setCommentError(err.message ? err.message : err.response.data.message)
     }
   }
-  useEffect(() => {
-    console.log(commentFields)
-   
-  }, [])
+
 
   return (
-    <Row className='mb-5'>
-      <Col md={{ span: 10, offset: 1 }}>
-        <CommentForm commentFields={commentFields} setCommentFields={setCommentFields} commentError={commentError} setCommentError={commentError} handleCommentSubmit={handleCommentSubmit}  />
+    <Row className='my-4 '>
+      <Col style={{ maxWidth: '800px', margin: '0 auto' }}>
+        <CommentForm commentFields={commentFields} setCommentFields={setCommentFields} commentError={commentError} setCommentError={setCommentError} handleCommentSubmit={handleCommentSubmit}  />
         {item && item.comments && item.comments.sort((a, b) => (unixTimestamp(a.created_at) > unixTimestamp(b.created_at) ? -1 : 1)).map(comment => {
           const { id: commentId } = comment
           return (
             <Comment key={commentId} commentId={commentId} comment={comment} setRefresh={setRefresh} refresh={refresh} />
           )
         })}
+        <AuthModal show={show} setShow={setShow} tab={tab} setTab={setTab}/>
       </Col>
     </Row>
   )
