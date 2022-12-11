@@ -83,7 +83,33 @@ a{
   }
   
 }
+
+.single {
+  white-space: pre-line;
+  .main{
+    // color: black;
+    background-color: lighten($primary, 40%);
+    border-radius: 16px;
+    
+    
+  }
+  .image{
+    // width: 500px;
+    min-height: 500px;
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: 15px 0 0 15px;
+  }
+}
+
+
+
 @media (max-width: 576px){
+  .single{
+    .image{
+      min-height: 90vw;
+    }
+  }
   .index{
     .fave, .card-title{
       font-size: 12vw;
@@ -119,24 +145,5 @@ a{
   }
   .container{
     max-width: none;
-  }
-}
-
-
-.single {
-  white-space: pre-line;
-  .main{
-    // color: black;
-    background-color: lighten($primary, 40%);
-    border-radius: 16px;
-    
-
-  }
-  .image{
-    // width: 500px;
-    min-height: 500px;
-    max-width: 600px;
-    margin: 0 auto;
-    border-radius: 15px 0 0 15px;
   }
 }

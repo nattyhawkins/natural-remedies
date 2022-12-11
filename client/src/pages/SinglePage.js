@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Col, Container, Image, Row } from 'react-bootstrap'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import Post from '../components/Post'
+import CommentsSection from '../components/CommentsSection'
 import { getToken, isAuthenticated, isOwner } from '../helpers/auth'
 import SingleIngredient from './SingleIngredient'
 import SingleRecipe from './SingleRecipe'
@@ -11,17 +12,12 @@ import SingleRecipe from './SingleRecipe'
 const SinglePage = () => {
   const [ item, setItem ] = useState(null)
   const [ itemError, setItemError ] = useState(false)
-  const [ postError, setPostError ] = useState(false)
   const [ refresh, setRefresh ] = useState(false)
-  const [ toEdit, setToEdit ] = useState(false)
   const [ postFields, setPostFields ] = useState({
     text: '',
   })
-  const [ favouriteStatus, setFavouriteStatus ] = useState(204)
-
   const { model, itemId } = useParams()
   const [ modelLoad, setModelLoad ] = useState(model)
-  const navigate = useNavigate()
 
   useEffect(() => {
     const getItem = async () => {
@@ -45,24 +41,24 @@ const SinglePage = () => {
   //   setFavouriteStatus(204)
   // }, [item])
 
-  //submit brand new post
-  async function handlePostSubmit(e) {
-    try {
-      e.preventDefault()
-      if (!isAuthenticated()) throw new Error('Please login')
-      if (postFields.text.length > 300) throw new Error('Character limit exceeded')
-      const { data } = await axios.post('/api/comments/', postFields, {
-        headers: {
-          Authorization: `Bearer ${getToken()}`,
-        },
-      })
-      console.log(data)
-      setRefresh(!refresh)
-      setPostFields({ text: '' })
-    } catch (err) {
-      setPostError(err.message ? err.message : err.response.data.message)
-    }
-  }
+  // //submit brand new post
+  // async function handlePostSubmit(e) {
+  //   try {
+  //     e.preventDefault()
+  //     if (!isAuthenticated()) throw new Error('Please login')
+  //     if (postFields.text.length > 300) throw new Error('Character limit exceeded')
+  //     const { data } = await axios.post('/api/comments/', postFields, {
+  //       headers: {
+  //         Authorization: `Bearer ${getToken()}`,
+  //       },
+  //     })
+  //     console.log(data)
+  //     setRefresh(!refresh)
+  //     setPostFields({ text: '' })
+  //   } catch (err) {
+  //     setPostError(err.message ? err.message : err.response.data.message)
+  //   }
+  // }
 
   // async function handleFavourite(e) {
   //   try {
@@ -91,9 +87,7 @@ const SinglePage = () => {
             :
             <SingleRecipe item={item}  />
           )}
-        <Row>
-          {/* <Post /> */}
-        </Row>
+        <CommentsSection model={model} itemId={itemId}/>
       </Container>
     </main>
   )

@@ -5,9 +5,9 @@ const SingleRecipe = ({ item }) => {
   return (
     <>
       <Row className='main d-flex flex-column flex-md-row p-0 my-5'>
-        <Col className='image flex-grow-1' style={{ backgroundImage: `url(${item.image})` }}></Col>
+        <Col className='image flex-grow-1 d-none d-md-block' style={{ backgroundImage: `url(${item.image})` }}></Col>
         <Col className='flex-grow-1 p-3'>
-          <h1>{item.name}</h1>
+          <h1 className='text-center text-md-start'>{item.name}</h1>
           {/* <h2>{item.mediums.name}</h2> */}
           <Row className='image w-100 my-2 d-md-none' style={{ backgroundImage: `url(${item.image})`, borderRadius: '15px' }}></Row> 
           <p>{item.description}</p>

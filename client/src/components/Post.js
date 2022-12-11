@@ -7,7 +7,7 @@ import PostForm from './PostForm'
 
 
 
-const Post = ({ postId, post, groupId, setRefresh, refresh }) => {
+const Post = ({ postId, post, setRefresh, refresh }) => {
 
   const [open, setOpen] = useState(false)
   // const [likeStatus, setLikeStatus] = useState(() => {
