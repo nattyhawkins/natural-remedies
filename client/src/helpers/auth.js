@@ -37,3 +37,4 @@ export const isOwner = (token1) => {
   if (!payload) return false
   return token1 === payload.sub
 }
+

@@ -1,55 +1,56 @@
 import axios from 'axios'
-import { useState } from 'react'
-import { Row } from 'react-bootstrap'
+import { useEffect, useState } from 'react'
+import { Col, Container, Row } from 'react-bootstrap'
 import { getToken, isAuthenticated } from '../helpers/auth'
 import { unixTimestamp } from '../helpers/general'
-import PostForm from './PostForm'
+import Comment from './Comment'
+import CommentForm from './CommentForm'
 
-const CommentsSection = ({ model, itemId }) => {
+const CommentsSection = ({ item, model, itemId, setRefresh, refresh }) => {
 
-  const [postError, setPostError] = useState(false)
-  const [refresh, setRefresh] = useState(false)
+  const [commentError, setCommentError] = useState(false)
   const [toEdit, setToEdit] = useState(false)
-  const [postFields, setPostFields] = useState({
+  const [commentFields, setCommentFields] = useState({
     text: '',
+    [model.slice(0, -1)]: [itemId][0],
   })
   const [memberStatus, setMemberStatus] = useState(204)
 
-  //submit brand new post
-  async function handlePostSubmit(e) {
+  //submit brand new comment
+  async function handleCommentSubmit(e) {
     try {
       e.preventDefault()
       if (!isAuthenticated()) throw new Error('Please login')
-      if (postFields.text.length > 300) throw new Error('Character limit exceeded')
-      const { data } = await axios.post('api/comments/', postFields, {
+      if (commentFields.text.length > 300) throw new Error('Character limit exceeded')
+      console.log(commentFields)
+      const { data } = await axios.post('/api/comments/', commentFields, {
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },
       })
       console.log(data)
       setRefresh(!refresh)
-      setPostFields({ text: '' })
+      setCommentFields({ ...commentFields, text: '' })
     } catch (err) {
-      setPostError(err.message ? err.message : err.response.data.message)
+      setCommentError(err.message ? err.message : err.response.data.message)
     }
   }
-  
+  useEffect(() => {
+    console.log(commentFields)
+   
+  }, [])
 
   return (
-    <Row>
-      <PostForm postFields={postFields} setPostFields={setPostFields} postError={postError} setPostError={postError} handlePostSubmit={handlePostSubmit}  />
-      {/* {{model}.posts && {model}.posts.sort((a, b) => (unixTimestamp(a.createdAt) > unixTimestamp(b.createdAt) ? -1 : 1)).map(post => {
-        const { _id: postId, comments } = post
-        const commentHTML = comments.sort((a, b) => (unixTimestamp(a.createdAt) > unixTimestamp(b.createdAt) ? -1 : 1)).map(comment => {
-          const { _id: commentId } = comment
+    <Row className='mb-5'>
+      <Col md={{ span: 10, offset: 1 }}>
+        <CommentForm commentFields={commentFields} setCommentFields={setCommentFields} commentError={commentError} setCommentError={commentError} handleCommentSubmit={handleCommentSubmit}  />
+        {item && item.comments && item.comments.sort((a, b) => (unixTimestamp(a.created_at) > unixTimestamp(b.created_at) ? -1 : 1)).map(comment => {
+          const { id: commentId } = comment
           return (
-            <Comments key={commentId} comment={comment} itemId={itemId} postId={postId} setRefresh={setRefresh} refresh={refresh} />
+            <Comment key={commentId} commentId={commentId} comment={comment} setRefresh={setRefresh} refresh={refresh} />
           )
-        })
-        return (
-          <Post key={postId} postId={postId} post={post} commentHTML={commentHTML} itemId={itemId} setRefresh={setRefresh} refresh={refresh} />
-        )
-      })} */}
+        })}
+      </Col>
     </Row>
   )
 }

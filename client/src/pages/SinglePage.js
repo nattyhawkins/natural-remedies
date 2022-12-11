@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Col, Container, Image, Row } from 'react-bootstrap'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import Post from '../components/Post'
+import Comment from '../components/Comment'
 import CommentsSection from '../components/CommentsSection'
 import { getToken, isAuthenticated, isOwner } from '../helpers/auth'
 import SingleIngredient from './SingleIngredient'
@@ -13,13 +13,11 @@ const SinglePage = () => {
   const [ item, setItem ] = useState(null)
   const [ itemError, setItemError ] = useState(false)
   const [ refresh, setRefresh ] = useState(false)
-  const [ postFields, setPostFields ] = useState({
-    text: '',
-  })
   const { model, itemId } = useParams()
   const [ modelLoad, setModelLoad ] = useState(model)
 
   useEffect(() => {
+
     const getItem = async () => {
       try {
         console.log('model', model)
@@ -32,7 +30,7 @@ const SinglePage = () => {
       }
     }
     getItem()
-  }, [itemId, model])
+  }, [itemId, model, refresh])
 
   // check if user is already a member of group on page load
   // useEffect(() => {
@@ -41,22 +39,22 @@ const SinglePage = () => {
   //   setFavouriteStatus(204)
   // }, [item])
 
-  // //submit brand new post
-  // async function handlePostSubmit(e) {
+  // //submit brand new comment
+  // async function handleCommentSubmit(e) {
   //   try {
   //     e.preventDefault()
   //     if (!isAuthenticated()) throw new Error('Please login')
-  //     if (postFields.text.length > 300) throw new Error('Character limit exceeded')
-  //     const { data } = await axios.post('/api/comments/', postFields, {
+  //     if (commentFields.text.length > 300) throw new Error('Character limit exceeded')
+  //     const { data } = await axios.comment('/api/comments/', commentFields, {
   //       headers: {
   //         Authorization: `Bearer ${getToken()}`,
   //       },
   //     })
   //     console.log(data)
   //     setRefresh(!refresh)
-  //     setPostFields({ text: '' })
+  //     setCommentFields({ text: '' })
   //   } catch (err) {
-  //     setPostError(err.message ? err.message : err.response.data.message)
+  //     setCommentError(err.message ? err.message : err.response.data.message)
   //   }
   // }
 
@@ -64,7 +62,7 @@ const SinglePage = () => {
   //   try {
   //     e.preventDefault()
   //     if (!isAuthenticated()) return navigate('/login')
-  //     const { status } = await axios.post('/api/favourites/', {}, {
+  //     const { status } = await axios.comment('/api/favourites/', {}, {
   //       headers: {
   //         Authorization: `Bearer ${getToken()}`,
   //       },
@@ -87,7 +85,7 @@ const SinglePage = () => {
             :
             <SingleRecipe item={item}  />
           )}
-        <CommentsSection model={model} itemId={itemId}/>
+        <CommentsSection item={item} model={model} itemId={itemId} setRefresh={setRefresh} refresh={refresh}/>
       </Container>
     </main>
   )

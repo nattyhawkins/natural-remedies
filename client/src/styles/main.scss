@@ -102,6 +102,48 @@ a{
   }
 }
 
+.comment {
+  border: none;
+
+  .username {
+    padding-right: 10px;
+    color: lighten($primary, 15%);
+
+    &:hover {
+      color: lighten($primary, 30%);
+    }
+  }
+  .textBox {
+    background-color: lighten($primary, 40%);
+    border-radius: 15px;
+    padding: 10px;
+    color: rgb(27, 27, 27);
+    // margin-top: 15px;
+    // max-width: 780px;
+  }
+  .comment-btn {
+    cursor: pointer;
+    margin: 0 0 0 20px;
+  }
+}
+
+.profile-pic {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+}
+.icon:not(.small) {
+  width: 100px;
+  height: 100px;
+  margin-top: -7px;
+}
+.icon.small{
+  width: 60px;
+  height: 60px;
+}
+
+
 
 
 @media (max-width: 576px){

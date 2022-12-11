@@ -1,6 +1,4 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { useEffect } from 'react'
-import axios from 'axios'
 import TheNavbar from './components/TheNavbar'
 import Home from './pages/Home'
 import Profile from './pages/Profile'
@@ -9,13 +7,7 @@ import SinglePage from './pages/SinglePage'
 import IndexPage from './pages/IndexPage'
 
 const App = () => {
-//   useEffect(() => {
-//     const getData = async () => {
-//       const { data } = await axios.get('/api/products/') // * <-- replace with your endpoint
-//       console.log(data)
-//     }
-//     getData()
-//   })
+
 
   return (
     <div className="pageWrapper">
