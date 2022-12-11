@@ -11,7 +11,6 @@ class PopulatedActive_IngredientSerializer(Active_IngredientSerializer):
     favourites = OwnedFavouriteSerializer(many=True)
     benefits = BenefitSerializer(many=True)
     recipes = RecipeSerializer(many=True)
-    mediums = MediumSerializer(many=True)
 
 class SemiPopulatedActive_IngredientSerializer(Active_IngredientSerializer):
     favourites = FavouriteSerializer(many=True)

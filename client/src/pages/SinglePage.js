@@ -1,7 +1,10 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { Col, Container, Image, Row } from 'react-bootstrap'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { getToken, isAuthenticated, isOwner } from '../helpers/auth'
+import SingleIngredient from './SingleIngredient'
+import SingleRecipe from './SingleRecipe'
 
 
 const SinglePage = () => {
@@ -16,19 +19,23 @@ const SinglePage = () => {
   const [ favouriteStatus, setFavouriteStatus ] = useState(204)
 
   const { model, itemId } = useParams()
+  const [ modelLoad, setModelLoad ] = useState(model)
   const navigate = useNavigate()
 
   useEffect(() => {
     const getItem = async () => {
       try {
-        const { data } = await axios.get(`/api/${model}/${itemId}`)
+        console.log('model', model)
+        setItemError(false)
+        const { data } = await axios.get(`/api/${model}/${itemId}/`)
+        console.log(data)
         setItem(data)
       } catch (err) {
         setItemError(err.message ? err.message : err.response.data.message)
       }
     }
     getItem()
-  }, [itemId, refresh])
+  }, [itemId, model])
 
   // check if user is already a member of group on page load
   // useEffect(() => {
@@ -76,7 +83,14 @@ const SinglePage = () => {
 
   return (
     <main className='single'>
-      <h1>single</h1>
+      <Container >
+        {item && 
+          (modelLoad === 'active_ingredients' ?
+            <SingleIngredient item={item} />
+            :
+            <SingleRecipe item={item}  />
+          )}
+      </Container>
     </main>
   )
 }

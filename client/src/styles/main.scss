@@ -9,12 +9,18 @@ body, html {
   min-height: 100vh;
   min-width: 100vw;
   margin: 0;
+  color: grey;
   ::placeholder{
     color: grey;
   }
 }
 a{
   text-decoration: none;
+}
+.image{
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .navbar {
@@ -63,12 +69,10 @@ a{
   }
   
   .index-card{
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    
+    border-radius: 5px;
     height: 300px;
     width: 100%;
-    border-radius: 5px;
     padding: 10px;
     color: white;
   }
@@ -95,5 +99,22 @@ a{
     .index-detail{
       font-size: 2vw;
     }
+  }
+}
+
+
+.single {
+  white-space: pre-line;
+  .main{
+    // color: black;
+    background-color: lighten($primary, 40%);
+    border-radius: 16px;
+    
+
+  }
+  .image{
+    // width: 500px;
+    height: 500px;
+    border-radius: 15px 0 0 15px;
   }
 }

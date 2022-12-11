@@ -70,13 +70,13 @@ const IndexPage = () => {
               :
               <IndexRecipes items={items} model={model} benefits={benefits} setBenefits={setBenefits}/>
             :
-            error ?
-              items.length === 0 ? 
-                <h1>No results</h1>
-                :
+            items.length === 0 ? 
+              <h1>No results</h1>
+              :
+              error ?
                 <h1>{error}</h1>
-              : 
-              <Spinner />
+                : 
+                <Spinner />
           }
         </Row>
       </Container>

@@ -46,7 +46,7 @@ const IndexRecipes = ({ items, model, setBenefits, benefits }) => {
         return (
           <Col key={id} className="mb-4 col-12 col-sm-6 col-md-6 offset-md-0 col-lg-4">
             <Link to={`/${model}/${id}`}>
-              <Card className="index-card pb-0" style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5)), url(${image})` }}>
+              <Card className="index-card image pb-0" style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5)), url(${image})` }}>
                 <Card.Body className='d-flex p-0 flex-column justify-content-end'>
                   <div className='align-self-end index-detail'>{benefitsHTML}</div>
                   <div className='d-flex justify-content-between align-items-center'>
