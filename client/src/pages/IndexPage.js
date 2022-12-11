@@ -39,6 +39,24 @@ const IndexPage = () => {
   useEffect(() => {
     setModelLoad(model)
   }, [items])
+
+
+  // //Get all benefits, unfiltered
+  // useEffect(() => {
+  //   const getItems = async () => {
+  //     try {
+  //       console.log('model', model)
+  //       setError(false)
+  //       const { data } = await axios.get(`/api/${model}?${search}&${benefitFilter}&/`)
+  //       console.log(data)
+  //       setItems(data)
+  //     } catch (err) {
+  //       console.log(err)
+  //       setError(err.response.data.message ? err.response.data.message : err.message)
+  //     }
+  //   }
+  //   getItems()
+  // }, [model, search, benefitFilter])
   
   return (
     <main className='index'>
@@ -48,9 +66,9 @@ const IndexPage = () => {
           
           {items.length > 0 && modelLoad === model ? 
             modelLoad === 'active_ingredients' ?
-              <IndexIngredients items={items} model={model} setBenefits={setBenefits}/>
+              <IndexIngredients items={items} model={model} benefits={benefits} setBenefits={setBenefits}/>
               :
-              <IndexRecipes items={items} model={model} setBenefits={setBenefits}/>
+              <IndexRecipes items={items} model={model} benefits={benefits} setBenefits={setBenefits}/>
             :
             error ?
               items.length === 0 ? 

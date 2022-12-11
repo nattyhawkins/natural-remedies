@@ -3,7 +3,7 @@ import { Card, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 
-const IndexIngredients = ({ items, model, setBenefits }) => {
+const IndexIngredients = ({ items, model, setBenefits, benefits }) => {
 
   useEffect(() => {
     const list = []
@@ -14,7 +14,7 @@ const IndexIngredients = ({ items, model, setBenefits }) => {
         }
       })
     })
-    setBenefits(list)
+    list.length > benefits.length && setBenefits(list)
   }, [items])
 
   return (

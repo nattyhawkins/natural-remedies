@@ -18,7 +18,9 @@ class Active_IngredientListView(APIView):
       # print('benefit', benefit)
       # def checkFilter():
       #   return True
-      active_ingredients = Active_Ingredient.objects.filter(name__icontains=search)
+      benefit = benefit if benefit != 'default' else ''
+      print('benefit--', benefit)
+      active_ingredients = Active_Ingredient.objects.filter(name__icontains=search, benefits__name__icontains=benefit).distinct()
       active_ingredients = SemiPopulatedActive_IngredientSerializer(active_ingredients, many=True)
       # if benefit != 'default':
       #   active_ingredients = []

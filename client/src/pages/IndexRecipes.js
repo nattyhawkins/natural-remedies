@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
 
-const IndexRecipes = ({ items, model, setBenefits }) => {
+const IndexRecipes = ({ items, model, setBenefits, benefits }) => {
 
   useEffect(() => {
     const list = []
@@ -18,7 +18,7 @@ const IndexRecipes = ({ items, model, setBenefits }) => {
         })
       })
     })
-    setBenefits(list)
+    list.length > benefits.length && setBenefits(list)
   }, [items])
 
   
