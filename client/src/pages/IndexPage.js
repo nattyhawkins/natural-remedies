@@ -7,8 +7,8 @@ import Spinner from '../components/Spinner'
 import IndexRecipes from './IndexRecipes'
 import Filters from '../components/Filters'
 
-const IndexPage = () => {
-  const [ items, setItems ] = useState([])
+const IndexPage = ({ setShow }) => {
+  const [ items, setItems ] = useState(false)
   const [ error, setError ] = useState(false)
   const { model } = useParams()
   const [ modelLoad, setModelLoad ] = useState(model)
@@ -31,8 +31,8 @@ const IndexPage = () => {
         console.log(data)
         setItems(data)
       } catch (err) {
-        console.log(err)
-        setError(err.response.data.message ? err.response.data.message : err.message)
+        console.log(err.response)
+        setError(err.response.statusText ? err.response.statusText : 'Something went wrong...')
       }
     }
     getItems()
@@ -66,19 +66,22 @@ const IndexPage = () => {
         <Filters model={model} setSearch={setSearch} benefits={benefits} setBenefits={setBenefits} setBenefitFilter={setBenefitFilter} />
         <Row className="index-row text-center">
           
-          {items.length > 0 && modelLoad === model ? 
+          {items && items.length > 0 && modelLoad === model ? 
             modelLoad === 'active_ingredients' ?
-              <IndexIngredients items={items} model={model} benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh}/>
+              <IndexIngredients items={items} model={model} benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow} />
               :
-              <IndexRecipes items={items} model={model} benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh}/>
+              <IndexRecipes items={items} model={model} benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
             :
-            items.length === 0 ? 
-              <h1>No results</h1>
-              :
+            items && items.length === 0 ? 
               error ?
-                <h1>{error}</h1>
-                : 
-                <Spinner />
+                <div>
+                  <Spinner />
+                  <h1>{error}</h1>
+                </div>
+                :
+                <h1>No results</h1>
+              :
+              <Spinner />
           }
         </Row>
       </Container>

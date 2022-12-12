@@ -5,8 +5,7 @@ import AuthModal from './AuthModal'
 import { handleLogout, isAuthenticated } from '../helpers/auth'
 
 
-const TheNavbar = () => {
-  const [show, setShow] = useState(false)
+const TheNavbar = ({ setShow }) => {
   const [tab, setTab] = useState('login')
 
 
@@ -39,7 +38,6 @@ const TheNavbar = () => {
             <>
               <Nav.Link as={Link} onClick={handleShow} title='register'>Register</Nav.Link>
               <Nav.Link as={Link} onClick={handleShow} title='login'>Login</Nav.Link>
-              <AuthModal show={show} setShow={setShow} tab={tab} setTab={setTab}/>
             </>
           }
         </Nav>

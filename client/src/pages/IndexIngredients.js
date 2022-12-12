@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import IndexCard from '../components/IndexCard'
 
 
-const IndexIngredients = ({ items, model, setBenefits, benefits, refresh, setRefresh }) => {
+const IndexIngredients = ({ items, model, setBenefits, benefits, refresh, setRefresh, setShow }) => {
 
   useEffect(() => {
     const list = []
@@ -28,7 +28,7 @@ const IndexIngredients = ({ items, model, setBenefits, benefits, refresh, setRef
           )
         })
         return (
-          <IndexCard key={id} id={id} item={item} model={model} benefitHTML={benefitHTML} image={image} name={name} setRefresh={setRefresh} refresh={refresh}/>
+          <IndexCard key={id} id={id} item={item} model={model} benefitHTML={benefitHTML} image={image} name={name} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
         )
       })
       }

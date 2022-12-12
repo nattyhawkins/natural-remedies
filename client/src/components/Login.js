@@ -23,6 +23,7 @@ const Login = ({ setShow, error, setError }) => {
       setToken(data.token)
       setShow(false)
       setFormFields({ username: '', password: '' })
+      window.location.reload(false)
     } catch (err) {
       console.log(err.response.data.detail)
       setError(err.response.data.detail)
@@ -31,11 +32,11 @@ const Login = ({ setShow, error, setError }) => {
   }
   return (
     <>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} >
         <Form.Group className="my-3" controlId="log_user">
           {/* <Form.Label>Username</Form.Label> */}
           <FloatingLabel
-            controlId="floatingInput"
+            controlId="floatingLogUser"
             label="Username"
             className="mb-3">
             <Form.Control
@@ -44,6 +45,7 @@ const Login = ({ setShow, error, setError }) => {
               placeholder="Username"
               onChange={handleChange}
               value={formFields.username}
+              autoComplete="on"
               required
               autoFocus
             /></FloatingLabel>
@@ -51,7 +53,7 @@ const Login = ({ setShow, error, setError }) => {
         <Form.Group className="mb-3" controlId="log_pass">
           {/* <Form.Label>Password</Form.Label> */}
           <FloatingLabel
-            controlId="floatingInput"
+            controlId="floatingLogPass"
             label="Password"
             className="mb-3">
             <Form.Control
@@ -60,6 +62,7 @@ const Login = ({ setShow, error, setError }) => {
               placeholder="Password"
               onChange={handleChange}
               value={formFields.password}
+              autoComplete="on"
               required
             /></FloatingLabel>
         </Form.Group>

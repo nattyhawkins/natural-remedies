@@ -7,13 +7,11 @@ import { v4 as uuid } from 'uuid'
 const AuthModal = ({ show, setShow, tab, setTab }) => {
   const [ error, setError ] = useState([])
   
-  
   const handleClose = () => setShow(false)
   const handleTabChange = (k) => {
     setTab(k)
     setError(false)
   }
-
 
   return (
     <Modal show={show} onHide={handleClose} centered >

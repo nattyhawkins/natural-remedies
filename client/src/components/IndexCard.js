@@ -10,6 +10,7 @@ const IndexCard = ({ id, model, benefitHTML, image, name, item, setRefresh, refr
   const [ favouriteStatus, setFavouriteStatus ] = useState(204)
 
   async function handleFavourite(e) {
+    setFaveError('')
     try {
       e.preventDefault()
       if (!isAuthenticated()) return setShow(true)
@@ -26,7 +27,7 @@ const IndexCard = ({ id, model, benefitHTML, image, name, item, setRefresh, refr
       setRefresh(!refresh)
     } catch (err) {
       console.log(err.response)
-      setFaveError(err.message ? err.message : err.response.data.message)
+      setFaveError(err.response.statusText ? err.response.statusText : 'Something went wrong...')
     }
   }
 
@@ -37,13 +38,13 @@ const IndexCard = ({ id, model, benefitHTML, image, name, item, setRefresh, refr
   }, [item])
 
   return (
-    <Col className="mb-4 col-12 col-sm-6 col-md-6 offset-md-0 col-lg-4">
+    <Col className="mb-4 col-12 col-sm-6 col-lg-6 col-xl-4">
       <Link to={`/${model}/${id}`}>
         <Card className="index-card image pb-0" style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5)), url(${image})` }}>
           <Card.Body className='d-flex p-0 flex-column justify-content-end'>
             <div className='align-self-end index-detail'>{benefitHTML}</div>
-            <div className='d-flex justify-content-between align-items-center'>
-              <Favourite handleFavourite={handleFavourite} favouriteStatus={favouriteStatus} item={item}  />
+            <div className='d-flex justify-content-between align-items-end'>
+              <Favourite handleFavourite={handleFavourite} favouriteStatus={favouriteStatus} item={item} faveError={faveError} />
               <Card.Title className='mb-0 text-end'>{name}</Card.Title>
             </div>
           </Card.Body>

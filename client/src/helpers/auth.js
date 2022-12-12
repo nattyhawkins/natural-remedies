@@ -30,7 +30,8 @@ export const isAuthenticated = () => {
 
 export const handleLogout = (navigate) => {
   localStorage.removeItem(tokenName)
-  navigate('/login')
+  window.location.reload(false)
+  
 }
 
 export const isOwner = (token1) => {

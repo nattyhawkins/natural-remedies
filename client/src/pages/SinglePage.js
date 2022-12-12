@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Col, Container, Image, Row } from 'react-bootstrap'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import AuthModal from '../components/AuthModal'
 import Comment from '../components/Comment'
 import CommentsSection from '../components/CommentsSection'
 import { getToken, isAuthenticated, isOwner } from '../helpers/auth'
@@ -9,13 +10,12 @@ import SingleIngredient from './SingleIngredient'
 import SingleRecipe from './SingleRecipe'
 
 
-const SinglePage = () => {
+const SinglePage = ({ setShow }) => {
   const [ item, setItem ] = useState(null)
   const [ itemError, setItemError ] = useState(false)
   const [ refresh, setRefresh ] = useState(false)
   const { model, itemId } = useParams()
   // const [ modelLoad, setModelLoad ] = useState(model)
-  const [show, setShow] = useState(false)
   const [tab, setTab] = useState('login')
   const [ favouriteStatus, setFavouriteStatus ] = useState(204)
 
@@ -69,11 +69,11 @@ const SinglePage = () => {
       <Container style={{ maxWidth: '1100px', margin: '0 auto' }}>
         {item && 
           (model === 'active_ingredients' ?
-            <SingleIngredient item={item} favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} />
+            <SingleIngredient item={item} favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} setShow={setShow}/>
             :
-            <SingleRecipe item={item}  favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} />
+            <SingleRecipe item={item} favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} setShow={setShow}/>
           )}
-        <CommentsSection item={item} model={model} itemId={itemId} setRefresh={setRefresh} refresh={refresh} setShow={setShow} show={show} setTab={setTab} tab={tab} />
+        <CommentsSection item={item} model={model} itemId={itemId} setRefresh={setRefresh} refresh={refresh} setShow={setShow} setTab={setTab} tab={tab} />
       </Container>
     </main>
   )

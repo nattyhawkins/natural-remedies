@@ -41,7 +41,7 @@ const Register = ({ setTab, error, setError }) => {
         <Form.Group className="my-3" controlId="reg_user">
           {/* <Form.Label>Username</Form.Label> */}
           <FloatingLabel
-            controlId="floatingInput"
+            controlId="floatingUser"
             label="Username"
             className="mb-3">
             <Form.Control
@@ -50,6 +50,7 @@ const Register = ({ setTab, error, setError }) => {
               placeholder="Username"
               onChange={handleChange}
               value={formFields.username}
+              autoComplete="off"
               required
               autoFocus
             /></FloatingLabel>
@@ -57,7 +58,7 @@ const Register = ({ setTab, error, setError }) => {
         <Form.Group className="mb-3" controlId="reg_email">
           {/* <Form.Label>Email</Form.Label> */}
           <FloatingLabel
-            controlId="floatingInput"
+            controlId="floatingEmail"
             label="Email"
             className="mb-3">
             <Form.Control
@@ -66,13 +67,14 @@ const Register = ({ setTab, error, setError }) => {
               placeholder="Email"
               onChange={handleChange}
               value={formFields.email}
+              autoComplete="off"
               required
             /></FloatingLabel>
         </Form.Group>
         <Form.Group className="mb-3" controlId="reg_pass">
           {/* <Form.Label>Password</Form.Label> */}
           <FloatingLabel
-            controlId="floatingInput"
+            controlId="floatingPass"
             label="Password"
             className="mb-3">
             <Form.Control
@@ -81,13 +83,14 @@ const Register = ({ setTab, error, setError }) => {
               placeholder="Password"
               onChange={handleChange}
               value={formFields.password}
+              autoComplete="off"
               required
             /></FloatingLabel>
         </Form.Group>
         <Form.Group className="mb-3" controlId="reg_confirm">
           {/* <Form.Label>Confirm Password</Form.Label> */}
           <FloatingLabel
-            controlId="floatingInput"
+            controlId="floatingConf"
             label="Confirm Password"
             className="mb-3">
             <Form.Control
@@ -96,6 +99,7 @@ const Register = ({ setTab, error, setError }) => {
               placeholder="Confirm Password"
               onChange={handleChange}
               value={formFields.password_confirmation}
+              autoComplete="off"
               required
             /></FloatingLabel>
         </Form.Group>

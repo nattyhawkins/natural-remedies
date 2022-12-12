@@ -7,14 +7,13 @@ import AuthModal from './AuthModal'
 import Comment from './Comment'
 import CommentForm from './CommentForm'
 
-const CommentsSection = ({ item, model, itemId, setRefresh, refresh ,setShow, show, setTab, tab }) => {
+const CommentsSection = ({ item, model, itemId, setRefresh, refresh ,setShow }) => {
   const [commentError, setCommentError] = useState(false)
   const [toEdit, setToEdit] = useState(false)
   const [commentFields, setCommentFields] = useState({
     text: '',
     [model.slice(0, -1)]: [itemId][0],
   })
-  const [memberStatus, setMemberStatus] = useState(204)
 
   //submit brand new comment
   async function handleCommentSubmit(e) {
@@ -47,7 +46,7 @@ const CommentsSection = ({ item, model, itemId, setRefresh, refresh ,setShow, sh
             <Comment key={commentId} commentId={commentId} comment={comment} setRefresh={setRefresh} refresh={refresh} />
           )
         })}
-        <AuthModal show={show} setShow={setShow} tab={tab} setTab={setTab}/>
+        
       </Col>
     </Row>
   )

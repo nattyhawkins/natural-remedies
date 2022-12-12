@@ -79,8 +79,8 @@ a{
     padding: 10px;
     color: white;
   }
-  .fave, .card-title{
-    font-size: 50px;
+  .card-title{
+    font-size: 45px;
   }
 
   
@@ -122,7 +122,7 @@ a{
   border: none;
   // padding-top: 5px;
   margin: 0 5px 0 0;
-  font-size: 50px;
+  font-size: 30px;
 
   cursor: pointer;
 
@@ -188,7 +188,7 @@ a{
   }
   .index{
     .fave, .card-title{
-      font-size: 12vw;
+      font-size: calc(10px + 7vw);
     }
     .index-detail{
       font-size: 5vw;
@@ -213,7 +213,7 @@ a{
 @media (min-width: 576px) and (max-width: 992px){
   .index{
     .fave, .card-title{
-      font-size: 5vw;
+      font-size: calc(10px + 3vw);
     }
     .index-detail{
       font-size: 2vw;
@@ -223,3 +223,5 @@ a{
     max-width: none;
   }
 }
+
+

@@ -5,7 +5,7 @@ import { v4 as uuid } from 'uuid'
 import IndexCard from '../components/IndexCard'
 
 
-const IndexRecipes = ({ items, model, setBenefits, benefits }) => {
+const IndexRecipes = ({ items, model, setBenefits, benefits, refresh, setRefresh, setShow }) => {
 
   useEffect(() => {
     const list = []
@@ -36,7 +36,7 @@ const IndexRecipes = ({ items, model, setBenefits, benefits }) => {
             else {
               list.push(benefit.name)
               return (
-                <Card.Text className='m-0 px-2 text-end'key={benefit.id}>{benefit.name}</Card.Text>
+                <Card.Text className='m-0 px-2 text-end' key={benefit.id}>{benefit.name}</Card.Text>
               )
             }
           })
@@ -45,7 +45,7 @@ const IndexRecipes = ({ items, model, setBenefits, benefits }) => {
           )
         })
         return (
-          <IndexCard key={id} id={id} model={model} benefitHTML={benefitHTML} image={image} name={name} />
+          <IndexCard key={id} id={id} item={item} model={model} benefitHTML={benefitHTML} image={image} name={name} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
         )
       })
       }
