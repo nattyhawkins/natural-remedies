@@ -1,12 +1,16 @@
-import { Col, Row } from 'react-bootstrap'
+import { useState } from 'react'
+import { Button, Col, Row } from 'react-bootstrap'
+import Favourite from '../components/Favourite'
+import { isAuthenticated, isOwner } from '../helpers/auth'
 
-const SingleIngredient = ({ item }) => {
+const SingleIngredient = ({ item, favouriteStatus, handleFavourite }) => {
+  
 
   return (
     <>
       <Row className='main d-flex flex-column flex-md-row p-0 my-5'>
-        <Col className='image flex-grow-1 d-none d-md-block' style={{ backgroundImage: `url(${item.image})` }}>
-          <p className='fave m-0 align-self-end'>✩</p>
+        <Col className='image flex-grow-1 d-none d-md-flex align-items-end' style={{ backgroundImage: `url(${item.image})` }}>
+          <Favourite handleFavourite={handleFavourite} favouriteStatus={favouriteStatus} item={item}  />
         </Col>
         <Col className='flex-grow-1 p-3'>
           <div className='d-flex justify-content-between'>
@@ -14,18 +18,19 @@ const SingleIngredient = ({ item }) => {
               <h1>{item.name}</h1>
               <h6 className='fst-italic mb-3'>{item.latin_name}</h6>
             </div>
-            <div className='text-end'>
-              {item && item.benefits.map(benefit => {
-                return (
-                  <p key={benefit.id} className='my-0'>{benefit.name}</p> 
-                )
-              })}
-            </div>
+            
           </div>
-          <Row className='image w-100 my-2 d-md-none' style={{ backgroundImage: `url(${item.image})`, borderRadius: '15px' }}>
-            <p className='fave m-0 align-self-end'>✩</p>
+          <Row className='d-flex image w-100 my-2 d-md-none align-items-end' style={{ backgroundImage: `url(${item.image})`, borderRadius: '15px', color: 'white' }}>
+            <Favourite handleFavourite={handleFavourite} favouriteStatus={favouriteStatus} item={item}  />
           </Row> 
           <p>{item.description}</p>
+          <div className='text-end d-flex justify-content-evenly'>
+            {item && item.benefits.map(benefit => {
+              return (
+                <p key={benefit.id} className='my-0 fw-bold'>{benefit.name}</p>
+              )
+            })}
+          </div>
         </Col>
       </Row>
       <Row>

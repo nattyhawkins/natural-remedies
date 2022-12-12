@@ -15,6 +15,8 @@ const IndexPage = () => {
   const [search, setSearch] = useState('')
   const [ benefits, setBenefits ] = useState('')
   const [ benefitFilter, setBenefitFilter ] = useState('')
+  const [ refresh, setRefresh ] = useState(false)
+
 
   useEffect(() => {
     console.log(benefits)
@@ -34,7 +36,7 @@ const IndexPage = () => {
       }
     }
     getItems()
-  }, [model, search, benefitFilter])
+  }, [model, search, benefitFilter, refresh])
 
   useEffect(() => {
     setModelLoad(model)
@@ -66,9 +68,9 @@ const IndexPage = () => {
           
           {items.length > 0 && modelLoad === model ? 
             modelLoad === 'active_ingredients' ?
-              <IndexIngredients items={items} model={model} benefits={benefits} setBenefits={setBenefits}/>
+              <IndexIngredients items={items} model={model} benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh}/>
               :
-              <IndexRecipes items={items} model={model} benefits={benefits} setBenefits={setBenefits}/>
+              <IndexRecipes items={items} model={model} benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh}/>
             :
             items.length === 0 ? 
               <h1>No results</h1>

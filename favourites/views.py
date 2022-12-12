@@ -22,6 +22,6 @@ class FavouriteListView(APIView):
           if new_favourite.is_valid():
             new_favourite.save()
             return Response(new_favourite.data, status.HTTP_201_CREATED)
-          return Response(new_favourite.errors, status.HTTP_204_NO_CONTENT)
+          return Response(new_favourite.errors, status.HTTP_422_UNPROCESSABLE_ENTITY)
         except Exception as e:
           return Response(str(e), status.HTTP_500_INTERNAL_SERVER_ERROR)

@@ -14,7 +14,10 @@ const SinglePage = () => {
   const [ itemError, setItemError ] = useState(false)
   const [ refresh, setRefresh ] = useState(false)
   const { model, itemId } = useParams()
-  const [ modelLoad, setModelLoad ] = useState(model)
+  // const [ modelLoad, setModelLoad ] = useState(model)
+  const [show, setShow] = useState(false)
+  const [tab, setTab] = useState('login')
+  const [ favouriteStatus, setFavouriteStatus ] = useState(204)
 
   useEffect(() => {
 
@@ -33,59 +36,44 @@ const SinglePage = () => {
   }, [itemId, model, refresh])
 
   // check if user is already a member of group on page load
-  // useEffect(() => {
-  //   console.log(item)
-  //   if (isAuthenticated() && item.favourites && item.favourites.some(member => isOwner(member.owner))) return setFavouriteStatus(200)
-  //   setFavouriteStatus(204)
-  // }, [item])
+  useEffect(() => {
+    console.log(item)
+    if (isAuthenticated() && item && item.favourites.some(favourite => isOwner(favourite.owner.id))) return setFavouriteStatus(201)
+    setFavouriteStatus(204)
+  }, [item])
 
-  // //submit brand new comment
-  // async function handleCommentSubmit(e) {
-  //   try {
-  //     e.preventDefault()
-  //     if (!isAuthenticated()) throw new Error('Please login')
-  //     if (commentFields.text.length > 300) throw new Error('Character limit exceeded')
-  //     const { data } = await axios.comment('/api/comments/', commentFields, {
-  //       headers: {
-  //         Authorization: `Bearer ${getToken()}`,
-  //       },
-  //     })
-  //     console.log(data)
-  //     setRefresh(!refresh)
-  //     setCommentFields({ text: '' })
-  //   } catch (err) {
-  //     setCommentError(err.message ? err.message : err.response.data.message)
-  //   }
-  // }
 
-  // async function handleFavourite(e) {
-  //   try {
-  //     e.preventDefault()
-  //     if (!isAuthenticated()) return navigate('/login')
-  //     const { status } = await axios.comment('/api/favourites/', {}, {
-  //       headers: {
-  //         Authorization: `Bearer ${getToken()}`,
-  //       },
-  //     })
-  //     console.log(status)
-  //     setFavouriteStatus(status)
-  //     setRefresh(!refresh)
-  //   } catch (err) {
-  //     setItemError(err.message ? err.message : err.response.data.message)
-  //   }
-  // }
+  async function handleFavourite(e) {
+    try {
+      e.preventDefault()
+      if (!isAuthenticated()) return setShow(true)
+      const { status } = await axios.post('/api/favourites/', { 
+        'active_ingredient': model === 'active_ingredients' ? itemId[0] : null,
+        'recipe': model === 'recipes' ? itemId[0] : null,
+      }, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      })
+      setFavouriteStatus(status)
+      setRefresh(!refresh)
+    } catch (err) {
+      console.log(err.response)
+      setItemError(err.message ? err.message : err.response.data.message)
+    }
+  }
 
 
   return (
     <main className='single px-1 px-sm-2'>
       <Container style={{ maxWidth: '1100px', margin: '0 auto' }}>
         {item && 
-          (modelLoad === 'active_ingredients' ?
-            <SingleIngredient item={item} />
+          (model === 'active_ingredients' ?
+            <SingleIngredient item={item} favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} />
             :
-            <SingleRecipe item={item}  />
+            <SingleRecipe item={item}  favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} />
           )}
-        <CommentsSection item={item} model={model} itemId={itemId} setRefresh={setRefresh} refresh={refresh}/>
+        <CommentsSection item={item} model={model} itemId={itemId} setRefresh={setRefresh} refresh={refresh} setShow={setShow} show={show} setTab={setTab} tab={tab} />
       </Container>
     </main>
   )

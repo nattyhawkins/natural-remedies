@@ -9,7 +9,7 @@ from .common import RecipeSerializer
 class PopulatedRecipeSerializer(RecipeSerializer):
     comments = OwnedCommentSerializer(many=True)
     favourites = OwnedFavouriteSerializer(many=True)
-    active_ingredients = Active_IngredientSerializer(many=True)
+    active_ingredients = SemiPopulatedActive_IngredientSerializer(many=True)
     mediums = MediumSerializer(many=True)
 
 class SemiPopulatedRecipeSerializer(RecipeSerializer):

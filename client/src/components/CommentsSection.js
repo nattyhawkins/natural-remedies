@@ -7,9 +7,7 @@ import AuthModal from './AuthModal'
 import Comment from './Comment'
 import CommentForm from './CommentForm'
 
-const CommentsSection = ({ item, model, itemId, setRefresh, refresh }) => {
-  const [show, setShow] = useState(false)
-  const [tab, setTab] = useState('login')
+const CommentsSection = ({ item, model, itemId, setRefresh, refresh ,setShow, show, setTab, tab }) => {
   const [commentError, setCommentError] = useState(false)
   const [toEdit, setToEdit] = useState(false)
   const [commentFields, setCommentFields] = useState({
