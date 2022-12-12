@@ -2,10 +2,8 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { Card } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
-import { getToken, isOwner } from '../helpers/auth'
+import { getToken } from '../helpers/auth'
 import { getTimeElapsed } from '../helpers/general'
-import CommentForm from './CommentForm'
-import ConfirmPopUp from './ConfirmPopUp'
 import NativeComment from './NativeComment'
 import ProfileComment from './ProfileComment'
 
@@ -28,6 +26,7 @@ const Comment = ({ commentId, comment, setRefresh, refresh, handleCommentSubmit 
   })
 
   const { itemId } = useParams()
+
   //update time since commenting every second
   useEffect(() => {
     console.log(getToken())
@@ -79,6 +78,10 @@ const Comment = ({ commentId, comment, setRefresh, refresh, handleCommentSubmit 
     }
   }
 
+  useEffect(() => {
+    console.log(itemId)
+  }, [itemId])
+
   // async function handleCommentLike(e) {
   //   try {
   //     if (!getToken()) throw new Error('Please login')
@@ -97,16 +100,11 @@ const Comment = ({ commentId, comment, setRefresh, refresh, handleCommentSubmit 
 
 
   return (
-    <Card key={commentId} className='comment'>
-      <hr />
-      <Card.Body className='pt-2 pb-0 px-0 px-sm-2 px-lg-4'>
-        {comment && (itemId ? 
-          <NativeComment commentFields={commentFields} setCommentFields={setCommentFields} commentError={commentError} setCommentError={setCommentError} handleCommentSubmit={handleEditSubmit} showConfirm={showConfirm} setShowConfirm={setShowConfirm} deleteComment={deleteComment} editComment={editComment} error={error}  />
-          :
-          <ProfileComment commentFields={commentFields} setCommentFields={setCommentFields} commentError={commentError} setCommentError={setCommentError} handleCommentSubmit={handleEditSubmit} showConfirm={showConfirm} setShowConfirm={setShowConfirm} deleteComment={deleteComment} editComment={editComment} error={error}/>
-        )}
-      </Card.Body>
-    </Card>
+    comment && (itemId ? 
+      <NativeComment comment={comment} timeElapsed={timeElapsed} toEdit={toEdit} commentFields={commentFields} setCommentFields={setCommentFields} commentError={commentError} setCommentError={setCommentError} handleEditSubmit={handleEditSubmit} showConfirm={showConfirm} setShowConfirm={setShowConfirm} deleteComment={deleteComment} editComment={editComment} error={error}  />
+      :
+      <ProfileComment comment={comment} timeElapsed={timeElapsed} toEdit={toEdit} commentFields={commentFields} setCommentFields={setCommentFields} commentError={commentError} setCommentError={setCommentError} handleEditSubmit={handleEditSubmit} showConfirm={showConfirm} setShowConfirm={setShowConfirm} deleteComment={deleteComment} editComment={editComment} error={error}/>
+    )
   )
 }
 

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { Card, Col, Container, Row } from 'react-bootstrap'
-import { Link, useParams } from 'react-router-dom'
+import { Container, Row } from 'react-bootstrap'
+import { useParams } from 'react-router-dom'
 import IndexIngredients from './IndexIngredients'
 import Spinner from '../components/Spinner'
 import IndexRecipes from './IndexRecipes'
@@ -11,13 +11,13 @@ import NotFound from './NotFound'
 const IndexPage = ({ setShow }) => {
   const [ items, setItems ] = useState(false)
   const [ error, setError ] = useState(false)
-  const { model } = useParams()
-  const [ modelLoad, setModelLoad ] = useState(model)
   const [search, setSearch] = useState('')
   const [ benefits, setBenefits ] = useState('')
   const [ benefitFilter, setBenefitFilter ] = useState('')
   const [ refresh, setRefresh ] = useState(false)
-
+  
+  const { model } = useParams()
+  const [ modelLoad, setModelLoad ] = useState(model)
 
   useEffect(() => {
     console.log(benefits)

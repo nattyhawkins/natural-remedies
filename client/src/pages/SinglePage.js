@@ -15,11 +15,12 @@ const SinglePage = ({ setShow }) => {
   const [ item, setItem ] = useState(null)
   const [ itemError, setItemError ] = useState(false)
   const [ refresh, setRefresh ] = useState(false)
-  const { model, itemId } = useParams()
   // const [ modelLoad, setModelLoad ] = useState(model)
   const [tab, setTab] = useState('login')
   const [ favouriteStatus, setFavouriteStatus ] = useState(204)
-
+  
+  const { model, itemId } = useParams()
+  
   useEffect(() => {
 
     const getItem = async () => {

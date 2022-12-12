@@ -4,7 +4,7 @@ import { Col, Container } from 'react-bootstrap'
 import Comment from '../components/Comment'
 import CommentForm from '../components/CommentForm'
 import { getToken, isAuthenticated, getPayload } from '../helpers/auth'
-import { getTimeElapsed } from '../helpers/general'
+import { getTimeElapsed, unixTimestamp } from '../helpers/general'
 
 
 const Profile = () => {
@@ -36,7 +36,7 @@ const Profile = () => {
     }
     getProfile()
 
-  }, [])
+  }, [refresh])
 
   return (
     <main className='profile'>
@@ -48,12 +48,11 @@ const Profile = () => {
             <h1>{profile.username}</h1>
             <p>{profile.email}</p>
             <Container className='my-comments'>
-              {profile.comments.map(comment => {
+              {profile.comments.sort((a, b) => (unixTimestamp(a.created_at) > unixTimestamp(b.created_at) ? -1 : 1)).map(comment => {
                 return (
-                  <Comment key={comment.id}/>
+                  <Comment key={comment.id}  commentId={comment.id} comment={comment} setRefresh={setRefresh} refresh={refresh}/>
                 )
               })}
-
             </Container>
           </div>
           <Col offset={1}>
