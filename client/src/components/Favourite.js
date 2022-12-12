@@ -13,7 +13,7 @@ const Favourite = ({ handleFavourite, favouriteStatus, item, faveError }) => {
 
   const after = (
     <Popover id="after-popover">
-      <Popover.Header as="h3" style={{ color: 'limegreen' }}>★ In Favourites!</Popover.Header>
+      <Popover.Header as="h3" style={{ color: 'limegreen' }}>★ Added to Favourites!</Popover.Header>
       <Popover.Body>
         Find all your Favourites in your profile <br/> Click to remove
       </Popover.Body>

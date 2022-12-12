@@ -5,6 +5,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import AuthModal from '../components/AuthModal'
 import Comment from '../components/Comment'
 import CommentsSection from '../components/CommentsSection'
+import Spinner from '../components/Spinner'
 import { getToken, isAuthenticated, isOwner } from '../helpers/auth'
 import SingleIngredient from './SingleIngredient'
 import SingleRecipe from './SingleRecipe'
@@ -29,6 +30,7 @@ const SinglePage = ({ setShow }) => {
         console.log(data)
         setItem(data)
       } catch (err) {
+        console.log(err.response)
         setItemError(err.message ? err.message : err.response.data.message)
       }
     }
@@ -67,13 +69,21 @@ const SinglePage = ({ setShow }) => {
   return (
     <main className='single px-1 px-sm-2'>
       <Container style={{ maxWidth: '1100px', margin: '0 auto' }}>
-        {item && 
-          (model === 'active_ingredients' ?
-            <SingleIngredient item={item} favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} setShow={setShow}/>
-            :
-            <SingleRecipe item={item} favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} setShow={setShow}/>
-          )}
-        <CommentsSection item={item} model={model} itemId={itemId} setRefresh={setRefresh} refresh={refresh} setShow={setShow} setTab={setTab} tab={tab} />
+        {itemError ? 
+          <div className='text-center'>
+            <Spinner />
+            <h1>Something went wrong...</h1>
+          </div>
+          :
+          <>
+            {item && (model === 'active_ingredients' ?
+              <SingleIngredient item={item} favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} setShow={setShow}/>
+              :
+              <SingleRecipe item={item} favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} setShow={setShow}/>
+            )}
+            <CommentsSection item={item} model={model} itemId={itemId} setRefresh={setRefresh} refresh={refresh} setShow={setShow} setTab={setTab} tab={tab} />
+          </>
+        }
       </Container>
     </main>
   )

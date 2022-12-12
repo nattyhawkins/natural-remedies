@@ -21,7 +21,7 @@ const Register = ({ setTab, error, setError }) => {
     } catch (err) {
       console.log(err.response)
       console.log('values', Object.values(err.response.data))
-      setError(err.response.data.non_field_errors ? err.response.data.non_field_errors : Object.values(err.response.data) ? Object.values(err.response.data) : err.response.statusText)
+      setError(err.response.data.non_field_errors ? err.response.data.non_field_errors : Array.isArray(err.response.data) ? Object.values(err.response.data) : err.response.statusText)
     }
   }
 

@@ -55,10 +55,11 @@ class LoginView(APIView):
 
 class ProfileView(APIView):
     permission_classes = (IsAuthenticated, )
-    def get(self, request):
-        username = request.data['username']
+    def post(self, request):
+        id = request.data['id']
+        print(self.permission_classes)
         try:
-          user = User.objects.get(username=username)
+          user = User.objects.get(id=id)
           user = PopulatedUserSerializer(user)
           return Response(user.data)
         except User.DoesNotExist as e:

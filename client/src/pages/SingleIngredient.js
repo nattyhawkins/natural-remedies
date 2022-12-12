@@ -9,7 +9,7 @@ const SingleIngredient = ({ item, favouriteStatus, handleFavourite }) => {
   return (
     <>
       <Row className='main d-flex flex-column flex-md-row p-0 my-5'>
-        <Col className='image flex-grow-1 d-none d-md-flex align-items-end' style={{ backgroundImage: `url(${item.image})` }}>
+        <Col className='image img-single flex-grow-1 d-none d-md-flex align-items-end' style={{ backgroundImage: `url(${item.image})` }}>
           <Favourite handleFavourite={handleFavourite} favouriteStatus={favouriteStatus} item={item}  />
         </Col>
         <Col className='flex-grow-1 p-3'>
@@ -20,7 +20,7 @@ const SingleIngredient = ({ item, favouriteStatus, handleFavourite }) => {
             </div>
             
           </div>
-          <Row className='d-flex image w-100 my-2 d-md-none align-items-end' style={{ backgroundImage: `url(${item.image})`, borderRadius: '15px', color: 'white' }}>
+          <Row className='d-flex image img-single w-100 my-2 d-md-none align-items-end' style={{ backgroundImage: `url(${item.image})`, borderRadius: '15px', color: 'white' }}>
             <Favourite handleFavourite={handleFavourite} favouriteStatus={favouriteStatus} item={item}  />
           </Row> 
           <p>{item.description}</p>

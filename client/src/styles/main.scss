@@ -95,7 +95,7 @@ a{
     
     
   }
-  .image{
+  .img-single{
     // width: 500px;
     // background-size: contain;
     // background-position: left;
@@ -154,10 +154,18 @@ a{
   }
 }
 
+.profile{
+  .my-comments{
+    border: 1px solid lightgrey;
+    border-radius: 20px;
+  }
+  .dash{
+    width: 300px;
+  }
+}
 .profile-pic {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
 }
 .icon:not(.small) {

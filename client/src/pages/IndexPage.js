@@ -6,6 +6,7 @@ import IndexIngredients from './IndexIngredients'
 import Spinner from '../components/Spinner'
 import IndexRecipes from './IndexRecipes'
 import Filters from '../components/Filters'
+import NotFound from './NotFound'
 
 const IndexPage = ({ setShow }) => {
   const [ items, setItems ] = useState(false)
@@ -63,27 +64,31 @@ const IndexPage = ({ setShow }) => {
   return (
     <main className='index'>
       <Container className="mt-4">
-        <Filters model={model} setSearch={setSearch} benefits={benefits} setBenefits={setBenefits} setBenefitFilter={setBenefitFilter} />
-        <Row className="index-row text-center">
-          
-          {items && items.length > 0 && modelLoad === model ? 
-            modelLoad === 'active_ingredients' ?
-              <IndexIngredients items={items} model={model} benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow} />
-              :
-              <IndexRecipes items={items} model={model} benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
-            :
-            items && items.length === 0 ? 
-              error ?
-                <div>
-                  <Spinner />
-                  <h1>{error}</h1>
-                </div>
+        {modelLoad === 'active_ingredients' || modelLoad === 'recipes' ? 
+          <>
+            <Filters model={model} setSearch={setSearch} benefits={benefits} setBenefits={setBenefits} setBenefitFilter={setBenefitFilter} />
+            <Row className="index-row text-center">
+              
+              {items && items.length > 0 && modelLoad === model ? 
+                modelLoad === 'active_ingredients' ?
+                  <IndexIngredients items={items} model={model} benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow} />
+                  :
+                  <IndexRecipes items={items} model={model} benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
                 :
-                <h1>No results</h1>
-              :
-              <Spinner />
-          }
-        </Row>
+                error ?
+                  <div>
+                    <Spinner />
+                    <h1>Something went wrong...</h1>
+                  </div>
+                  :
+                  items && items.length === 0 ?
+                    <h1>No results</h1>
+                    :
+                    <Spinner />
+              }
+            </Row></>
+          :
+          <NotFound/>}
       </Container>
     </main>
   )

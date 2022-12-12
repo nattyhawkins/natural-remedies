@@ -25,8 +25,8 @@ const Login = ({ setShow, error, setError }) => {
       setFormFields({ username: '', password: '' })
       window.location.reload(false)
     } catch (err) {
-      console.log(err.response.data.detail)
-      setError(err.response.data.detail)
+      console.log(err.response)
+      setError(err.response.data.detail ? err.response.data.detail : err.response.statusText)
 
     }
   }

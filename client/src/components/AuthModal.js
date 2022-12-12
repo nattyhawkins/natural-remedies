@@ -35,7 +35,7 @@ const AuthModal = ({ show, setShow, tab, setTab }) => {
         </Tabs>
       </Modal.Body>
       <Modal.Footer className='justify-content-start'>
-        {error.length > 0 && Array.isArray(error) ? 
+        {error && error.length > 0 && Array.isArray(error) ? 
           error.map(message => {
             return (
               <small className='text-danger d-block' key={uuid()}>{message}</small>
