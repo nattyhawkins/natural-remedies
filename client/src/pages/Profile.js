@@ -59,12 +59,12 @@ const Profile = ({ setShow }) => {
       <Container className='my-5 d-flex flex-column align-items-center flex-md-row align-items-md-start'>
         {profile && 
         <>
-          <div className='dash d-flex flex-column align-items-center'>
+          <div className='me-3 dash d-flex flex-column align-items-center'>
             <div className="profile-pic image" style={{ backgroundImage: profile.profile_image ? `url(${profile.profile_image})` : 'url(https://www.labforward.io/wp-content/uploads/2020/12/default-avatar.png)' }} alt="profile"></div>
             <h1>{profile.username}</h1>
             <p>{profile.email}</p>
             <h4 className='text-center mt-3 mb-2'>My Comments</h4>
-            <Container className='my-comments py-3'>
+            <Container className='section py-3'>
               {profile.comments.sort((a, b) => (unixTimestamp(a.created_at) > unixTimestamp(b.created_at) ? -1 : 1)).map(comment => {
                 return (
                   <Comment key={comment.id}  commentId={comment.id} comment={comment} setRefresh={setRefresh} refresh={refresh}/>
@@ -72,7 +72,7 @@ const Profile = ({ setShow }) => {
               })}
             </Container>
           </div>
-          <Col className='ms-5 '>
+          <Col className='ms-2'>
             <Row className='text-center mb-4 h-10 d-flex flex-column align-items-center'>
               <h2>Recipes</h2>
               <Row className='collection d-flex groups-row justify-content-start flex-wrap my-3'>
@@ -92,18 +92,14 @@ const Profile = ({ setShow }) => {
                   </>
                 }</Row>
             </Row>
-            <hr />
-          </Col>
-          {/* <Col className='ms-5 '>
             <Row className='text-center mb-4 h-10 d-flex flex-column align-items-center'>
               <h2>Ingredients</h2>
               <Row className='collection d-flex groups-row justify-content-start flex-wrap my-3'>
                 {profile && faveIngredients && faveIngredients.length > 0 &&
-                  <IndexIngredients items={faveIngredients} model='active_ingredients' benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
-                }</Row>
+                  <IndexIngredients items={faveIngredients} model='active_ingredients' benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>}
+              </Row>
             </Row>
-            <hr />
-          </Col> */}
+          </Col>
         </>
         }
         {/* //   const { name, image, id: favouriteId } = favourite.recipe
