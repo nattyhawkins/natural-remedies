@@ -29,6 +29,27 @@ a{
   font-size: 1.3em;
 }
 
+//HOMEPAGE
+.home{
+  height: 100vh;
+  width: 100vw;
+  // .carousel-inner{
+  //   display: flex;
+  //   align-items: end;
+  // }
+  .carousel-caption{
+    a{
+      color: white;
+    }
+    max-width: 400px;
+    position: relative;
+    left: -15%;
+    top: 50%;
+    
+  }
+}
+
+
 .navbar {
   position: sticky;
   top: 0;
