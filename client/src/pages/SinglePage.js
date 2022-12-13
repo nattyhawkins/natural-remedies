@@ -7,6 +7,8 @@ import Comment from '../components/Comment'
 import CommentsSection from '../components/CommentsSection'
 import Spinner from '../components/Spinner'
 import { getToken, isAuthenticated, isOwner } from '../helpers/auth'
+import IndexIngredients from './IndexIngredients'
+import IndexRecipes from './IndexRecipes'
 import SingleIngredient from './SingleIngredient'
 import SingleRecipe from './SingleRecipe'
 
@@ -15,14 +17,24 @@ const SinglePage = ({ setShow }) => {
   const [ item, setItem ] = useState(null)
   const [ itemError, setItemError ] = useState(false)
   const [ refresh, setRefresh ] = useState(false)
-  // const [ modelLoad, setModelLoad ] = useState(model)
   const [tab, setTab] = useState('login')
   const [ favouriteStatus, setFavouriteStatus ] = useState(204)
-  
+
   const { model, itemId } = useParams()
+  //for recs
+  const [ benefits, setBenefits ] = useState('')
+  const [ filter, setFilter ] = useState('')
+  const [ recModel, setRecModel ] = useState('')
+  const [ items, setItems ] = useState(false)
+  const [ recError, setRecError ] = useState(false)
+  const [ benefitFilter, setBenefitFilter ] = useState('&benefit=')
+  const [search, setSearch] = useState('&search=')
+  const [includes, setIncludes] = useState('&includes=Lavender')
+
+
+  
   
   useEffect(() => {
-
     const getItem = async () => {
       try {
         console.log('model', model)
@@ -66,6 +78,32 @@ const SinglePage = ({ setShow }) => {
     }
   }
 
+  // get recommendation
+  useEffect(() => {
+    const getItems = async () => {
+      try {
+        console.log('rec model', recModel)
+        setRecError(false)
+        const { data } = await axios.get(`/api/${recModel}?${search}${benefitFilter}${includes}&/`)
+        console.log(data)
+        setItems(data.slice(0, 3))
+      } catch (err) {
+        console.log(err.response)
+        setRecError(err.response.statusText ? err.response.statusText : 'Something went wrong...')
+      }
+    }
+    getItems()
+  }, [model, filter])
+
+  useEffect(() => {
+    model && setRecModel(() => { 
+      return model === 'active_ingredients' ? 'recipes' 
+        : model === 'recipes' ? 'active_ingredients'
+          : null
+    })
+    item && setIncludes(`&includes=${item.name}`)
+  }, [model, item])
+
 
   return (
     <main className='single px-1 px-sm-2'>
@@ -82,6 +120,22 @@ const SinglePage = ({ setShow }) => {
               :
               <SingleRecipe item={item} favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} setShow={setShow}/>
             )}
+            <Row className='collection d-flex groups-row justify-content-start flex-wrap mt-5'>
+              {items && items.length > 0 &&
+                model === 'active_ingredients' ?
+                <>
+                  <h4><span className='highlight'>RECOMMENDED  </span> Recipes with {item.name}</h4>
+                  <IndexRecipes items={items} model='recipes' benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
+                </>
+                : model === 'recipes' ?
+                  <>
+                    <h4><span className='highlight'>RECOMMENDED  </span> More on what&apos;s in {item.name}</h4>
+                    <IndexIngredients items={items} model='active_ingredients' benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
+                    
+                  </>
+                  :
+                  <></>}
+            </Row>
             <CommentsSection item={item} model={model} itemId={itemId} setRefresh={setRefresh} refresh={refresh} setShow={setShow} setTab={setTab} tab={tab} />
           </>
         }

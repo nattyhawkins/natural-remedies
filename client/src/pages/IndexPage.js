@@ -11,9 +11,9 @@ import NotFound from './NotFound'
 const IndexPage = ({ setShow }) => {
   const [ items, setItems ] = useState(false)
   const [ error, setError ] = useState(false)
-  const [search, setSearch] = useState('')
+  const [search, setSearch] = useState('&search=')
   const [ benefits, setBenefits ] = useState('')
-  const [ benefitFilter, setBenefitFilter ] = useState('')
+  const [ benefitFilter, setBenefitFilter ] = useState('&benefit=')
   const [ refresh, setRefresh ] = useState(false)
   
   const { model } = useParams()
@@ -28,7 +28,7 @@ const IndexPage = ({ setShow }) => {
       try {
         console.log('model', model)
         setError(false)
-        const { data } = await axios.get(`/api/${model}?${search}&${benefitFilter}&/`)
+        const { data } = await axios.get(`/api/${model}?${search}&${benefitFilter}&includes=&/`)
         console.log(data)
         setItems(data)
       } catch (err) {

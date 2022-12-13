@@ -23,6 +23,11 @@ a{
   background-repeat: no-repeat;
 }
 
+.highlight{
+  color: lighten($primary, 10%);
+  font-weight: 800;
+  font-size: 1.3em;
+}
 
 .navbar {
   position: sticky;

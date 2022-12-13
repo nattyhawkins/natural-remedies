@@ -16,8 +16,14 @@ class RecipeListView(APIView):
         search = request.query_params.get('search')
         benefit = request.query_params.get('benefit')
         benefit = benefit if benefit != 'default' else ''
+        includes = request.query_params.get('includes')
         print('benefit--', benefit)
-        recipes = Recipe.objects.filter(name__icontains=search, active_ingredients__benefits__name__icontains=benefit).distinct()
+        print('includes--', includes)
+        recipes = Recipe.objects.filter(
+          name__icontains=search, 
+          active_ingredients__benefits__name__icontains=benefit,
+          active_ingredients__name__icontains=includes,
+          ).distinct()
         serialized_recipes = SemiPopulatedRecipeSerializer(recipes, many=True)
         # if len(serialized_recipes.data) == 0:
         #   raise NotFound('No matches, please try something else...')
