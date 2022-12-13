@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import Favourite from '../components/Favourite'
-const SingleRecipe = ({ item, favouriteStatus, handleFavourite }) => {
+import IndexIngredients from './IndexIngredients'
+const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefresh, refresh, setShow }) => {
   const [ benefits, setBenefits ] = useState([])
 
   useEffect(() => {
@@ -39,6 +40,10 @@ const SingleRecipe = ({ item, favouriteStatus, handleFavourite }) => {
             })}
           </div>
         </Col>
+      </Row>
+      <Row className='collection d-flex groups-row justify-content-start flex-wrap mt-5'>
+        <h4><span className='highlight'>RECOMMENDED  </span> What&apos;s in it?</h4>
+        {items && items.length > 0 && <IndexIngredients items={items} model='active_ingredients' benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>}
       </Row>
       <Row>
         <h3>You will need:</h3>

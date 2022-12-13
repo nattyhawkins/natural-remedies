@@ -24,7 +24,7 @@ const TheNavbar = ({ setShow }) => {
           <Nav.Link as={Link} to='/active_ingredients'>Ingredients</Nav.Link>
           <Nav.Link as={Link} to='/recipes'>Recipes</Nav.Link>
         </Nav>
-        <Navbar.Brand className='logo' as={Link} to='/'> HOME
+        <Navbar.Brand className='logo' as={Link} to='/'> WELLBEAN
           {/* <img className="logo" src={logo} /> */}
         </Navbar.Brand>
         <Nav className='d-flex'>

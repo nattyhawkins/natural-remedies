@@ -23,21 +23,19 @@ const SinglePage = ({ setShow }) => {
   const { model, itemId } = useParams()
   //for recs
   const [ benefits, setBenefits ] = useState('')
-  const [ filter, setFilter ] = useState('')
   const [ recModel, setRecModel ] = useState('')
-  const [ items, setItems ] = useState(false)
+  const [ items, setItems ] = useState([])
   const [ recError, setRecError ] = useState(false)
   const [ benefitFilter, setBenefitFilter ] = useState('&benefit=')
   const [search, setSearch] = useState('&search=')
-  const [includes, setIncludes] = useState('&includes=Lavender')
-
+  const [includes, setIncludes] = useState(null)
+  const [ modelLoad, setModelLoad ] = useState(model)
 
   
   
   useEffect(() => {
     const getItem = async () => {
       try {
-        console.log('model', model)
         setItemError(false)
         const { data } = await axios.get(`/api/${model}/${itemId}/`)
         console.log(data)
@@ -47,6 +45,7 @@ const SinglePage = ({ setShow }) => {
         setItemError(err.message ? err.message : err.response.data.message)
       }
     }
+    
     getItem()
   }, [itemId, model, refresh])
 
@@ -57,6 +56,9 @@ const SinglePage = ({ setShow }) => {
     setFavouriteStatus(204)
   }, [item])
 
+  useEffect(() => {
+    setModelLoad(model)
+  }, [items, item])
 
   async function handleFavourite(e) {
     try {
@@ -82,27 +84,51 @@ const SinglePage = ({ setShow }) => {
   useEffect(() => {
     const getItems = async () => {
       try {
-        console.log('rec model', recModel)
         setRecError(false)
         const { data } = await axios.get(`/api/${recModel}?${search}${benefitFilter}${includes}&/`)
-        console.log(data)
+        console.log('recs response-', data)
         setItems(data.slice(0, 3))
       } catch (err) {
         console.log(err.response)
         setRecError(err.response.statusText ? err.response.statusText : 'Something went wrong...')
       }
     }
-    getItems()
-  }, [model, filter])
+    console.log('modelo', model)
+    console.log('rec model', recModel)
+    includes && getItems()
+  }, [model, includes])
+
+  // useEffect(() => {
+  //   model && setRecModel(() => { 
+  //     return model === 'active_ingredients' ? 'recipes' 
+  //       : model === 'recipes' ? 'active_ingredients'
+  //         : null
+  //   })
+  //   item && setIncludes(() => {
+  //     return model === ? 
+  //   }`&includes=${item.name}`)
+  // }, [model, item])
+
+  function getIngredientFilters(){
+    
+  }
 
   useEffect(() => {
-    model && setRecModel(() => { 
-      return model === 'active_ingredients' ? 'recipes' 
-        : model === 'recipes' ? 'active_ingredients'
-          : null
-    })
-    item && setIncludes(`&includes=${item.name}`)
-  }, [model, item])
+    console.log(items)
+    if (item)
+      if (model === 'active_ingredients') { 
+        setRecModel('recipes')
+        setIncludes(`&includes=${item.name}`)
+      } else if (model === 'recipes'){
+        setRecModel('active_ingredients')
+        setIncludes(() => {
+          return item.active_ingredients.map(ingredient => `&includes=${ingredient.name}`).join('')
+        })
+      } else {
+        setRecModel(null)
+        setIncludes('')
+      }
+  }, [model, item, items])
 
 
   return (
@@ -115,29 +141,46 @@ const SinglePage = ({ setShow }) => {
           </div>
           :
           <>
-            {item && (model === 'active_ingredients' ?
-              <SingleIngredient item={item} favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} setShow={setShow}/>
-              :
-              <SingleRecipe item={item} favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} setShow={setShow}/>
-            )}
-            <Row className='collection d-flex groups-row justify-content-start flex-wrap mt-5'>
-              {items && items.length > 0 &&
-                model === 'active_ingredients' ?
+            {items.length > 0 && item && (model === modelLoad)
+              && (modelLoad === 'active_ingredients' ?
                 <>
-                  <h4><span className='highlight'>RECOMMENDED  </span> Recipes with {item.name}</h4>
-                  <IndexRecipes items={items} model='recipes' benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
+                  <SingleIngredient item={item} favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} setShow={setShow}/>
+                  <Row className='collection d-flex groups-row justify-content-start flex-wrap mt-5'>
+                    <h4><span className='highlight'>RECOMMENDED  </span> Recipes with {item.name}</h4>
+                    <IndexRecipes items={items} model='recipes' benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
+                  </Row>
                 </>
-                : model === 'recipes' ?
-                  <>
-                    <h4><span className='highlight'>RECOMMENDED  </span> More on what&apos;s in {item.name}</h4>
-                    <IndexIngredients items={items} model='active_ingredients' benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
-                    
-                  </>
+                : modelLoad === 'recipes' ?
+                  <SingleRecipe item={item} favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} setShow={setShow} setRefresh={setRefresh} refresh={refresh}/>
                   :
-                  <></>}
-            </Row>
-            <CommentsSection item={item} model={model} itemId={itemId} setRefresh={setRefresh} refresh={refresh} setShow={setShow} setTab={setTab} tab={tab} />
+                  <></>
+              )}
+            <CommentsSection item={item} items={items} model={model} itemId={itemId} setRefresh={setRefresh} refresh={refresh} setShow={setShow} setTab={setTab} tab={tab} />
           </>
+          // <>
+          //   {item && item && (model === modelLoad) && (modelLoad === 'active_ingredients' ?
+          //     <SingleIngredient item={item} favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} setShow={setShow}/>
+          //     :
+          //     <SingleRecipe item={item} favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} setShow={setShow}/>
+          //   )}
+          //   <Row className='collection d-flex groups-row justify-content-start flex-wrap mt-5'>
+          //     {items && (model === modelLoad) && items.length > 0 && item &&
+          //       (modelLoad === 'active_ingredients' ?
+          //         <>
+          //           <h4><span className='highlight'>RECOMMENDED  </span> Recipes with {item.name}</h4>
+          //           <IndexRecipes items={items} model='recipes' benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
+          //         </>
+          //         : modelLoad === 'recipes' ?
+          //           <>
+          //             <h4><span className='highlight'>RECOMMENDED  </span> What&apos;s in {item.name}?</h4>
+          //             <IndexIngredients items={items} model='active_ingredients' benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
+                      
+          //           </>
+          //           :
+          //           <></>)}
+          //   </Row>
+          //   <CommentsSection item={item} model={model} itemId={itemId} setRefresh={setRefresh} refresh={refresh} setShow={setShow} setTab={setTab} tab={tab} />
+          // </>
         }
       </Container>
     </main>

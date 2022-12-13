@@ -3,7 +3,7 @@ import { Button, Col, Row } from 'react-bootstrap'
 import Favourite from '../components/Favourite'
 import { isAuthenticated, isOwner } from '../helpers/auth'
 
-const SingleIngredient = ({ item, favouriteStatus, handleFavourite }) => {
+const SingleIngredient = ({ item, favouriteStatus, handleFavourite, setShow }) => {
   
 
   return (

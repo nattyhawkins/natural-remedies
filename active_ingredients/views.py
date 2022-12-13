@@ -15,15 +15,23 @@ class Active_IngredientListView(APIView):
       # active_ingredients = Active_Ingredient.objects.all()
       search = request.query_params.get('search')
       benefit = request.query_params.get('benefit')
-      # print('benefit', benefit)
-      # def checkFilter():
-      #   return True
-      benefit = benefit if benefit != 'default' else ''
+      includes = request.query_params.getlist('includes', '')
       print('benefit--', benefit)
-      active_ingredients = Active_Ingredient.objects.filter(name__icontains=search, benefits__name__icontains=benefit).distinct()
+      print('includes--', includes)
+      print('search--', search)
+      benefit = benefit if benefit != 'default' else ''
+      if includes[0] == '':
+        active_ingredients = Active_Ingredient.objects.filter(
+          name__icontains=search, 
+          benefits__name__icontains=benefit,
+          ).distinct()
+      else:
+        active_ingredients = Active_Ingredient.objects.filter(
+          name__icontains=search, 
+          benefits__name__icontains=benefit,
+          name__in=includes 
+          ).distinct()
       active_ingredients = SemiPopulatedActive_IngredientSerializer(active_ingredients, many=True)
-      # if benefit != 'default':
-      #   active_ingredients = []
       return Response(active_ingredients.data, status.HTTP_200_OK)
 
 
