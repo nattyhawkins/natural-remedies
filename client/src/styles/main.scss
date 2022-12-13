@@ -37,15 +37,40 @@ a{
   //   display: flex;
   //   align-items: end;
   // }
+  .carousel-control-prev, .carousel-control-prev{
+    width: 10%;
+  }
   .carousel-caption{
+    left: 10%;
+    right: 10%;
     a{
       color: white;
     }
-    max-width: 400px;
-    position: relative;
-    left: -15%;
-    top: 50%;
+    .header{
+      font-size: 80px;
+    }
+    .feature{
+      max-width: 400px;
+      align-self: flex-end;
+    }
+    .benefit{
+      opacity: 0;
+      animation: fadeInAnimation ease 2s;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+      
+    }
     
+  }
+}
+
+@keyframes fadeInAnimation {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+      color: lighten($primary, 30%);
   }
 }
 

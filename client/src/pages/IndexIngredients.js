@@ -2,20 +2,13 @@ import { useEffect } from 'react'
 import { Card, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import IndexCard from '../components/IndexCard'
+import { getIngredientBenefits } from '../helpers/general'
 
 
 const IndexIngredients = ({ items, model, setBenefits, benefits, refresh, setRefresh, setShow }) => {
 
   useEffect(() => {
-    const list = []
-    items.forEach(ingredient => {
-      return ingredient.benefits.forEach(benefit => {
-        if (!list.includes(benefit.name)){
-          list.push(benefit.name)
-        }
-      })
-    })
-    list.length > benefits.length && setBenefits(list)
+    getIngredientBenefits(items) > benefits.length && setBenefits(getIngredientBenefits(items))
   }, [items])
 
   return (

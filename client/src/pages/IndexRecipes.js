@@ -3,24 +3,14 @@ import { Card, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 import IndexCard from '../components/IndexCard'
+import { getRecipeBenefits } from '../helpers/general'
 
 
 const IndexRecipes = ({ items, model, setBenefits, benefits, refresh, setRefresh, setShow }) => {
 
   useEffect(() => {
     console.log(items)
-    const list = []
-    items.forEach(item => {
-      const { active_ingredients: ingredients } = item
-      return ingredients.forEach(ingredient => {
-        return ingredient.benefits.forEach(benefit => {
-          if (!list.includes(benefit.name)){
-            list.push(benefit.name)
-          }
-        })
-      })
-    })
-    list.length > benefits.length && setBenefits(list)
+    getRecipeBenefits(items).length > benefits.length && setBenefits(getRecipeBenefits(items))
   }, [items])
 
   

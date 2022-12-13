@@ -19,3 +19,30 @@ export function getTimeElapsed(timestamp) {
   if (days < 360) return moment(timestamp).format('MMM D LT')
   else return moment(timestamp).format('ll LT')
 }
+
+export function getRecipeBenefits(items){
+  const list = []
+  items.forEach(item => {
+    const { active_ingredients: ingredients } = item
+    return ingredients.forEach(ingredient => {
+      return ingredient.benefits.forEach(benefit => {
+        if (!list.includes(benefit.name)){
+          list.push(benefit.name)
+        }
+      })
+    })
+  })
+  return list
+}
+
+export function getIngredientBenefits(items){
+  const list = []
+  items.forEach(ingredient => {
+    return ingredient.benefits.forEach(benefit => {
+      if (!list.includes(benefit.name)){
+        list.push(benefit.name)
+      }
+    })
+  })
+  return list
+}
