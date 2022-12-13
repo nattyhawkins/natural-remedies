@@ -12,3 +12,9 @@ class User(AbstractUser):
         field_name = 'comments',
         related_name="owner"
     )
+    favourites = models.ManyToOneRel(
+        field = 'ForeignKey',
+        to = 'favourites.Favourite',
+        field_name = 'favourites',
+        related_name="owner"
+    )

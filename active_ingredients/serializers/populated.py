@@ -4,7 +4,6 @@ from comments.serializers.populated import OwnedCommentSerializer
 from favourites.serializers.populated import OwnedFavouriteSerializer
 from favourites.serializers.common import FavouriteSerializer
 from recipes.serializers.common import RecipeSerializer
-from mediums.serializers.common import MediumSerializer
 
 class PopulatedActive_IngredientSerializer(Active_IngredientSerializer):
     comments = OwnedCommentSerializer(many=True)

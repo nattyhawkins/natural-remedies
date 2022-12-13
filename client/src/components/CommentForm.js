@@ -1,6 +1,6 @@
 import { Button, Card, Form } from 'react-bootstrap'
 
-const CommentForm = ({ commentFields, setCommentFields, commentError, setCommentError, handleEditSubmit }) => {
+const CommentForm = ({ commentFields, setCommentFields, commentError, setCommentError, handleCommentSubmit }) => {
 
 
 
@@ -10,7 +10,7 @@ const CommentForm = ({ commentFields, setCommentFields, commentError, setComment
   }
 
   return (
-    <Form onSubmit={handleEditSubmit}>
+    <Form onSubmit={handleCommentSubmit}>
       <Form.Group className="d-flex flex-column align-items-end" controlId="commentInput" >
         {/* <Form.Label>Comments</Form.Label> */}
         <Form.Control as="textarea" rows={3} onChange={handleChange} name='text' value={commentFields.text} placeholder='Write a comment' required/>

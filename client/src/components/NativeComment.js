@@ -42,7 +42,7 @@ const NativeComment = ({ comment, timeElapsed, toEdit, commentFields, setComment
               {error && <small className='text-warning'>{error}</small>}
               <div >
                 {toEdit ?
-                  <CommentForm commentFields={commentFields} setCommentFields={setCommentFields} commentError={commentError} setCommentError={setCommentError} handleEditSubmit={handleEditSubmit} />
+                  <CommentForm commentFields={commentFields} setCommentFields={setCommentFields} commentError={commentError} setCommentError={setCommentError} handleCommentSubmit={handleEditSubmit} />
                   :
                   <div className="textBox m-0">
                     <Card.Text>{comment.text}</Card.Text>

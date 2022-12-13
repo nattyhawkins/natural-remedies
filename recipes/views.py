@@ -1,7 +1,6 @@
 from .models import Recipe
 from .serializers.common import RecipeSerializer # convert data on query to python data type
 from .serializers.populated import PopulatedRecipeSerializer, SemiPopulatedRecipeSerializer
-from jwt_auth.serializers.common import UserSerializer
 
 from rest_framework.views import APIView #predefined view class to set http verb methods
 from rest_framework.response import Response #to end an active req by writing to stream and sending back headers t client, like json() method

@@ -20,7 +20,7 @@ const App = () => {
           <AuthModal show={show} setShow={setShow} tab={tab} setTab={setTab}/>
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/profile' element={<Profile />} />
+            <Route path='/profile' element={<Profile setShow={setShow}/>} />
             <Route path='/:model' element={<IndexPage setShow={setShow}/>} />
             <Route path='/:model/:itemId' element={<SinglePage setShow={setShow}/>} />
             <Route path='*' element={<NotFound />} />

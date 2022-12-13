@@ -8,6 +8,7 @@ import IndexCard from '../components/IndexCard'
 const IndexRecipes = ({ items, model, setBenefits, benefits, refresh, setRefresh, setShow }) => {
 
   useEffect(() => {
+    console.log(items)
     const list = []
     items.forEach(item => {
       const { active_ingredients: ingredients } = item

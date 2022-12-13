@@ -29,7 +29,6 @@ const Comment = ({ commentId, comment, setRefresh, refresh, handleCommentSubmit 
 
   //update time since commenting every second
   useEffect(() => {
-    console.log(getToken())
     const tick = setInterval(() => {
       setTimeElapsed(getTimeElapsed(comment.created_at))
     }, 1000)
@@ -77,10 +76,6 @@ const Comment = ({ commentId, comment, setRefresh, refresh, handleCommentSubmit 
       setError(err.response.data.message)
     }
   }
-
-  useEffect(() => {
-    console.log(itemId)
-  }, [itemId])
 
   // async function handleCommentLike(e) {
   //   try {
