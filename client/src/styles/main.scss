@@ -37,33 +37,42 @@ a{
   //   display: flex;
   //   align-items: end;
   // }
+  .header{
+    font-size: 80px;
+  }
+  .feature{
+    max-width: 400px;
+    align-self: flex-end;
+  }
+  .benefit{
+    opacity: 0;
+    animation: fadeInAnimation ease 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    
+  }
   .carousel-control-prev, .carousel-control-prev{
     width: 10%;
   }
   .carousel-caption{
-    left: 10%;
-    right: 10%;
+    right: 20%;
+    top: 20%;
     a{
       color: white;
-    }
-    .header{
-      font-size: 80px;
-    }
-    .feature{
-      max-width: 400px;
-      align-self: flex-end;
-    }
-    .benefit{
-      opacity: 0;
-      animation: fadeInAnimation ease 2s;
-      animation-iteration-count: 1;
-      animation-fill-mode: forwards;
-      
     }
     
   }
 }
-
+#overlay {
+  position: absolute;
+  top: 50%;
+  left: 29%;
+  font-size: 50px;
+  color: white;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  z-index: 2;
+}
 @keyframes fadeInAnimation {
   0% {
       opacity: 0;
@@ -76,10 +85,18 @@ a{
 
 
 .navbar {
-  position: sticky;
-  top: 0;
+  // background-color: blue;
+
   z-index: 1100;
-  background-color: $primary;
+  top: 0;
+  position: sticky;
+  .normal{
+    background-color: $primary;
+    z-index: 1100;
+    top: 0;
+    position: sticky;
+
+  }
 
 
   .nav-link, a {

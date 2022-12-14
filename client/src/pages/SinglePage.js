@@ -13,7 +13,7 @@ import SingleIngredient from './SingleIngredient'
 import SingleRecipe from './SingleRecipe'
 
 
-const SinglePage = ({ setShow }) => {
+const SinglePage = ({ setShow, setIsHome }) => {
   const [ item, setItem ] = useState(null)
   const [ itemError, setItemError ] = useState(false)
   const [ refresh, setRefresh ] = useState(false)
@@ -45,6 +45,7 @@ const SinglePage = ({ setShow }) => {
         setItemError(err.message ? err.message : err.response.data.message)
       }
     }
+    setIsHome(false)
     
     getItem()
   }, [itemId, model, refresh])

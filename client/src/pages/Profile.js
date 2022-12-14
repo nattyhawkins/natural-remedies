@@ -11,7 +11,7 @@ import IndexIngredients from './IndexIngredients'
 import IndexRecipes from './IndexRecipes'
 
 
-const Profile = ({ setShow }) => {
+const Profile = ({ setShow, setIsHome }) => {
   const [ profile, setProfile ] = useState(null)
   const [ error, setError ] = useState(false)
   const [ refresh, setRefresh ] = useState(false)
@@ -50,6 +50,7 @@ const Profile = ({ setShow }) => {
         setError(err.response.data.message ? err.response.data.message : err.response.statusText)
       }
     }
+    setIsHome(false)
     console.log()
     getProfile()
 

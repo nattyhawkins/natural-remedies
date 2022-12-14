@@ -9,7 +9,7 @@ import Filters from '../components/Filters'
 import NotFound from './NotFound'
 import { getBenefits } from '../helpers/general'
 
-const IndexPage = ({ setShow }) => {
+const IndexPage = ({ setShow, setIsHome }) => {
   const [ items, setItems ] = useState(false)
   const [ error, setError ] = useState(false)
   const [search, setSearch] = useState('&search=')
@@ -38,6 +38,7 @@ const IndexPage = ({ setShow }) => {
         setError(err.response.statusText ? err.response.statusText : 'Something went wrong...')
       }
     }
+    setIsHome(false)
     getItems()
   }, [model, search, benefitFilter, refresh])
 

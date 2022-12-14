@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Spinner from '../components/Spinner'
 
-const NotFound = () => {
+const NotFound = ({ setIsHome }) => {
+
+  useEffect(() => {
+    setIsHome(false)
+
+  }, [])
+
   return (
     <main className='text-center'>
       <Spinner />

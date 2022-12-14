@@ -5,7 +5,7 @@ import AuthModal from './AuthModal'
 import { handleLogout, isAuthenticated } from '../helpers/auth'
 
 
-const TheNavbar = ({ setShow }) => {
+const TheNavbar = ({ setShow, show, isHome }) => {
   const [tab, setTab] = useState('login')
 
 
@@ -18,31 +18,59 @@ const TheNavbar = ({ setShow }) => {
   }
   
   return (
-    <Navbar className='navbar'>
-      <Container className='navbarContainer d-flex justify-content-between'>
-        <Nav className='d-flex'>
-          <Nav.Link as={Link} to='/active_ingredients'>Ingredients</Nav.Link>
-          <Nav.Link as={Link} to='/recipes'>Recipes</Nav.Link>
-        </Nav>
-        <Navbar.Brand className='logo' as={Link} to='/'> WELLBEAN
-          {/* <img className="logo" src={logo} /> */}
-        </Navbar.Brand>
-        <Nav className='d-flex'>
-          
-          {isAuthenticated() ?
-            <>
-              <div className='nav-link' onClick={() => handleLogout(navigate)}>Logout</div>
-              <Nav.Link as={Link} to={'/profile/'} >Profile</Nav.Link>
-            </>
-            :
-            <>
-              <Nav.Link as={Link} onClick={handleShow} title='register'>Register</Nav.Link>
-              <Nav.Link as={Link} onClick={handleShow} title='login'>Login</Nav.Link>
-            </>
-          }
-        </Nav>
-      </Container>
-    </Navbar>
+    isHome ? 
+      <Navbar className='navbar' >
+        <Container className='navbarContainer d-flex justify-content-between'>
+          <Nav className='d-flex'>
+            <Nav.Link as={Link} to='/active_ingredients'>Ingredients</Nav.Link>
+            <Nav.Link as={Link} to='/recipes'>Recipes</Nav.Link>
+          </Nav>
+          {!isHome && 
+          <Navbar.Brand className='logo' as={Link} to='/'> WELLBEAN
+            {/* <img className="logo" src={logo} /> */}
+          </Navbar.Brand>}
+          <Nav className='d-flex'>
+            
+            {isAuthenticated() ?
+              <>
+                <div className='nav-link' onClick={() => handleLogout(navigate)}>Logout</div>
+                <Nav.Link as={Link} to={'/profile/'} >Profile</Nav.Link>
+              </>
+              :
+              <>
+                <Nav.Link as={Link} onClick={handleShow} title='register'>Register</Nav.Link>
+                <Nav.Link as={Link} onClick={handleShow} title='login'>Login</Nav.Link>
+              </>
+            }
+          </Nav>
+        </Container>
+      </Navbar>
+      :
+      <Navbar className='navbar normal' >
+        <Container className='navbarContainer d-flex justify-content-between'>
+          <Nav className='d-flex'>
+            <Nav.Link as={Link} to='/active_ingredients'>Ingredients</Nav.Link>
+            <Nav.Link as={Link} to='/recipes'>Recipes</Nav.Link>
+          </Nav>
+          <Navbar.Brand className='logo' as={Link} to='/'> WELLBEAN
+            {/* <img className="logo" src={logo} /> */}
+          </Navbar.Brand>
+          <Nav className='d-flex'>
+            
+            {isAuthenticated() ?
+              <>
+                <div className='nav-link' onClick={() => handleLogout(navigate)}>Logout</div>
+                <Nav.Link as={Link} to={'/profile/'} >Profile</Nav.Link>
+              </>
+              :
+              <>
+                <Nav.Link as={Link} onClick={handleShow} title='register'>Register</Nav.Link>
+                <Nav.Link as={Link} onClick={handleShow} title='login'>Login</Nav.Link>
+              </>
+            }
+          </Nav>
+        </Container>
+      </Navbar>
   )
 }
 export default TheNavbar
