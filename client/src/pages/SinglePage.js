@@ -22,14 +22,15 @@ const SinglePage = ({ setShow, setIsHome }) => {
 
   const { model, itemId } = useParams()
   //for recs
-  const [ benefits, setBenefits ] = useState('')
   const [ recModel, setRecModel ] = useState('')
   const [ items, setItems ] = useState([])
   const [ recError, setRecError ] = useState(false)
+  const [ benefits, setBenefits ] = useState('')  //this is a placeholder to satisfy indexRecipe/ingredient props
   const [ benefitFilter, setBenefitFilter ] = useState('&benefit=')
   const [search, setSearch] = useState('&search=')
   const [includes, setIncludes] = useState(null)
   const [ modelLoad, setModelLoad ] = useState(model)
+  const [ recLoad, setRecLoad ] = useState(recModel)
 
   
   
@@ -38,7 +39,6 @@ const SinglePage = ({ setShow, setIsHome }) => {
       try {
         setItemError(false)
         const { data } = await axios.get(`/api/${model}/${itemId}/`)
-        console.log(data)
         setItem(data)
       } catch (err) {
         console.log(err.response)
@@ -46,20 +46,24 @@ const SinglePage = ({ setShow, setIsHome }) => {
       }
     }
     setIsHome(false)
-    
     getItem()
   }, [itemId, model, refresh])
 
+  useEffect(() => {
+    setModelLoad(model)
+  }, [item])
+
+
   // check if user is already a member of group on page load
   useEffect(() => {
-    console.log(item)
     if (isAuthenticated() && item && item.favourites.some(favourite => isOwner(favourite.owner.id))) return setFavouriteStatus(201)
     setFavouriteStatus(204)
   }, [item])
 
   useEffect(() => {
-    setModelLoad(model)
-  }, [items, item])
+    console.log(recModel + 'AND' + recLoad)
+  }, [model])
+
 
   async function handleFavourite(e) {
     try {
@@ -94,10 +98,12 @@ const SinglePage = ({ setShow, setIsHome }) => {
         setRecError(err.response.statusText ? err.response.statusText : 'Something went wrong...')
       }
     }
-    console.log('modelo', model)
-    console.log('rec model', recModel)
     includes && getItems()
-  }, [model, includes])
+  }, [recModel, includes])
+
+  useEffect(() => {
+    setRecLoad(recModel)
+  }, [recModel])
 
   // useEffect(() => {
   //   model && setRecModel(() => { 
@@ -114,22 +120,37 @@ const SinglePage = ({ setShow, setIsHome }) => {
     
   }
 
+  //set recModel state
   useEffect(() => {
-    console.log(items)
+    console.log('items state --', items)
     if (item)
       if (model === 'active_ingredients') { 
         setRecModel('recipes')
-        setIncludes(`&includes=${item.name}`)
+        // setIncludes(`&includes=${item.name}`)
       } else if (model === 'recipes'){
         setRecModel('active_ingredients')
-        setIncludes(() => {
-          return item.active_ingredients.map(ingredient => `&includes=${ingredient.name}`).join('')
-        })
+        // setIncludes(() => {
+        //   return item.active_ingredients.map(ingredient => `&includes=${ingredient.name}`).join('')
+        // })
       } else {
         setRecModel(null)
         setIncludes('')
       }
   }, [model, item, items])
+
+  useEffect(() => {
+    console.log('items state --', items)
+    if (item && recModel === recLoad)
+      if (model === 'active_ingredients') {       
+        setIncludes(`&includes=${item.name}`)
+      } else if (model === 'recipes'){
+        setIncludes(() => {
+          return item.active_ingredients.map(ingredient => `&includes=${ingredient.name}`).join('')
+        })
+      } else {
+        setIncludes('')
+      }
+  }, [item])
 
 
   return (
@@ -142,7 +163,7 @@ const SinglePage = ({ setShow, setIsHome }) => {
           </div>
           :
           <>
-            {items.length > 0 && item && (model === modelLoad)
+            {items.length > 0 && item && (model === modelLoad) && (recModel === recLoad)
               && (modelLoad === 'active_ingredients' ?
                 <>
                   <SingleIngredient item={item} favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} setShow={setShow}/>
@@ -152,7 +173,7 @@ const SinglePage = ({ setShow, setIsHome }) => {
                   </Row>
                 </>
                 : modelLoad === 'recipes' ?
-                  <SingleRecipe item={item} favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} setShow={setShow} setRefresh={setRefresh} refresh={refresh}/>
+                  <SingleRecipe item={item} items={items} favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} setShow={setShow} setRefresh={setRefresh} refresh={refresh} benefits={benefits} setBenefits={setBenefits}/>
                   :
                   <></>
               )}

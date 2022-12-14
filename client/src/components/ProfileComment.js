@@ -31,8 +31,8 @@ const ProfileComment = ({ comment, timeElapsed, toEdit, commentFields, setCommen
           <div className='d-flex justify-content-between align-items-center mb-1'>
             <small>{timeElapsed}</small>
             <div className='d-flex'>
-              <p title='edit comment' style={{ fontSize: '20px' }} className='comment-btn' onClick={editComment}>•••</p>
-              <p title='delete comment' style={{ fontSize: '20px' }} className='comment-btn' onClick={() => (setShowConfirm(true))}>🆇</p>
+              <p title='edit comment' style={{ fontSize: '18px' }} className='comment-btn ms-2' onClick={editComment}>•••</p>
+              <p title='delete comment' style={{ fontSize: '18px' }} className='comment-btn ms-2' onClick={() => (setShowConfirm(true))}>🆇</p>
               <ConfirmPopUp showConfirm={showConfirm} setShowConfirm={setShowConfirm} deleteComment={deleteComment} />
             </div>
           </div>

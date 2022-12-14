@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import Favourite from '../components/Favourite'
 import IndexIngredients from './IndexIngredients'
-const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefresh, refresh, setShow }) => {
-  const [ benefits, setBenefits ] = useState([])
+const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefresh, refresh, setShow, setBenefits, benefits }) => {
+  const [ benefitHTML, setBenefitHTML ] = useState([])
 
   useEffect(() => {
     const list = []
@@ -14,8 +14,12 @@ const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefres
         }
       })
     })
-    setBenefits(list)
+    setBenefitHTML(list)
   }, [item])
+
+  useEffect(() => {
+    console.log(items)
+  }, [items])
 
 
 
@@ -33,7 +37,7 @@ const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefres
           </Row> 
           <p>{item.description}</p>
           <div className='d-flex justify-content-evenly'>
-            {benefits.length > 0 && benefits.map(benefit => {
+            {benefitHTML.length > 0 && benefitHTML.map(benefit => {
               return (
                 <p key={benefit} className='my-0 fw-bold'>{benefit}</p> 
               )
@@ -43,7 +47,9 @@ const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefres
       </Row>
       <Row className='collection d-flex groups-row justify-content-start flex-wrap mt-5'>
         <h4><span className='highlight'>RECOMMENDED  </span> What&apos;s in it?</h4>
-        {items && items.length > 0 && <IndexIngredients items={items} model='active_ingredients' benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>}
+        {items && items.length > 0 && 
+          <IndexIngredients items={items} model='active_ingredients' benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
+        }
       </Row>
       <Row>
         <h3>You will need:</h3>

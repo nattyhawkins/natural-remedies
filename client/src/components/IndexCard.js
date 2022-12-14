@@ -45,7 +45,7 @@ const IndexCard = ({ id, model, benefitHTML, image, name, item, setRefresh, refr
             <div className='align-self-end index-detail benefits'>{benefitHTML}</div>
             <div className='d-flex justify-content-between align-items-end'>
               <Favourite handleFavourite={handleFavourite} favouriteStatus={favouriteStatus} item={item} faveError={faveError} />
-              <Card.Title className='mb-0 text-end'>{name}</Card.Title>
+              <Card.Title className='m-1 text-end'>{name}</Card.Title>
             </div>
           </Card.Body>
         </Card>

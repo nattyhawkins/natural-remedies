@@ -87,8 +87,9 @@ const Profile = ({ setShow, setIsHome }) => {
                   {profile && faveRecipes && faveRecipes.length > 0 &&
                     <>
                       <IndexRecipes items={faveRecipes} model='recipes' benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
+                      {/* Extra PLUS Card */}
                       <Col className="mb-4 col-12 col-sm-6 col-lg-6 col-xl-4">
-                        <Link to={'/'}>
+                        <Link to={'/recipes'}>
                           <Card className=" pb-0">
                             <Card.Body className='d-flex p-0 align-items-center justify-content-center'>
                               <div className='fs-1'> ＋ </div>

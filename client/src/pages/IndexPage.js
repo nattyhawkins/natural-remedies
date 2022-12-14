@@ -13,7 +13,6 @@ const IndexPage = ({ setShow, setIsHome }) => {
   const [ items, setItems ] = useState(false)
   const [ error, setError ] = useState(false)
   const [search, setSearch] = useState('&search=')
-  // const [ benefits, setBenefits ] = useState('')
   const [ benefitFilter, setBenefitFilter ] = useState('&benefit=')
   const [ refresh, setRefresh ] = useState(false)
   const [ benefits, setBenefits ] = useState([])

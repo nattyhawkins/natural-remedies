@@ -3,11 +3,12 @@ import { Navbar, Container, Nav } from 'react-bootstrap'
 import React, { useState } from 'react'
 import AuthModal from './AuthModal'
 import { handleLogout, isAuthenticated } from '../helpers/auth'
+import bean from '../assets/logos2/4.png'
+import logo from '../assets/logos2/3.png'
 
 
 const TheNavbar = ({ setShow, show, isHome }) => {
   const [tab, setTab] = useState('login')
-
 
   const navigate = useNavigate()
   
@@ -25,10 +26,9 @@ const TheNavbar = ({ setShow, show, isHome }) => {
             <Nav.Link as={Link} to='/active_ingredients'>Ingredients</Nav.Link>
             <Nav.Link as={Link} to='/recipes'>Recipes</Nav.Link>
           </Nav>
-          {!isHome && 
-          <Navbar.Brand className='logo' as={Link} to='/'> WELLBEAN
-            {/* <img className="logo" src={logo} /> */}
-          </Navbar.Brand>}
+          {/* <Navbar.Brand className='title pb-0' as={Link} to='/'>
+            <img className="logo" src={logo} />
+          </Navbar.Brand> */}
           <Nav className='d-flex'>
             
             {isAuthenticated() ?
@@ -46,14 +46,14 @@ const TheNavbar = ({ setShow, show, isHome }) => {
         </Container>
       </Navbar>
       :
-      <Navbar className='navbar normal' >
+      <Navbar className='navbar normal'>
         <Container className='navbarContainer d-flex justify-content-between'>
           <Nav className='d-flex'>
             <Nav.Link as={Link} to='/active_ingredients'>Ingredients</Nav.Link>
             <Nav.Link as={Link} to='/recipes'>Recipes</Nav.Link>
           </Nav>
-          <Navbar.Brand className='logo' as={Link} to='/'> WELLBEAN
-            {/* <img className="logo" src={logo} /> */}
+          <Navbar.Brand className='title pb-0' as={Link} to='/'> Wellbean
+            <img className="logo" src={bean} />
           </Navbar.Brand>
           <Nav className='d-flex'>
             

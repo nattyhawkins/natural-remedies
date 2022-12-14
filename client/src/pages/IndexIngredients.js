@@ -8,7 +8,7 @@ import { getIngredientBenefits } from '../helpers/general'
 const IndexIngredients = ({ items, model, setBenefits, benefits, refresh, setRefresh, setShow }) => {
 
   useEffect(() => {
-    getIngredientBenefits(items) > benefits.length && setBenefits(getIngredientBenefits(items))
+    getIngredientBenefits(items).length > benefits.length && setBenefits(getIngredientBenefits(items))
   }, [items])
 
   return (

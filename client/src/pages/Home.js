@@ -11,7 +11,8 @@ const Home = ({ setIsHome, isHome, setShow }) => {
   const [ error, setError ] = useState(false)
   const [ benefits, setBenefits ] = useState([])
   const [ showBenefit, setShowBenefit ] = useState('')
-  let delay = 0
+  // let delay = 0
+  let index = 0
 
   useEffect(() => {
     const getItems = async () => {
@@ -29,18 +30,27 @@ const Home = ({ setIsHome, isHome, setShow }) => {
     getItems()
   }, [])
 
-  // useEffect(() => {
-  //   items.length > 0 && setBenefits(getIngredientBenefits(items))
-  // }, [items])
-
   useEffect(() => {
     items.length > 0 && setBenefits(getIngredientBenefits(items))
-    
   }, [items])
 
   useEffect(() => {
-    console.log(benefits)
+    // items.length > 0 && 
+    // const benefits = getIngredientBenefits(items)
+    setShowBenefit(benefits[index])
+    const tick = setInterval(() => {
+      // console.log(benefits)
+      index = (index + 1) % benefits.length
+      setShowBenefit(benefits[index])
+    }, 1500)
+    return () => {
+      clearInterval(tick)
+    }
   }, [benefits])
+
+  // useEffect(() => {
+  //   console.log(benefits)
+  // }, [benefits])
 
   return (
     <main className='home '>
@@ -51,11 +61,6 @@ const Home = ({ setIsHome, isHome, setShow }) => {
           return (
             <Carousel.Item className='home image' key={item.id} interval={20000} style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url(${item.bg_image})` }}>
               <TheNavbar setShow={setShow} isHome={isHome} />
-              {/* <img
-                className="d-block image w-100 h-100"
-                src={item.bg_image}
-                alt={item.name}
-              /> */}
               <Carousel.Caption className='h-100 d-flex flex-column justify-content-evenly'>
                 <>
                   <div className='feature'>
@@ -77,17 +82,18 @@ const Home = ({ setIsHome, isHome, setShow }) => {
         })}
       </Carousel>
       <div className='text-start' id="overlay">
-        <h1 className='text-start header'>wellbean</h1>
+        <h1 className='text-start header'>Wellbean</h1>
         <div className='d-flex'>
           <h2>Natural remedies for </h2>
-          <div className='ms-3 benefits text-center' >
-            {items.length > 0 && benefits && benefits.map(benefit => {
+          <div className='ms-2 benefits text-center ' >
+            {showBenefit && <h2 className='benefit mb-5'>{showBenefit}</h2>}
+            {/* {items.length > 0 && benefits && benefits.map(benefit => {
               delay += 1
               console.log(delay)
               return (
                 <h2 key={benefit} className='benefit mb-5' style={{ animationDelay: `${delay}s` }}> {benefit}</h2>
               )
-            })}
+            })} */}
           </div>
         </div>
       </div>
