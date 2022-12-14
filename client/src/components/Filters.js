@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react'
 import { FloatingLabel, Form, Row } from 'react-bootstrap'
 
-const Filters = ({ model, setSearch, benefits, setBenefitFilter }) => {
+const Filters = ({ model, setSearch, benefits, setBenefitFilter, filterLocation  }) => {
 
   const [searchInput, setSearchInput] = useState('')
-  const [ select, setSelect ] = useState('default')
+  const [ select, setSelect ] = useState(filterLocation ? filterLocation : 'default')
+
+  useEffect(() => {
+    console.log(select)
+  }, [select])
 
   //Search Functions
   const handleSearchInput = (e) => {

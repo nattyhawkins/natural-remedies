@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { Container, Row } from 'react-bootstrap'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import IndexIngredients from './IndexIngredients'
 import Spinner from '../components/Spinner'
 import IndexRecipes from './IndexRecipes'
@@ -9,19 +9,23 @@ import Filters from '../components/Filters'
 import NotFound from './NotFound'
 import { getBenefits } from '../helpers/general'
 
-const IndexPage = ({ setShow, setIsHome, benefitFilter, setBenefitFilter }) => {
+const IndexPage = ({ setShow, setIsHome }) => {
   const [ items, setItems ] = useState(false)
   const [ error, setError ] = useState(false)
   const [search, setSearch] = useState('&search=')
   const [ refresh, setRefresh ] = useState(false)
   const [ benefits, setBenefits ] = useState([])
   
+  //set models
   const { model } = useParams()
   const [ modelLoad, setModelLoad ] = useState(model)
 
+  const filterLocation = useLocation().search.split('=')[1]
+  const [ benefitFilter, setBenefitFilter ] = useState(filterLocation ? `&benefit=${filterLocation}` : '&benefit=')
+
   useEffect(() => {
-    console.log(benefits)
-  }, [benefits])
+    console.log(benefitFilter)
+  }, [benefitFilter])
   
   useEffect(() => {
     const getItems = async () => {
@@ -67,7 +71,7 @@ const IndexPage = ({ setShow, setIsHome, benefitFilter, setBenefitFilter }) => {
       <Container className="mt-4">
         {modelLoad === 'active_ingredients' || modelLoad === 'recipes' ? 
           <>
-            <Filters model={model} setSearch={setSearch} benefits={benefits} setBenefits={setBenefits} setBenefitFilter={setBenefitFilter} />
+            <Filters model={model} setSearch={setSearch} benefits={benefits} setBenefits={setBenefits} setBenefitFilter={setBenefitFilter} filterLocation={filterLocation} />
             <Row className="index-row text-center">
               
               {items && items.length > 0 && modelLoad === model ? 

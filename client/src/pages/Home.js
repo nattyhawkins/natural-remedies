@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { Carousel } from 'react-bootstrap'
+import { Button, Carousel } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import TheNavbar from '../components/TheNavbar'
 import { getIngredientBenefits } from '../helpers/general'
@@ -66,11 +66,13 @@ const Home = ({ setIsHome, isHome, setShow }) => {
                   <div className='feature'>
                     <Link to={`/active_ingredients/${item.id}`}><h3>{item.name}</h3></Link>
                     <h6 className='fst-italic'>{item.latin_name}</h6>
-                    <p>{item.description.slice(0, 300)}...</p>
+                    <p>{item.description.slice(0, 300)} <Link  to={`/active_ingredients/${item.id}`}> →</Link></p>
                     <div className='d-flex justify-content-evenly'>
                       {item.benefits.map(benefit => {
                         return (
-                          <p className='m-0 px-2 text-end'key={benefit.id}>{benefit.name}</p>
+                          <Link to={`/recipes/?benefit=${benefit.name}`} key={benefit.id}>
+                            <p className='m-0 px-2 text-end fw-bold'>{benefit.name}</p>
+                          </Link>
                         )
                       })}
                     </div>
