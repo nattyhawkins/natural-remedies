@@ -9,11 +9,10 @@ import Filters from '../components/Filters'
 import NotFound from './NotFound'
 import { getBenefits } from '../helpers/general'
 
-const IndexPage = ({ setShow, setIsHome }) => {
+const IndexPage = ({ setShow, setIsHome, benefitFilter, setBenefitFilter }) => {
   const [ items, setItems ] = useState(false)
   const [ error, setError ] = useState(false)
   const [search, setSearch] = useState('&search=')
-  const [ benefitFilter, setBenefitFilter ] = useState('&benefit=')
   const [ refresh, setRefresh ] = useState(false)
   const [ benefits, setBenefits ] = useState([])
   

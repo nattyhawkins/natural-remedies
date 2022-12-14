@@ -55,11 +55,11 @@ const Home = ({ setIsHome, isHome, setShow }) => {
   return (
     <main className='home '>
 
-      <Carousel fade >
+      <Carousel fade wrap>
         
         {items.length > 0 && items.map(item => {
           return (
-            <Carousel.Item className='home image' key={item.id} interval={20000} style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url(${item.bg_image})` }}>
+            <Carousel.Item className='home image' key={item.id} interval={5000} style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url(${item.bg_image})` }}>
               <TheNavbar setShow={setShow} isHome={isHome} />
               <Carousel.Caption className='h-100 d-flex flex-column justify-content-evenly'>
                 <>

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { Card, Col, Container, Row } from 'react-bootstrap'
+import { Card, Carousel, CarouselItem, Col, Container, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Comment from '../components/Comment'
 import CommentForm from '../components/CommentForm'
@@ -9,6 +9,7 @@ import { getToken, isAuthenticated, getPayload } from '../helpers/auth'
 import { getTimeElapsed, unixTimestamp } from '../helpers/general'
 import IndexIngredients from './IndexIngredients'
 import IndexRecipes from './IndexRecipes'
+import { v4 as uuid } from 'uuid'
 
 
 const Profile = ({ setShow, setIsHome }) => {
@@ -16,10 +17,33 @@ const Profile = ({ setShow, setIsHome }) => {
   const [ error, setError ] = useState(false)
   const [ refresh, setRefresh ] = useState(false)
   const [ edit, toEdit ] = useState(false)
-  const [timeElapsed, setTimeElapsed] = useState('')
-  const [ faveRecipes, setFaveRecipes ] = useState(null)
-  const [ faveIngredients, setFaveIngredients ] = useState(null)
+  const [ faveRecipes, setFaveRecipes ] = useState([])
+  const [ faveIngredients, setFaveIngredients ] = useState([])
+  const [ faveIngredientsGrouped, setFaveIngredientsGrouped ] = useState([])
+  const [ faveRecipesGrouped, setFaveRecipesGrouped ] = useState([])
   const [ benefits, setBenefits ] = useState('')
+  const [ size, setSize ] = useState(getCarouselSize())
+  
+  function partitionArray(array){
+    const groups = []
+    if (array.length > 0){
+      for (let i = 0; i < array.length; i += size) {
+        const group = array.slice(i, i + size)
+        groups.push(group)
+      }
+    }  
+    return groups 
+  }
+
+  function getCarouselSize() {
+    if (window.innerWidth < 576){
+      return 1
+    } else if (window.innerWidth < 1200) {
+      return 2
+    } else {
+      return 3
+    }
+  }
 
   useEffect(() => {
     profile && setFaveRecipes(profile.favourites.filter(favourite => favourite.recipe).map(favourite => favourite.recipe))
@@ -28,9 +52,20 @@ const Profile = ({ setShow, setIsHome }) => {
   }, [profile])
 
   useEffect(() => {
-    console.log(faveIngredients)
-   
-  }, [faveIngredients])
+    window.addEventListener('resize', () => {
+      console.log(window.innerWidth)
+      setSize(getCarouselSize())
+    })
+  }, [])
+
+  useEffect(() => {
+    setFaveRecipesGrouped(partitionArray(faveRecipes))
+  }, [faveRecipes, size])
+
+  useEffect(() => {
+    setFaveIngredientsGrouped(partitionArray(faveIngredients))
+  }, [faveIngredients, size])
+
 
 
   useEffect(() => {
@@ -84,11 +119,23 @@ const Profile = ({ setShow, setIsHome }) => {
               <Row className='text-center mb-4 h-10 d-flex flex-column align-items-center'>
                 <h2>★ Recipes</h2>
                 <Row className='collection d-flex groups-row justify-content-start flex-wrap my-3'>
-                  {profile && faveRecipes && faveRecipes.length > 0 &&
+                  <Carousel interval={null} variant="dark" >
+                    {faveRecipesGrouped.length > 0 && faveRecipesGrouped.map(group => {
+                      return (
+                        <Carousel.Item key={uuid()} >
+                          <Carousel.Caption  className='d-flex'>
+                            <IndexRecipes items={group} model='active_ingredients' benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
+
+                          </Carousel.Caption>
+                        </Carousel.Item>
+                      )
+                    })}
+                  </Carousel>
+                  {/* {profile && faveRecipes && faveRecipes.length > 0 &&
                     <>
                       <IndexRecipes items={faveRecipes} model='recipes' benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
                       {/* Extra PLUS Card */}
-                      <Col className="mb-4 col-12 col-sm-6 col-lg-6 col-xl-4">
+                  {/* <Col className="mb-4 col-12 col-sm-6 col-lg-6 col-xl-4">
                         <Link to={'/recipes'}>
                           <Card className=" pb-0">
                             <Card.Body className='d-flex p-0 align-items-center justify-content-center'>
@@ -97,15 +144,31 @@ const Profile = ({ setShow, setIsHome }) => {
                           </Card>
                         </Link>
                       </Col>
-                      
-                    </>
-                  }</Row>
+                    </>} */} 
+                </Row>
               </Row>
-              <Row className='text-center mb-4 h-10 d-flex flex-column align-items-center'>
+              {/* <Row className='text-center mb-4 h-10 d-flex flex-column align-items-center'>
                 <h2>★ Ingredients</h2>
                 <Row className='collection d-flex groups-row justify-content-start flex-wrap my-3'>
                   {profile && faveIngredients && faveIngredients.length > 0 &&
                     <IndexIngredients items={faveIngredients} model='active_ingredients' benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>}
+                </Row>
+              </Row> */}
+              <Row className='text-center mb-4 h-10 d-flex flex-column align-items-center'>
+                <h2>★ Ingredients</h2>
+                <Row className='collection d-flex groups-row justify-content-start flex-wrap my-3'>
+                  <Carousel interval={null} variant="dark" >
+                    {faveIngredientsGrouped.length > 0 && faveIngredientsGrouped.map(group => {
+                      return (
+                        <Carousel.Item key={uuid()} >
+                          <Carousel.Caption  className='d-flex'>
+                            <IndexIngredients items={group} model='active_ingredients' benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
+
+                          </Carousel.Caption>
+                        </Carousel.Item>
+                      )
+                    })}
+                  </Carousel>
                 </Row>
               </Row>
             </Col>

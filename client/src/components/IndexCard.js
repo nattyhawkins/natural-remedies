@@ -32,7 +32,6 @@ const IndexCard = ({ id, model, benefitHTML, image, name, item, setRefresh, refr
   }
 
   useEffect(() => {
-    console.log(item)
     if (isAuthenticated() && item && item.favourites.some(favourite => isOwner(favourite.owner))) return setFavouriteStatus(201)
     setFavouriteStatus(204)
   }, [item])

@@ -9,7 +9,6 @@ import { getRecipeBenefits } from '../helpers/general'
 const IndexRecipes = ({ items, model, setBenefits, benefits, refresh, setRefresh, setShow }) => {
 
   useEffect(() => {
-    console.log(items)
     getRecipeBenefits(items).length > benefits.length && setBenefits(getRecipeBenefits(items))
   }, [items])
 

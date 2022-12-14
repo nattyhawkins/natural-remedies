@@ -59,8 +59,8 @@ const TheNavbar = ({ setShow, show, isHome }) => {
             
             {isAuthenticated() ?
               <>
-                <div className='nav-link' onClick={() => handleLogout(navigate)}>Logout</div>
                 <Nav.Link as={Link} to={'/profile/'} >Profile</Nav.Link>
+                <div className='nav-link' onClick={() => handleLogout(navigate)}>Logout</div>
               </>
               :
               <>
