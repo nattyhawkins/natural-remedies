@@ -167,13 +167,15 @@ const SinglePage = ({ setShow, setIsHome }) => {
               && (modelLoad === 'active_ingredients' ?
                 <>
                   <SingleIngredient item={item} favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} setShow={setShow}/>
+                  {!recError && 
                   <Row className='collection d-flex groups-row justify-content-start flex-wrap mt-5'>
                     <h4><span className='highlight'>RECOMMENDED  </span> Recipes with {item.name}</h4>
                     <IndexRecipes items={items} model='recipes' benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
                   </Row>
+                  }
                 </>
                 : modelLoad === 'recipes' ?
-                  <SingleRecipe item={item} items={items} favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} setShow={setShow} setRefresh={setRefresh} refresh={refresh} benefits={benefits} setBenefits={setBenefits}/>
+                  <SingleRecipe item={item} items={items} recError={recError} favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} setShow={setShow} setRefresh={setRefresh} refresh={refresh} benefits={benefits} setBenefits={setBenefits}/>
                   :
                   <></>
               )}

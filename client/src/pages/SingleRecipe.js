@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import Favourite from '../components/Favourite'
 import IndexIngredients from './IndexIngredients'
-const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefresh, refresh, setShow, setBenefits, benefits }) => {
+const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefresh, refresh, setShow, setBenefits, benefits, recError }) => {
   const [ benefitHTML, setBenefitHTML ] = useState([])
 
   useEffect(() => {
@@ -31,7 +32,6 @@ const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefres
         </Col>
         <Col className='p-3'>
           <h1 className='text-center text-md-start'>{item.name}</h1>
-          {/* <h2>{item.mediums.name}</h2> */}
           <Row className='d-flex img-single image w-100 my-2 d-md-none align-items-end' style={{ backgroundImage: `url(${item.image})`, borderRadius: '15px', color: 'white' }}>
             <Favourite handleFavourite={handleFavourite} favouriteStatus={favouriteStatus} item={item}  />
           </Row> 
@@ -39,18 +39,21 @@ const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefres
           <div className='d-flex justify-content-evenly'>
             {benefitHTML.length > 0 && benefitHTML.map(benefit => {
               return (
-                <p key={benefit} className='my-0 fw-bold'>{benefit}</p> 
+                <Link to={`/recipes/?benefit=${benefit}`} key={benefit}>
+                  <p key={benefit} className='my-0 fw-bold benefit-small'>{benefit}</p> 
+                </Link>
               )
             })}
           </div>
         </Col>
       </Row>
+      {!recError &&
       <Row className='collection d-flex groups-row justify-content-start flex-wrap mt-5'>
         <h4><span className='highlight'>RECOMMENDED  </span> What&apos;s in it?</h4>
         {items && items.length > 0 && 
           <IndexIngredients items={items} model='active_ingredients' benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
         }
-      </Row>
+      </Row>}
       <Row>
         <h3>You will need:</h3>
         <p className='ps-3'>{item.inventory}</p>

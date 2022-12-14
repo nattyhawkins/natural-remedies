@@ -65,3 +65,14 @@ class ProfileView(APIView):
         except User.DoesNotExist as e:
           print(e)
           raise NotFound(str(e))
+    
+    # def put(self, request):
+    #     id = request.data['id']
+    #     print(self.permission_classes)
+    #     try:
+    #       user = User.objects.get(id=id)
+    #       user = PopulatedUserSerializer(user)
+    #       return Response(user.data)
+    #     except User.DoesNotExist as e:
+    #       print(e)
+    #       raise NotFound(str(e))

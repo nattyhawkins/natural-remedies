@@ -25,8 +25,8 @@ const NativeComment = ({ comment, timeElapsed, toEdit, commentFields, setComment
               {/* If owner show edit & delete */}
               {isOwner(comment.owner.id) &&
                 <>
-                  <p title='edit comment' style={{ fontSize: '20px' }} className='comment-btn' onClick={editComment}>•••</p>
-                  <p title='delete comment' style={{ fontSize: '20px' }} className='comment-btn' onClick={() => (setShowConfirm(true))}>🆇</p>
+                  <p title='edit comment' style={{ fontSize: '20px' }} className='edit-btn' onClick={editComment}>•••</p>
+                  <p title='delete comment' style={{ fontSize: '20px' }} className='edit-btn' onClick={() => (setShowConfirm(true))}>🆇</p>
                   <ConfirmPopUp showConfirm={showConfirm} setShowConfirm={setShowConfirm} deleteComment={deleteComment} />
 
                 </>

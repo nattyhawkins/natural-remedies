@@ -64,14 +64,14 @@ const Home = ({ setIsHome, isHome, setShow }) => {
               <Carousel.Caption className='h-100 d-flex flex-column justify-content-evenly'>
                 <>
                   <div className='feature'>
-                    <Link to={`/active_ingredients/${item.id}`}><h3>{item.name}</h3></Link>
+                    <Link to={`/active_ingredients/${item.id}`} className='benefit-small'><h3>{item.name}</h3></Link>
                     <h6 className='fst-italic'>{item.latin_name}</h6>
                     <p>{item.description.slice(0, 300)} <Link  to={`/active_ingredients/${item.id}`}> →</Link></p>
                     <div className='d-flex justify-content-evenly'>
                       {item.benefits.map(benefit => {
                         return (
                           <Link to={`/recipes/?benefit=${benefit.name}`} key={benefit.id}>
-                            <p className='m-0 px-2 text-end fw-bold'>{benefit.name}</p>
+                            <p className='m-0 px-2 text-end fw-bold benefit-small'>{benefit.name}</p>
                           </Link>
                         )
                       })}
