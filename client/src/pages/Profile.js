@@ -12,9 +12,10 @@ import IndexRecipes from './IndexRecipes'
 import { v4 as uuid } from 'uuid'
 import ImageUpload from '../components/ImageUpload'
 import defaultBean from '../assets/logos2/def-orange.png'
+import AddRecipe from '../components/AddRecipe'
 
 
-const Profile = ({ setShow, setIsHome }) => {
+const Profile = ({ setShow, setIsHome, setShowAddRecipe }) => {
   const [ profile, setProfile ] = useState(null)
   const [ error, setError ] = useState(false)
   const [ refresh, setRefresh ] = useState(false)
@@ -59,7 +60,7 @@ const Profile = ({ setShow, setIsHome }) => {
 
   useEffect(() => {
     window.addEventListener('resize', () => {
-      console.log(window.innerWidth)
+      // console.log(window.innerWidth)
       setSize(getCarouselSize())
     })
   }, [])
@@ -150,7 +151,10 @@ const Profile = ({ setShow, setIsHome }) => {
             </div>
             <Col className='ms-2'>
               <Row className='text-center mb-4 h-10 d-flex flex-column align-items-center'>
-                <h2><span className='star'>★</span> Recipes</h2>
+                <div className='d-flex align-self-end' style={{ width: 'calc(100% - 88.2px)' }}>
+                  <h2 className='flex-grow-1' ><span className='star'>★</span> Recipes</h2>
+                  <Button onClick={() => setShowAddRecipe(true)}>+ Create</Button>
+                </div>
                 <Row className='collection d-flex groups-row justify-content-start flex-wrap my-3'>
                   {faveRecipesGrouped.length > 0 ?
                     <Carousel interval={null} variant="dark" >

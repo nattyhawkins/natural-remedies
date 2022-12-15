@@ -21,12 +21,12 @@ const ImageUpload = ({ formFields, setFormFields, imageKey, setError }) => {
 
 
   return (
-    <div className='field ms-2'>
+    <div className='field'>
       <label>Upload Image</label>
       <br />
       
       <input
-        className='upload-input text-center'
+        className='upload-input text-center mt-2'
         type='file'
         onChange={handleChange}
       />

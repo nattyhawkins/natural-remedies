@@ -10,13 +10,14 @@ class Recipe(models.Model):
     active_ingredients = models.ManyToManyField(
         'active_ingredients.Active_Ingredient',
         related_name="recipes",
+        default=None, blank=True, null=True,
     )
-    # inventory = ArrayField(max_length=500)
     inventory = models.TextField(max_length=2000)
     steps = models.TextField(max_length=10000)
     mediums = models.ManyToManyField(
         'mediums.Medium',
         related_name="recipes",
+        default=None, blank=True, null=True,
     )
     # favourite = models.ManyToManyField(
     #     'favourite.Medium',
