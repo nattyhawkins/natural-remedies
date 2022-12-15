@@ -1,18 +1,14 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { Button, Card, Carousel, CarouselItem, Col, Container, Form, Row } from 'react-bootstrap'
+import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Comment from '../components/Comment'
-import CommentForm from '../components/CommentForm'
 import Spinner from '../components/Spinner'
-import { getToken, isAuthenticated, getPayload } from '../helpers/auth'
-import { getTimeElapsed, unixTimestamp } from '../helpers/general'
-import IndexIngredients from './IndexIngredients'
-import IndexRecipes from './IndexRecipes'
-import { v4 as uuid } from 'uuid'
+import { getToken } from '../helpers/auth'
+import {  unixTimestamp } from '../helpers/general'
 import ImageUpload from '../components/ImageUpload'
 import defaultBean from '../assets/logos2/def-orange.png'
-import AddRecipe from '../components/AddRecipe'
+import CardCarousel from '../components/CardCarousel'
 
 
 const Profile = ({ setShow, setIsHome, setShowAddRecipe }) => {
@@ -24,7 +20,7 @@ const Profile = ({ setShow, setIsHome, setShowAddRecipe }) => {
   const [ faveIngredients, setFaveIngredients ] = useState([])
   const [ faveIngredientsGrouped, setFaveIngredientsGrouped ] = useState([])
   const [ faveRecipesGrouped, setFaveRecipesGrouped ] = useState([])
-  const [ benefits, setBenefits ] = useState('')
+  const [ myRecipesGrouped, setMyRecipesGrouped ] = useState([])
   const [ size, setSize ] = useState(getCarouselSize())
   const [ formFields, setFormFields ] = useState({
     profile_image: '',
@@ -55,7 +51,7 @@ const Profile = ({ setShow, setIsHome, setShowAddRecipe }) => {
   useEffect(() => {
     profile && setFaveRecipes(profile.favourites.filter(favourite => favourite.recipe).map(favourite => favourite.recipe))
     profile && setFaveIngredients(profile.favourites.filter(favourite => favourite.active_ingredient).map(favourite => favourite.active_ingredient))
-    
+    profile && setMyRecipesGrouped(partitionArray(profile.recipes))
   }, [profile])
 
   useEffect(() => {
@@ -67,11 +63,13 @@ const Profile = ({ setShow, setIsHome, setShowAddRecipe }) => {
 
   useEffect(() => {
     setFaveRecipesGrouped(partitionArray(faveRecipes))
-  }, [faveRecipes, size])
-
-  useEffect(() => {
     setFaveIngredientsGrouped(partitionArray(faveIngredients))
-  }, [faveIngredients, size])
+  }, [faveRecipes, faveIngredients, size, profile])
+
+  // useEffect(() => {
+  //   setFaveIngredientsGrouped(partitionArray(faveIngredients))
+    
+  // }, [faveIngredients, size])
 
   //get profile
   useEffect(() => {
@@ -125,7 +123,7 @@ const Profile = ({ setShow, setIsHome, setShowAddRecipe }) => {
         <Container className='my-5 d-flex flex-column align-items-center flex-md-row align-items-md-start'>
           {profile && 
           <>
-            <div className='me-3 dash d-flex flex-column align-items-center'>
+            <div className='me-3 dash d-flex flex-column align-items-center '>
               {editProfile &&
                 <Form className='d-flex mb-3' onSubmit={handleSubmit} >
                   <Button type='submit my-button' >Submit</Button>
@@ -135,7 +133,7 @@ const Profile = ({ setShow, setIsHome, setShowAddRecipe }) => {
               <div className="profile-pic image d-flex justify-content-end" style={{ backgroundImage: profile.profile_image ? `url(${profile.profile_image})` : `url(${defaultBean})` }} alt="profile">
                 <p className='fw-bold fs-5 edit-btn' style={{ height: '10px' }} onClick={() => setEditProfile(!editProfile)}>•••</p>
               </div>
-              <h1>{profile.username}</h1>
+              <h1 className='mt-2'>{profile.username}</h1>
               <p>{profile.email}</p>
               <h4 className='text-center mt-3 mb-2'>My Comments</h4>
               <Container className='section py-3'>
@@ -149,49 +147,41 @@ const Profile = ({ setShow, setIsHome, setShowAddRecipe }) => {
                   <p>You have not left any commments yet</p>}
               </Container>
             </div>
-            <Col className='ms-2'>
-              <Row className='text-center mb-4 h-10 d-flex flex-column align-items-center'>
-                <div className='d-flex align-self-end' style={{ width: 'calc(100% - 88.2px)' }}>
-                  <h2 className='flex-grow-1' ><span className='star'>★</span> Recipes</h2>
-                  <Button onClick={() => setShowAddRecipe(true)}>+ Create</Button>
-                </div>
-                <Row className='collection d-flex groups-row justify-content-start flex-wrap my-3'>
-                  {faveRecipesGrouped.length > 0 ?
-                    <Carousel interval={null} variant="dark" >
-                      {faveRecipesGrouped.map(group => {
-                        return (
-                          <Carousel.Item key={uuid()} >
-                            <Carousel.Caption  className='d-flex'>
-                              <IndexRecipes items={group} model='active_ingredients' benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
+            <Col className='ms-2 px-2'>
 
-                            </Carousel.Caption>
-                          </Carousel.Item>
-                        )
-                      })}
-                    </Carousel>
+              {/* MY RECIPES */}
+              <Row className='text-center mb-5 pb-5  h-10 d-flex flex-column align-items-center ' >
+                <div className='d-flex flex-column align-items-center ' >
+                  <h2  ><span className='star'>✎</span> My Recipes</h2>
+                  <Button className='create' onClick={() => setShowAddRecipe(true)}>+ Create</Button>
+                </div>
+                <Row className='collection d-flex groups-row justify-content-start flex-wrap my-0'>
+                  {myRecipesGrouped.length > 0 ? 
+                    <CardCarousel model='recipes' groups={myRecipesGrouped} refresh={refresh} setRefresh={setRefresh} setShow={setShow}  />
+                    :
+                    <h5>You have not created any recipes yet</h5>}
+                </Row>
+              </Row>
+              
+              {/* FAVE RECIPES  */}
+              <Row className='text-center my-5 pb-5 h-10 d-flex flex-column align-items-center'>
+                <h2 className='flex-grow-1 mb-0' ><span className='star'>★</span> Recipes</h2>
+                <Row className='collection d-flex groups-row justify-content-start flex-wrap my-0'>
+                  {faveRecipesGrouped.length > 0 ?
+                    <CardCarousel model='recipes' groups={faveRecipesGrouped} refresh={refresh} setRefresh={setRefresh} setShow={setShow}  />
                     :
                     <h5>You&apos;re favourite Recipes will be saved here. <Link to={'/recipes'} className='fw-bold'> Search Recipes now!</Link ></h5>}
                 </Row>
               </Row>
-              <Row className='text-center mb-4 h-10 d-flex flex-column align-items-center'>
-                <h2><span className='star'>★</span>  Ingredients</h2>
-                <Row className='collection d-flex groups-row justify-content-start flex-wrap my-3'>
-                  {faveIngredientsGrouped.length > 0 ? 
-                    <Carousel interval={null} variant="dark" >
-                      {faveIngredientsGrouped.length > 0 && faveIngredientsGrouped.map(group => {
-                        return (
-                          <Carousel.Item key={uuid()} >
-                            <Carousel.Caption  className='d-flex'>
-                              <IndexIngredients items={group} model='active_ingredients' benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
 
-                            </Carousel.Caption>
-                          </Carousel.Item>
-                        )
-                      })}
-                    </Carousel>
+              {/* FAVE INGREDIENTS */}
+              <Row className='text-center my-5 h-10 d-flex flex-column align-items-center'>
+                <h2 className='mb-0'><span className='star'>★</span>  Ingredients</h2>
+                <Row className='collection d-flex groups-row justify-content-start flex-wrap my-0'>
+                  {faveIngredientsGrouped.length > 0 ? 
+                    <CardCarousel model='active_ingredients' groups={faveIngredientsGrouped} refresh={refresh} setRefresh={setRefresh} setShow={setShow}  />
                     :
                     <h5>You&apos;re favourite Ingredients will be saved here. <Link to={'/active_ingredients'} className='fw-bold'>Search Ingredients now!</Link ></h5>}
-
                 </Row>
               </Row>
             </Col>

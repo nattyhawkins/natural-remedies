@@ -5,7 +5,10 @@ import axios from 'axios'
 import { getToken } from '../helpers/auth'
 import ImageUpload from './ImageUpload'
 
-const AddRecipe = ({ showAddRecipe, setShowAddRecipe, ingredients, getIngredientsError }) => {
+const AddRecipe = ({ showAddRecipe, setShowAddRecipe }) => {
+  const [ ingredients, setIngredients ] = useState([])
+  const [ ingredientsError, setIngredientsError ] = useState(false)
+
   const [ error, setError ] = useState([])
   const [ selectField, setSelectField ] = useState([])
   const [formFields, setFormFields] = useState({
@@ -18,7 +21,10 @@ const AddRecipe = ({ showAddRecipe, setShowAddRecipe, ingredients, getIngredient
     mediums: [],
   })
 
-  const handleClose = () => setShowAddRecipe(false)
+  const handleClose = () => {
+    setShowAddRecipe(false)
+
+  }
 
   const handleChange = (e) => {
     setFormFields({ ...formFields, [e.target.name]: e.target.value })
@@ -37,14 +43,14 @@ const AddRecipe = ({ showAddRecipe, setShowAddRecipe, ingredients, getIngredient
   }
 
   useEffect(() => {
-    console.log(selectField)
+    // console.log(selectField)
     setFormFields({ ...formFields, 'active_ingredients': selectField })
     if (error !== []) setError([])
   }, [selectField])
 
-  useEffect(() => {
-    console.log(formFields)
-  }, [formFields])
+  // useEffect(() => {
+  //   // console.log(formFields)
+  // }, [formFields])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -71,6 +77,19 @@ const AddRecipe = ({ showAddRecipe, setShowAddRecipe, ingredients, getIngredient
 
     }
   }
+  //get all ingredients
+  useEffect(() => {
+    const getIngredients = async () => {
+      try {
+        const { data } = await axios.get('/api/active_ingredients?&search=&benefit=&includes=&/')
+        setIngredients(data)
+      } catch (err) {
+        console.log(err.response)
+        setIngredientsError(err.response.statusText ? err.response.statusText : 'Something went wrong...')
+      }
+    }
+    getIngredients()
+  }, [])
 
   return (
     <Modal show={showAddRecipe} onHide={handleClose} size="lg" centered >
@@ -108,7 +127,7 @@ const AddRecipe = ({ showAddRecipe, setShowAddRecipe, ingredients, getIngredient
           </Form.Group>
           <Form.Group className="mb-3" controlId="act_ingredients">
             <Form.Label>Select featured ingredients</Form.Label>
-            {getIngredientsError ?
+            {ingredientsError ?
               <Form.Text className='d-block'>Something went wrong... Cannot add featured ingredients at this time</Form.Text>
               :
               <Form.Select

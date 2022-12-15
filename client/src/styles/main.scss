@@ -257,6 +257,14 @@ a{
 
 }
 
+.textBox {
+  background-color: $box;
+  border-radius: 15px;
+  padding: 10px;
+  color: darken(grey, 5%);
+  // margin-top: 15px;
+  // max-width: 780px;
+}
 
 .comment {
   border: none;
@@ -269,20 +277,16 @@ a{
       color: lighten($primary, 30%);
     }
   }
-  .textBox {
-    background-color: $box;
-    border-radius: 15px;
-    padding: 10px;
-    color: darken(grey, 5%);
-    // margin-top: 15px;
-    // max-width: 780px;
-  }
-  
+
+}
+.create{
+  max-width: 400px;
+  width: 100%;
 }
 .edit-btn {
   cursor: pointer;
   margin: 0 0 0 20px;
-  font-size: '18px';
+  font-size: '20px';
 }
 .profile{
   .section{
@@ -309,7 +313,7 @@ a{
     left: 0;
 
     .index-card{
-      margin: 0 5px;
+      margin: 0 10px;
     }
   }
 }
@@ -360,7 +364,6 @@ a{
   }
 
 }
-
 
 @media (max-width: 576px){
   .btn{

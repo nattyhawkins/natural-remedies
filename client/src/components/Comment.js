@@ -11,17 +11,12 @@ import ProfileComment from './ProfileComment'
 
 const Comment = ({ commentId, comment, setRefresh, refresh, handleCommentSubmit }) => {
 
-  const [open, setOpen] = useState(false)
-  // const [likeStatus, setLikeStatus] = useState(() => {
-  //   if (getToken() && comment.likes.some(like => isOwner(like.owner))) return 202
-  //   return 204
-  // })
-  const [timeElapsed, setTimeElapsed] = useState(getTimeElapsed(comment.created_at))
-  const [toEdit, setToEdit] = useState(false)
+  const [ timeElapsed, setTimeElapsed ] = useState(getTimeElapsed(comment.created_at))
+  const [ toEdit, setToEdit ] = useState(false)
   const [ showConfirm, setShowConfirm ] = useState(false)
-  const [commentError, setCommentError] = useState(false)
-  const [error, setError] = useState(false)
-  const [commentFields, setCommentFields] = useState({
+  const [ commentError, setCommentError ] = useState(false)
+  const [ error, setError ] = useState(false)
+  const [ commentFields, setCommentFields ] = useState({
     text: '',
   })
 
@@ -76,22 +71,6 @@ const Comment = ({ commentId, comment, setRefresh, refresh, handleCommentSubmit 
       setError(err.response.data.message)
     }
   }
-
-  // async function handleCommentLike(e) {
-  //   try {
-  //     if (!getToken()) throw new Error('Please login')
-  //     e.preventDefault()
-  //     const { status } = await axios.comment(`/api/groups/${groupId}/comments/${commentId}/likes`, {}, {
-  //       headers: {
-  //         Authorization: `Bearer ${getToken()}`,
-  //       },
-  //     })
-  //     setLikeStatus(status)
-  //     setRefresh(!refresh)
-  //   } catch (err) {
-  //     setError( err.response.data.message)
-  //   }
-  // }
 
 
   return (

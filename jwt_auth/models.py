@@ -18,3 +18,9 @@ class User(AbstractUser):
         field_name = 'favourites',
         related_name="owner"
     )
+    recipes = models.ManyToOneRel(
+        field = 'ForeignKey',
+        to = 'recipes.Recipe',
+        field_name = 'recipes',
+        related_name="owner"
+    )

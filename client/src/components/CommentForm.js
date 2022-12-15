@@ -2,8 +2,6 @@ import { Button, Card, Form } from 'react-bootstrap'
 
 const CommentForm = ({ commentFields, setCommentFields, commentError, setCommentError, handleCommentSubmit }) => {
 
-
-
   function handleChange(e) {
     setCommentFields({ ...commentFields, [e.target.name]: e.target.value })
     if (commentError) setCommentError('')

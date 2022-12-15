@@ -1,10 +1,27 @@
+import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import EditButtons from '../components/EditButtons'
 import Favourite from '../components/Favourite'
+import { getToken, isOwner } from '../helpers/auth'
 import IndexIngredients from './IndexIngredients'
-const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefresh, refresh, setShow, setBenefits, benefits, recError }) => {
+const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefresh, refresh, setShow, setBenefits, benefits, recError, setShowAddRecipe }) => {
   const [ benefitHTML, setBenefitHTML ] = useState([])
+  const [ showConfirm, setShowConfirm ] = useState(false)
+  // const [ editRecipe, setEditRecipe ] = useState(false)
+  const [ recipeError, setRecipeError ] = useState('')
+  const [ recipeFields, setRecipeFields ] = useState({
+    name: '',
+    image: '',
+    description: '',
+    active_ingredients: [],
+    inventory: '',
+    steps: '',
+    mediums: [],
+  })
+  const navigate = useNavigate()
+
 
   useEffect(() => {
     const list = []
@@ -19,9 +36,64 @@ const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefres
   }, [item])
 
   useEffect(() => {
-    console.log(items)
-  }, [items])
+    console.log(item.id)
+  }, [item])
 
+  //handle edit comment changes
+  async function handleEditRecipe(e) {
+    setShowAddRecipe(true)
+    setRecipeFields({ ...recipeFields, 
+      name: item.name,
+      image: item.image,
+      description: item.description,
+      active_ingredients: item.active_ingredients,
+      inventory: item.inventory,
+      steps: item.steps,
+      mediums: [],
+    })
+  }
+
+  //submit edit own recipe
+  async function handleEditSubmit(e) {
+    try {
+      e.preventDefault()
+      if (recipeFields.text.length > 300) throw new Error('Character limit exceeded')
+      await axios.put(`/api/recipes/${item.id}/`, recipeFields, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      })
+      setRefresh(!refresh)
+      setShowAddRecipe(false)
+      setRecipeFields({
+        name: '',
+        image: '',
+        description: '',
+        active_ingredients: [],
+        inventory: '',
+        steps: '',
+        mediums: [],
+      })
+    } catch (err) {
+      console.log(err)
+      setRecipeError(err.response.data.detail ? err.response.data.detail : err.response.statusText)
+    }
+  }
+
+  //delete own recipe
+  async function handleDeleteRecipe(e) {
+    try {
+      e.preventDefault()
+      await axios.delete(`/api/comments/${item.id}/`, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      })
+      navigate('/profile')
+    } catch (err) {
+      setRecipeError(err.response.data.detail ? err.response.data.detail : err.response.statusText)
+    }
+  }
 
 
   return (
@@ -31,7 +103,13 @@ const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefres
           <Favourite handleFavourite={handleFavourite} favouriteStatus={favouriteStatus} item={item}  />
         </Col>
         <Col className='p-3'>
-          <h1 className='text-center text-md-start'>{item.name}</h1>
+          <div className='d-flex justify-content-between'>
+            <h1 className='text-center text-md-start'>{item.name}</h1>
+            <div className='d-flex fs-5'>
+              {isOwner(item.owner.id) &&
+                <EditButtons editComment={handleEditRecipe} showConfirm={showConfirm} setShowConfirm={setShowConfirm} deleteComment={handleDeleteRecipe}  />
+              }</div>
+          </div>
           <Row className='d-flex img-single image w-100 my-2 d-md-none align-items-end' style={{ backgroundImage: `url(${item.image})`, borderRadius: '15px', color: 'white' }}>
             <Favourite handleFavourite={handleFavourite} favouriteStatus={favouriteStatus} item={item}  />
           </Row> 

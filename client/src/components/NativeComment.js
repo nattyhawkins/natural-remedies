@@ -2,6 +2,7 @@ import { Card } from 'react-bootstrap'
 import { isOwner } from '../helpers/auth'
 import CommentForm from './CommentForm'
 import ConfirmPopUp from './ConfirmPopUp'
+import EditButtons from './EditButtons'
 
 const NativeComment = ({ comment, timeElapsed, toEdit, commentFields, setCommentFields, commentError, setCommentError, handleEditSubmit, showConfirm, setShowConfirm, deleteComment, editComment, error }) => {
 
@@ -21,15 +22,10 @@ const NativeComment = ({ comment, timeElapsed, toEdit, commentFields, setComment
                 <small>{timeElapsed}</small>
               </div>
             </div>
-            <div className='d-flex justify-content-end' style={{ height: '20px' }}>
+            <div className='d-flex justify-content-end fs-5' style={{ height: '20px' }}>
               {/* If owner show edit & delete */}
               {isOwner(comment.owner.id) &&
-                <>
-                  <p title='edit comment' style={{ fontSize: '20px' }} className='edit-btn' onClick={editComment}>•••</p>
-                  <p title='delete comment' style={{ fontSize: '20px' }} className='edit-btn' onClick={() => (setShowConfirm(true))}>🆇</p>
-                  <ConfirmPopUp showConfirm={showConfirm} setShowConfirm={setShowConfirm} deleteComment={deleteComment} />
-
-                </>
+                <EditButtons editComment={editComment} showConfirm={showConfirm} setShowConfirm={setShowConfirm} deleteComment={deleteComment}  />
               }
             </div>
           </div>

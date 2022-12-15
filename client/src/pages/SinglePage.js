@@ -13,7 +13,7 @@ import SingleIngredient from './SingleIngredient'
 import SingleRecipe from './SingleRecipe'
 
 
-const SinglePage = ({ setShow, setIsHome }) => {
+const SinglePage = ({ setShow, setIsHome, setShowAddRecipe }) => {
   const [ item, setItem ] = useState(null)
   const [ itemError, setItemError ] = useState(false)
   const [ refresh, setRefresh ] = useState(false)
@@ -105,17 +105,6 @@ const SinglePage = ({ setShow, setIsHome }) => {
     setRecLoad(recModel)
   }, [recModel])
 
-  // useEffect(() => {
-  //   model && setRecModel(() => { 
-  //     return model === 'active_ingredients' ? 'recipes' 
-  //       : model === 'recipes' ? 'active_ingredients'
-  //         : null
-  //   })
-  //   item && setIncludes(() => {
-  //     return model === ? 
-  //   }`&includes=${item.name}`)
-  // }, [model, item])
-
   function getIngredientFilters(){
     
   }
@@ -126,12 +115,8 @@ const SinglePage = ({ setShow, setIsHome }) => {
     if (item)
       if (model === 'active_ingredients') { 
         setRecModel('recipes')
-        // setIncludes(`&includes=${item.name}`)
       } else if (model === 'recipes'){
         setRecModel('active_ingredients')
-        // setIncludes(() => {
-        //   return item.active_ingredients.map(ingredient => `&includes=${ingredient.name}`).join('')
-        // })
       } else {
         setRecModel(null)
         setIncludes('')
@@ -175,36 +160,12 @@ const SinglePage = ({ setShow, setIsHome }) => {
                   }
                 </>
                 : modelLoad === 'recipes' ?
-                  <SingleRecipe item={item} items={items} recError={recError} favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} setShow={setShow} setRefresh={setRefresh} refresh={refresh} benefits={benefits} setBenefits={setBenefits}/>
+                  <SingleRecipe item={item} items={items} setShowAddRecipe={setShowAddRecipe} recError={recError} favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} setShow={setShow} setRefresh={setRefresh} refresh={refresh} benefits={benefits} setBenefits={setBenefits}/>
                   :
                   <></>
               )}
             <CommentsSection item={item} items={items} model={model} itemId={itemId} setRefresh={setRefresh} refresh={refresh} setShow={setShow} setTab={setTab} tab={tab} />
           </>
-          // <>
-          //   {item && item && (model === modelLoad) && (modelLoad === 'active_ingredients' ?
-          //     <SingleIngredient item={item} favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} setShow={setShow}/>
-          //     :
-          //     <SingleRecipe item={item} favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} setShow={setShow}/>
-          //   )}
-          //   <Row className='collection d-flex groups-row justify-content-start flex-wrap mt-5'>
-          //     {items && (model === modelLoad) && items.length > 0 && item &&
-          //       (modelLoad === 'active_ingredients' ?
-          //         <>
-          //           <h4><span className='highlight'>RECOMMENDED  </span> Recipes with {item.name}</h4>
-          //           <IndexRecipes items={items} model='recipes' benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
-          //         </>
-          //         : modelLoad === 'recipes' ?
-          //           <>
-          //             <h4><span className='highlight'>RECOMMENDED  </span> What&apos;s in {item.name}?</h4>
-          //             <IndexIngredients items={items} model='active_ingredients' benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
-                      
-          //           </>
-          //           :
-          //           <></>)}
-          //   </Row>
-          //   <CommentsSection item={item} model={model} itemId={itemId} setRefresh={setRefresh} refresh={refresh} setShow={setShow} setTab={setTab} tab={tab} />
-          // </>
         }
       </Container>
     </main>

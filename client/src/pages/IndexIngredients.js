@@ -13,7 +13,7 @@ const IndexIngredients = ({ items, model, setBenefits, benefits, refresh, setRef
 
   return (
     <>
-      {items.map(item => {
+      {items && items.map(item => {
         const { id, name, favourites, image, benefits } = item
         const benefitHTML = benefits.map(benefit => {
           return (

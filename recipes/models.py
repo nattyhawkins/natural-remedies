@@ -10,19 +10,24 @@ class Recipe(models.Model):
     active_ingredients = models.ManyToManyField(
         'active_ingredients.Active_Ingredient',
         related_name="recipes",
-        default=None, blank=True, null=True,
+        default=None, blank=True,
     )
     inventory = models.TextField(max_length=2000)
     steps = models.TextField(max_length=10000)
     mediums = models.ManyToManyField(
         'mediums.Medium',
         related_name="recipes",
-        default=None, blank=True, null=True,
+        default=None, blank=True,
     )
     # favourite = models.ManyToManyField(
     #     'favourite.Medium',
     #     related_name="recipes",
     # )
+    owner = models.ForeignKey(
+    'jwt_auth.User',
+    related_name='recipes',
+    on_delete=models.CASCADE
+    )
 
     def __str__(self):
         return f"{self.name}"

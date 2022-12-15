@@ -23,10 +23,10 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'email', 'username', 'profile_image', 'password', 'password_confirmation', 'comments', 'favourites')
+        fields = ('id', 'email', 'username', 'profile_image', 'password', 'password_confirmation', 'comments', 'favourites', 'recipes')
 
 
 class ValidatedUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'email', 'username', 'profile_image', 'password', 'comments', 'favourites')
+        fields = ('id', 'email', 'username', 'profile_image', 'password', 'comments', 'favourites', 'recipes')

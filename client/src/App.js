@@ -44,12 +44,12 @@ const App = () => {
             <TheNavbar setShow={setShow} isHome={isHome} />
           }
           <AuthModal show={show} setShow={setShow} tab={tab} setTab={setTab}/>
-          <AddRecipe ingredients={ingredients} showAddRecipe={showAddRecipe} setShowAddRecipe={setShowAddRecipe} getIngredientsError={error} />
+          <AddRecipe showAddRecipe={showAddRecipe} setShowAddRecipe={setShowAddRecipe}  />
           <Routes>
             <Route path='/' element={<Home error={error} ingredients={ingredients} setIsHome={setIsHome} setShow={setShow} isHome={isHome} setBenefitFilter={setBenefitFilter}/>} />
             <Route path='/profile' element={<Profile setIsHome={setIsHome} setShow={setShow} setShowAddRecipe={setShowAddRecipe} />} />
-            <Route path='/:model' element={<IndexPage setIsHome={setIsHome} setShow={setShow} benefitFilter={benefitFilter} setBenefitFilter={setBenefitFilter}  />} />
-            <Route path='/:model/:itemId' element={<SinglePage setIsHome={setIsHome} setShow={setShow}/>} />
+            <Route path='/:model' element={<IndexPage setIsHome={setIsHome} setShow={setShow} benefitFilter={benefitFilter} setBenefitFilter={setBenefitFilter} setShowAddRecipe={setShowAddRecipe} />} />
+            <Route path='/:model/:itemId' element={<SinglePage setIsHome={setIsHome} setShow={setShow} setShowAddRecipe={setShowAddRecipe} />} />
             <Route path='*' element={<NotFound setIsHome={setIsHome} />} />
           </Routes>
         </div>

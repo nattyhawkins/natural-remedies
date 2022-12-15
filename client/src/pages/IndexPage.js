@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { Container, Row } from 'react-bootstrap'
+import { Button, Container, Row } from 'react-bootstrap'
 import { useLocation, useParams } from 'react-router-dom'
 import IndexIngredients from './IndexIngredients'
 import Spinner from '../components/Spinner'
@@ -9,7 +9,7 @@ import Filters from '../components/Filters'
 import NotFound from './NotFound'
 import { getBenefits } from '../helpers/general'
 
-const IndexPage = ({ setShow, setIsHome }) => {
+const IndexPage = ({ setShow, setIsHome, setShowAddRecipe }) => {
   const [ items, setItems ] = useState(false)
   const [ error, setError ] = useState(false)
   const [search, setSearch] = useState('&search=')
@@ -68,11 +68,14 @@ const IndexPage = ({ setShow, setIsHome }) => {
   
   return (
     <main className='index'>
-      <Container className="mt-4">
+      <Container className="mt-4 text-center">
         {modelLoad === 'active_ingredients' || modelLoad === 'recipes' ? 
           <>
             <Filters model={model} setSearch={setSearch} benefits={benefits} setBenefits={setBenefits} setBenefitFilter={setBenefitFilter} filterLocation={filterLocation} />
-            <Row className="index-row text-center">
+            {model === 'recipes' &&
+              <Button className='create py-2' onClick={() => setShowAddRecipe(true)}>+ Create</Button>
+            }
+            <Row className="index-row mt-3 text-center">
               
               {items && items.length > 0 && modelLoad === model ? 
                 modelLoad === 'active_ingredients' ?
