@@ -1,7 +1,8 @@
 $primary: rgb(239, 159, 46);
 $yellow: #ffdd53;
-$background: rgb(242, 238, 232);
+$background: rgb(247, 244, 240);
 $button: $primary;
+$box: lighten($primary, 35%);
 
 @font-face {
   font-family: railey;
@@ -101,10 +102,10 @@ a{
   }
 }
 #overlay {
-  width: 480px;
+  width: 500px;
   position: absolute;
   top: 35%;
-  left: 29%;
+  left: 30%;
   font-size: 50px;
   color: white;
   transform: translate(-50%,-50%);
@@ -203,7 +204,7 @@ a{
   white-space: pre-line;
   .main{
     // color: black;
-    background-color: white;
+    background-color: $box;
     // background-color: lighten($primary, 40%);
     border-radius: 16px;
     
@@ -258,7 +259,7 @@ a{
     }
   }
   .textBox {
-    background-color: lighten($primary, 40%);
+    background-color: $box;
     border-radius: 15px;
     padding: 10px;
     color: darken(grey, 5%);

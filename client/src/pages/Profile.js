@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { Button, Card, Carousel, CarouselItem, Col, Container, Row } from 'react-bootstrap'
+import { Button, Card, Carousel, CarouselItem, Col, Container, Form, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Comment from '../components/Comment'
 import CommentForm from '../components/CommentForm'
@@ -11,6 +11,7 @@ import IndexIngredients from './IndexIngredients'
 import IndexRecipes from './IndexRecipes'
 import { v4 as uuid } from 'uuid'
 import ImageUpload from '../components/ImageUpload'
+import defaultBean from '../assets/logos2/def-orange.png'
 
 
 const Profile = ({ setShow, setIsHome }) => {
@@ -24,7 +25,7 @@ const Profile = ({ setShow, setIsHome }) => {
   const [ faveRecipesGrouped, setFaveRecipesGrouped ] = useState([])
   const [ benefits, setBenefits ] = useState('')
   const [ size, setSize ] = useState(getCarouselSize())
-  const [ formdata, setFormdata ] = useState({
+  const [ formFields, setFormFields ] = useState({
     profile_image: '',
   })
 
@@ -75,9 +76,7 @@ const Profile = ({ setShow, setIsHome }) => {
   useEffect(() => {
     const getProfile = async () => {
       try {
-        const { data } = await axios.post('/api/auth/profile/', { 
-          'id': getPayload().sub,
-        },{
+        const { data } = await axios.get('/api/auth/profile/',{
           headers: {
             Authorization: `Bearer ${getToken()}`,
           },
@@ -99,17 +98,18 @@ const Profile = ({ setShow, setIsHome }) => {
   async function handleSubmit(e) {
     try {
       e.preventDefault()
-      await axios.put('/api/profile/', formdata, {
+      const res = await axios.put('/api/auth/profile/', formFields, {
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },
       })
-      setFormdata({ profile_image: '' })
+      console.log(res)
+      setFormFields({ profile_image: '' })
       setRefresh(!refresh)
       setEditProfile(false)
     } catch (err) {
       console.log(err)
-      setError(err.message ? err.message : err.response.data.message)
+      setError(err.response.data.message ? err.response.data.message : err.response.statusText)
     }
   }
 
@@ -126,20 +126,26 @@ const Profile = ({ setShow, setIsHome }) => {
           <>
             <div className='me-3 dash d-flex flex-column align-items-center'>
               {editProfile &&
-                <ImageUpload formdata={formdata} setFormData={setFormdata} />
+                <Form className='d-flex mb-3' onSubmit={handleSubmit} >
+                  <Button type='submit my-button' >Submit</Button>
+                  <ImageUpload formFields={formFields} setFormFields={setFormFields} imageKey='profile_image' />
+                </Form>
               }
-              <div className="profile-pic image d-flex justify-content-end" style={{ backgroundImage: profile.profile_image ? `url(${profile.profile_image})` : 'url(https://www.labforward.io/wp-content/uploads/2020/12/default-avatar.png)' }} alt="profile">
+              <div className="profile-pic image d-flex justify-content-end" style={{ backgroundImage: profile.profile_image ? `url(${profile.profile_image})` : `url(${defaultBean})` }} alt="profile">
                 <p className='fw-bold fs-5 edit-btn' style={{ height: '10px' }} onClick={() => setEditProfile(!editProfile)}>•••</p>
               </div>
               <h1>{profile.username}</h1>
               <p>{profile.email}</p>
               <h4 className='text-center mt-3 mb-2'>My Comments</h4>
               <Container className='section py-3'>
-                {profile.comments.sort((a, b) => (unixTimestamp(a.created_at) > unixTimestamp(b.created_at) ? -1 : 1)).map(comment => {
-                  return (
-                    <Comment key={comment.id}  commentId={comment.id} comment={comment} setRefresh={setRefresh} refresh={refresh}/>
-                  )
-                })}
+                {profile.comments.length > 0 ? 
+                  profile.comments.sort((a, b) => (unixTimestamp(a.created_at) > unixTimestamp(b.created_at) ? -1 : 1)).map(comment => {
+                    return (
+                      <Comment key={comment.id}  commentId={comment.id} comment={comment} setRefresh={setRefresh} refresh={refresh}/>
+                    )
+                  })
+                  :
+                  <p>You have not left any commments yet</p>}
               </Container>
             </div>
             <Col className='ms-2'>
@@ -160,7 +166,7 @@ const Profile = ({ setShow, setIsHome }) => {
                       })}
                     </Carousel>
                     :
-                    <h5>You&apos;re favourite Recipes will be saved here. <Link to={'/ingredients'} className='fw-bold'> Search Recipes now!</Link ></h5>}
+                    <h5>You&apos;re favourite Recipes will be saved here. <Link to={'/recipes'} className='fw-bold'> Search Recipes now!</Link ></h5>}
                 </Row>
               </Row>
               <Row className='text-center mb-4 h-10 d-flex flex-column align-items-center'>
@@ -180,7 +186,7 @@ const Profile = ({ setShow, setIsHome }) => {
                       })}
                     </Carousel>
                     :
-                    <h5>You&apos;re favourite Ingredients will be saved here. <Link to={'/recipes'} className='fw-bold'>Search Ingredients now!</Link ></h5>}
+                    <h5>You&apos;re favourite Ingredients will be saved here. <Link to={'/active_ingredients'} className='fw-bold'>Search Ingredients now!</Link ></h5>}
 
                 </Row>
               </Row>

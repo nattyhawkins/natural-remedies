@@ -1,17 +1,18 @@
 import axios from 'axios'
 
 
-const ImageUpload = ({ formdata, setFormData, imageKey, setError }) => {
+const ImageUpload = ({ formFields, setFormFields, imageKey, setError }) => {
 
 
   const handleChange = async (event) => {
     try {
-
+      console.log(event)
       const formData = new FormData()
       formData.append('file', event.target.files[0])
       formData.append('upload_preset', process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET)
       const { data } = await axios.post(process.env.REACT_APP_CLOUDINARY_URL, formData)
-      setFormData({ ...formdata, [imageKey]: data.secure_url })
+      console.log(data)
+      setFormFields({ ...formFields, [imageKey]: data.secure_url })
     } catch (err) {
       setError(err.message ? err.message : err.response.data.message)
     }
@@ -20,18 +21,16 @@ const ImageUpload = ({ formdata, setFormData, imageKey, setError }) => {
 
 
   return (
-    <div className='field'>
-      <label>Upload New Profile Picture</label>
+    <div className='field ms-2'>
+      <label>Upload Image</label>
       <br />
-      { formdata.profile_image ? 
-        <img src={formdata.profile_image} alt='profile picture' />
-        :
-        <input
-          className='upload-input text-center'
-          type='file'
-          onChange={handleChange}
-        />
-      }
+      
+      <input
+        className='upload-input text-center'
+        type='file'
+        onChange={handleChange}
+      />
+      
     </div>
   )
 }

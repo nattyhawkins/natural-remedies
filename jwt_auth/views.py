@@ -1,11 +1,12 @@
 from django.contrib.auth import get_user_model
 from .serializers.common import UserSerializer
 from .serializers.populated import PopulatedUserSerializer
+from .serializers.common import ValidatedUserSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.exceptions import PermissionDenied, NotFound
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
 # modules
 from datetime import datetime, timedelta
 import jwt
@@ -55,24 +56,24 @@ class LoginView(APIView):
 
 class ProfileView(APIView):
     permission_classes = (IsAuthenticated, )
-    def post(self, request):
-        id = request.data['id']
-        print(self.permission_classes)
+    def get(self, request):
         try:
-          user = User.objects.get(id=id)
+          user = User.objects.get(id=request.user.id)
           user = PopulatedUserSerializer(user)
           return Response(user.data)
         except User.DoesNotExist as e:
           print(e)
           raise NotFound(str(e))
     
-    # def put(self, request):
-    #     id = request.data['id']
-    #     print(self.permission_classes)
-    #     try:
-    #       user = User.objects.get(id=id)
-    #       user = PopulatedUserSerializer(user)
-    #       return Response(user.data)
-    #     except User.DoesNotExist as e:
-    #       print(e)
-    #       raise NotFound(str(e))
+    def put(self, request):
+        try:
+          user = User.objects.get(id=request.user.id)
+          user = ValidatedUserSerializer(user, request.data, partial=True)
+          if user.is_valid():
+            user.save()
+            return Response(user.data, status.HTTP_202_ACCEPTED)
+          else:
+            return Response(user.errors, status.HTTP_422_UNPROCESSABLE_ENTITY)
+        except User.DoesNotExist as e:
+          print(e)
+          raise NotFound(str(e))
