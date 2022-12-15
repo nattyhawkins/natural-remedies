@@ -5,9 +5,8 @@ import axios from 'axios'
 import { getToken } from '../helpers/auth'
 import ImageUpload from './ImageUpload'
 
-const AddRecipe = ({ showAddRecipe, setShowAddRecipe }) => {
-  const [ ingredients, setIngredients ] = useState([])
-  const [ ingredientsError, setIngredientsError ] = useState(false)
+const AddRecipe = ({ showAddRecipe, setShowAddRecipe, ingredientsError, ingredients }) => {
+  // const [ ingredientsError, setIngredientsError ] = useState(false)
 
   const [ error, setError ] = useState([])
   const [ selectField, setSelectField ] = useState([])
@@ -21,10 +20,8 @@ const AddRecipe = ({ showAddRecipe, setShowAddRecipe }) => {
     mediums: [],
   })
 
-  const handleClose = () => {
-    setShowAddRecipe(false)
+  const handleClose = () => setShowAddRecipe(false)
 
-  }
 
   const handleChange = (e) => {
     setFormFields({ ...formFields, [e.target.name]: e.target.value })
@@ -34,8 +31,9 @@ const AddRecipe = ({ showAddRecipe, setShowAddRecipe }) => {
   const handleSelectChange = (e) => {
     if (e.target.value === 'default'){
       setSelectField([])
-    } else if (selectField.includes(e.target.value)){
-      const removeIngredient = [... selectField].filter(ingredient => ingredient !== e.target.value)
+    } else if (selectField.includes(parseInt(e.target.value))){
+      console.log('hi')
+      const removeIngredient = [... selectField].filter(ingredient => ingredient !== parseInt(e.target.value))
       setSelectField(removeIngredient)
     } else {
       setSelectField([ ...selectField, parseInt(e.target.value) ])
@@ -43,14 +41,14 @@ const AddRecipe = ({ showAddRecipe, setShowAddRecipe }) => {
   }
 
   useEffect(() => {
-    // console.log(selectField)
+    console.log(selectField)
     setFormFields({ ...formFields, 'active_ingredients': selectField })
     if (error !== []) setError([])
   }, [selectField])
 
-  // useEffect(() => {
-  //   // console.log(formFields)
-  // }, [formFields])
+  useEffect(() => {
+    console.log(formFields)
+  }, [formFields])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -77,19 +75,19 @@ const AddRecipe = ({ showAddRecipe, setShowAddRecipe }) => {
 
     }
   }
-  //get all ingredients
-  useEffect(() => {
-    const getIngredients = async () => {
-      try {
-        const { data } = await axios.get('/api/active_ingredients?&search=&benefit=&includes=&/')
-        setIngredients(data)
-      } catch (err) {
-        console.log(err.response)
-        setIngredientsError(err.response.statusText ? err.response.statusText : 'Something went wrong...')
-      }
-    }
-    getIngredients()
-  }, [])
+  // //get all ingredients
+  // useEffect(() => {
+  //   const getIngredients = async () => {
+  //     try {
+  //       const { data } = await axios.get('/api/active_ingredients?&search=&benefit=&includes=&/')
+  //       setIngredients(data)
+  //     } catch (err) {
+  //       console.log(err.response)
+  //       setIngredientsError(err.response.statusText ? err.response.statusText : 'Something went wrong...')
+  //     }
+  //   }
+  //   getIngredients()
+  // }, [])
 
   return (
     <Modal show={showAddRecipe} onHide={handleClose} size="lg" centered >

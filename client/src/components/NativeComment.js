@@ -3,6 +3,8 @@ import { isOwner } from '../helpers/auth'
 import CommentForm from './CommentForm'
 import ConfirmPopUp from './ConfirmPopUp'
 import EditButtons from './EditButtons'
+import defaultBean from '../assets/logos2/def-orange.png'
+
 
 const NativeComment = ({ comment, timeElapsed, toEdit, commentFields, setCommentFields, commentError, setCommentError, handleEditSubmit, showConfirm, setShowConfirm, deleteComment, editComment, error }) => {
 
@@ -15,7 +17,7 @@ const NativeComment = ({ comment, timeElapsed, toEdit, commentFields, setComment
             <div className='d-flex align-items-center d-sm-block'>
               {/* Small screens show profile pic here */}
               <div className="image profile-pic icon small me-2 d-sm-none flex-column align-items-center"
-                style={{ backgroundImage: comment.owner.profile_image ? `url(${comment.owner.profile_image})` : 'url(https://www.labforward.io/wp-content/uploads/2020/12/default-avatar.png)' }} 
+                style={{ backgroundImage: comment.owner.profile_image ? `url(${comment.owner.profile_image})` : `url(${defaultBean})` }} 
                 alt="profile picture"></div>
               <div className='d-sm-flex align-items-center justify-content-end'>
                 <Card.Title className="username mb-0" >@{comment.owner.username}</Card.Title>
@@ -32,7 +34,7 @@ const NativeComment = ({ comment, timeElapsed, toEdit, commentFields, setComment
           <div className='d-flex flex-column align-items-center justify-content-start flex-sm-row align-items-sm-start' >
             {/* Big screens show profile pic here */}
             <div className="image profile-pic icon d-none d-sm-flex flex-column align-items-center" 
-              style={{ backgroundImage: comment.owner.profile_image ? `url(${comment.owner.profile_image})` : 'url(https://www.labforward.io/wp-content/uploads/2020/12/default-avatar.png)' }} 
+              style={{ backgroundImage: comment.owner.profile_image ? `url(${comment.owner.profile_image})` : `url(${defaultBean})` }} 
               alt="profile picture"></div>
             <div className="ms-sm-3">
               {error && <small className='text-warning'>{error}</small>}

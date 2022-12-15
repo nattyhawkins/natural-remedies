@@ -22,7 +22,7 @@ const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefres
   })
   const navigate = useNavigate()
 
-
+  //get benefit htmls from single recipe
   useEffect(() => {
     const list = []
     item.active_ingredients.forEach(ingredient => {
@@ -35,9 +35,8 @@ const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefres
     setBenefitHTML(list)
   }, [item])
 
-  useEffect(() => {
-    console.log(item.id)
-  }, [item])
+
+
 
   //handle edit comment changes
   async function handleEditRecipe(e) {
@@ -114,11 +113,11 @@ const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefres
             <Favourite handleFavourite={handleFavourite} favouriteStatus={favouriteStatus} item={item}  />
           </Row> 
           <p>{item.description}</p>
-          <div className='d-flex justify-content-evenly'>
+          <div className='d-flex flex-wrap justify-content-evenly' >
             {benefitHTML.length > 0 && benefitHTML.map(benefit => {
               return (
                 <Link to={`/recipes/?benefit=${benefit}`} key={benefit}>
-                  <p key={benefit} className='my-0 fw-bold benefit-small'>{benefit}</p> 
+                  <p key={benefit} className='my-2 mx-3 fw-bold benefit-small'>{benefit}</p> 
                 </Link>
               )
             })}

@@ -18,7 +18,7 @@ const IndexRecipes = ({ items, model, setBenefits, benefits, refresh, setRefresh
     <>
       {items.map(item => {
         // Benefits set different for each item so can't se benefits state
-        const { id, name, favourites, image, active_ingredients: ingredients } = item
+        const { id, name, image, active_ingredients: ingredients } = item
         const list = []
         const benefitHTML = ingredients.map(ingredient => {
           const ingredientBenefits = ingredient.benefits.map(benefit => {

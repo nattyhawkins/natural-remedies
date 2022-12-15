@@ -24,7 +24,7 @@
   "model": "benefits.benefit",
   "pk": 4,
   "fields": {
-    "name": "Inflamation"
+    "name": "Inflammation"
   }
 },
 {
@@ -45,7 +45,21 @@
   "model": "benefits.benefit",
   "pk": 7,
   "fields": {
-    "name": "Antioxidant"
+    "name": "Antioxidants"
+  }
+},
+{
+  "model": "benefits.benefit",
+  "pk": 8,
+  "fields": {
+    "name": "Cholesterol"
+  }
+},
+{
+  "model": "benefits.benefit",
+  "pk": 9,
+  "fields": {
+    "name": "Healing"
   }
 }
 ]

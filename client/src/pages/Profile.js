@@ -56,7 +56,6 @@ const Profile = ({ setShow, setIsHome, setShowAddRecipe }) => {
 
   useEffect(() => {
     window.addEventListener('resize', () => {
-      // console.log(window.innerWidth)
       setSize(getCarouselSize())
     })
   }, [])
@@ -66,10 +65,7 @@ const Profile = ({ setShow, setIsHome, setShowAddRecipe }) => {
     setFaveIngredientsGrouped(partitionArray(faveIngredients))
   }, [faveRecipes, faveIngredients, size, profile])
 
-  // useEffect(() => {
-  //   setFaveIngredientsGrouped(partitionArray(faveIngredients))
-    
-  // }, [faveIngredients, size])
+
 
   //get profile
   useEffect(() => {

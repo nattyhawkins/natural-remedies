@@ -14,7 +14,7 @@ const IndexIngredients = ({ items, model, setBenefits, benefits, refresh, setRef
   return (
     <>
       {items && items.map(item => {
-        const { id, name, favourites, image, benefits } = item
+        const { id, name, image, benefits } = item
         const benefitHTML = benefits.map(benefit => {
           return (
             <Card.Text className='m-0 px-2 text-end'key={benefit.id}>{benefit.name}</Card.Text>

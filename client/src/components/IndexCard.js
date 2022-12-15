@@ -41,7 +41,7 @@ const IndexCard = ({ id, model, benefitHTML, image, name, item, setRefresh, refr
       <Link to={`/${model}/${id}`}>
         <Card className="index-card image pb-0" style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5)), url(${image})` }}>
           <Card.Body className='d-flex p-0 flex-column justify-content-end'>
-            <div className='align-self-end index-detail benefits'>{benefitHTML}</div>
+            <div className='align-self-end index-detail benefits d-flex flex-column flex-wrap'>{benefitHTML}</div>
             <div className='d-flex justify-content-between align-items-end'>
               <Favourite handleFavourite={handleFavourite} favouriteStatus={favouriteStatus} item={item} faveError={faveError} />
               <Card.Title className='m-1 text-end'>{name}</Card.Title>

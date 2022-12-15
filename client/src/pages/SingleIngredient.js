@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Button, Col, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Favourite from '../components/Favourite'
-import { isAuthenticated, isOwner } from '../helpers/auth'
 
 const SingleIngredient = ({ item, favouriteStatus, handleFavourite, setShow }) => {
   
@@ -28,8 +27,8 @@ const SingleIngredient = ({ item, favouriteStatus, handleFavourite, setShow }) =
           <div className='text-end d-flex justify-content-evenly'>
             {item && item.benefits.map(benefit => {
               return (
-                <Link to={`/recipes/?benefit=${benefit.name}`} key={benefit}>
-                  <p key={benefit.id} className='my-0 fw-bold benefit-small'>{benefit.name}</p>
+                <Link to={`/recipes/?benefit=${benefit.name}`} key={benefit.id}>
+                  <p className='my-0 fw-bold benefit-small'>{benefit.name}</p>
                 </Link>
               )
             })}

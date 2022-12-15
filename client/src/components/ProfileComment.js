@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import CommentForm from './CommentForm'
 import ConfirmPopUp from './ConfirmPopUp'
 import EditButtons from './EditButtons'
+import defaultBean from '../assets/logos2/def-orange.png'
 
 
 const ProfileComment = ({ comment, timeElapsed, toEdit, commentFields, setCommentFields, commentError, setCommentError, handleEditSubmit, showConfirm, setShowConfirm, deleteComment, editComment, error }) => {
@@ -24,7 +25,7 @@ const ProfileComment = ({ comment, timeElapsed, toEdit, commentFields, setCommen
         <div className="mt-2 me-2 image profile-pic icon small d-flex align-items-center" 
           style={{ backgroundImage: comment.recipe ? `url(${comment.recipe.image})` 
             : comment.active_ingredient ? `url(${comment.active_ingredient.image})` 
-              : 'url(https://www.labforward.io/wp-content/uploads/2020/12/default-avatar.png)' }} 
+              : `url(${defaultBean})` }} 
           alt="profile picture">
         </div>
         <div className='flex-grow-1'>
@@ -32,8 +33,6 @@ const ProfileComment = ({ comment, timeElapsed, toEdit, commentFields, setCommen
             <small>{timeElapsed}</small>
             <div className='d-flex'>
               <EditButtons editComment={editComment} showConfirm={showConfirm} setShowConfirm={setShowConfirm} deleteComment={deleteComment}  />
-              {/* <p title='edit comment' className='edit-btn ms-2' onClick={editComment}>•••</p>
-              <p title='delete comment' className='edit-btn ms-2' onClick={() => (setShowConfirm(true))}>🆇</p> */}
               <ConfirmPopUp showConfirm={showConfirm} setShowConfirm={setShowConfirm} deleteComment={deleteComment} />
             </div>
           </div>

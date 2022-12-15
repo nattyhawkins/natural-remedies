@@ -10,17 +10,19 @@ class User(AbstractUser):
         field = 'ForeignKey',
         to = 'comments.Comment',
         field_name = 'comments',
-        related_name="owner"
+        related_name="owner",
+        
     )
     favourites = models.ManyToOneRel(
         field = 'ForeignKey',
         to = 'favourites.Favourite',
         field_name = 'favourites',
-        related_name="owner"
+        related_name="owner",
     )
     recipes = models.ManyToOneRel(
         field = 'ForeignKey',
         to = 'recipes.Recipe',
         field_name = 'recipes',
-        related_name="owner"
+        related_name="owner",
+        
     )

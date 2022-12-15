@@ -15,7 +15,7 @@ const Home = ({ setIsHome, isHome, setShow, ingredients, error }) => {
   setIsHome(true)
 
   useEffect(() => {
-    setItems(ingredients.filter(item => item.bg_image))
+    setItems(ingredients.filter(item => item.bg_image).sort((a, b) => 0.5 - Math.random()))
   }, [ingredients])
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const Home = ({ setIsHome, isHome, setShow, ingredients, error }) => {
           
           {items.length > 0 && items.map(item => {
             return (
-              <Carousel.Item className='home image' key={item.id} interval={5000} style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url(${item.bg_image})` }}>
+              <Carousel.Item className='home image' key={item.id} interval={3000} style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url(${item.bg_image})` }}>
                 <TheNavbar setShow={setShow} isHome={isHome} />
                 <Carousel.Caption className='h-100 d-flex flex-column justify-content-evenly'>
                   <>

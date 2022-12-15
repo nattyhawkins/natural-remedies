@@ -10,6 +10,8 @@ const Register = ({ setTab, error, setError }) => {
     password: '',
     password_confirmation: '',
     comments: [],
+    favourites: [],
+    recipes: [],
   })
 
   const handleSubmit = async (e) => {

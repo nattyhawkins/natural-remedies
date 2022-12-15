@@ -26,8 +26,6 @@ const SinglePage = ({ setShow, setIsHome, setShowAddRecipe }) => {
   const [ items, setItems ] = useState([])
   const [ recError, setRecError ] = useState(false)
   const [ benefits, setBenefits ] = useState('')  //this is a placeholder to satisfy indexRecipe/ingredient props
-  const [ benefitFilter, setBenefitFilter ] = useState('&benefit=')
-  const [search, setSearch] = useState('&search=')
   const [includes, setIncludes] = useState(null)
   const [ modelLoad, setModelLoad ] = useState(model)
   const [ recLoad, setRecLoad ] = useState(recModel)
@@ -90,7 +88,7 @@ const SinglePage = ({ setShow, setIsHome, setShowAddRecipe }) => {
     const getItems = async () => {
       try {
         setRecError(false)
-        const { data } = await axios.get(`/api/${recModel}?${search}${benefitFilter}${includes}&/`)
+        const { data } = await axios.get(`/api/${recModel}?&search=&benefit=${includes}&/`)
         console.log('recs response-', data)
         setItems(data.slice(0, 3))
       } catch (err) {
@@ -103,11 +101,9 @@ const SinglePage = ({ setShow, setIsHome, setShowAddRecipe }) => {
 
   useEffect(() => {
     setRecLoad(recModel)
-  }, [recModel])
+  }, [items])
 
-  function getIngredientFilters(){
-    
-  }
+
 
   //set recModel state
   useEffect(() => {
