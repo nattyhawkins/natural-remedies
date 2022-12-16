@@ -31,7 +31,7 @@ const IndexPage = ({ setShow, setIsHome, setShowAddRecipe }) => {
       try {
         console.log('model', model)
         setError(false)
-        const { data } = await axios.get(`/api/${model}?${search}&${benefitFilter}&includes=&/`)
+        const { data } = await axios.get(`/api/${model}/?${search}&${benefitFilter}&includes=&/`)
         console.log(data)
         setItems(data)
       } catch (err) {

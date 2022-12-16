@@ -40,6 +40,7 @@ const SinglePage = ({ setShow, setIsHome, setShowAddRecipe }) => {
         setItemError(err.message ? err.message : err.response.data.message)
       }
     }
+    console.log(model, itemId)
     setIsHome(false)
     getItem()
   }, [itemId, model, refresh])
@@ -86,7 +87,7 @@ const SinglePage = ({ setShow, setIsHome, setShowAddRecipe }) => {
     const getItems = async () => {
       try {
         setRecError(false)
-        const { data } = await axios.get(`/api/${recModel}?&search=&benefit=${includes}&/`)
+        const { data } = await axios.get(`/api/${recModel}/?&search=&benefit=${includes}&/`)
         console.log('recs response-', data)
         setItems(data.slice(0, 3))
       } catch (err) {

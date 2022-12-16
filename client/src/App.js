@@ -24,7 +24,7 @@ const App = () => {
     const getItems = async () => {
       try {
         setError(false)
-        const { data } = await axios.get('/api/active_ingredients?&search=&benefit=&includes=&/')
+        const { data } = await axios.get('/api/active_ingredients/?&search=&benefit=&includes=&/')
         console.log('home data', data)
         setIngredients(data)
       } catch (err) {
