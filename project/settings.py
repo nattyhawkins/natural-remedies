@@ -1,5 +1,5 @@
-import os
 import django_on_heroku # put this at the top of the file
+import os
 
 # all the rest of the settings file...
 
@@ -152,7 +152,6 @@ REST_FRAMEWORK = {
     ]
 }
 
-ROOT_URLCONF = 'project.urls' #check if you have this already, if not add it in
 
 STATIC_URL = '/static/' # same with this
 
