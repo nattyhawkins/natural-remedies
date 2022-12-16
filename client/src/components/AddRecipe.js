@@ -68,7 +68,7 @@ const AddRecipe = ({ showAddRecipe, setShowAddRecipe, ingredientsError, ingredie
         steps: '',
       })
       setShowAddRecipe(false)
-      // window.location.reload(false)
+      window.location.reload(false)
     } catch (err) {
       console.log(err.response)
       setError(err.response.data.detail ? err.response.data.detail : err.response.statusText)

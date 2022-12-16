@@ -10,9 +10,8 @@ const Home = ({ setIsHome, isHome, setShow, ingredients, error }) => {
   const [ items, setItems ] = useState([])
   const [ benefits, setBenefits ] = useState([])
   const [ showBenefit, setShowBenefit ] = useState('')
-  // let delay = 0
   let index = 0
-  setIsHome(true)
+  
 
   useEffect(() => {
     setItems(ingredients.filter(item => item.bg_image).sort((a, b) => 0.5 - Math.random()))
@@ -23,11 +22,8 @@ const Home = ({ setIsHome, isHome, setShow, ingredients, error }) => {
   }, [items])
 
   useEffect(() => {
-    // items.length > 0 && 
-    // const benefits = getIngredientBenefits(items)
     setShowBenefit(benefits[index])
     const tick = setInterval(() => {
-      // console.log(benefits)
       index = (index + 1) % benefits.length
       setShowBenefit(benefits[index])
     }, 1500)
@@ -36,9 +32,9 @@ const Home = ({ setIsHome, isHome, setShow, ingredients, error }) => {
     }
   }, [benefits])
 
-  // useEffect(() => {
-  //   console.log(benefits)
-  // }, [benefits])
+  useEffect(() => {
+    setIsHome(true)
+  }, [])
 
   return (
     !error ?

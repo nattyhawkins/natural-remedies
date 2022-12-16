@@ -1,7 +1,7 @@
 $primary: rgb(239, 159, 46);
 $yellow: #ffdd53;
 $background: rgb(247, 246, 244);
-$button: $primary;
+$button: rgb(79, 188, 224);
 $box: lighten($primary, 35%);
 // $box: rgb(255, 255, 255);
 
@@ -31,13 +31,14 @@ body, html {
     color: grey;
   }
 }
-// .btn{
-//   background-color: rgb(196, 72, 72);
-//   border: none;
-//   &:hover{
-//     background-color: lighten($primary, 10%);
-//   }
-// }
+.btn{
+  background-color: $button;
+  border: none;
+  &:hover{
+    background-color: lighten($button, 10%);
+  }
+}
+
 a{
   text-decoration: none;
   color: $primary;
@@ -115,10 +116,10 @@ a{
   }
 }
 #overlay {
-  width: 620px;
+  width: 800px;
   position: absolute;
   top: 35%;
-  left: 32%;
+  left: 37%;
 
   font-size: 50px;
   color: white;
@@ -208,7 +209,7 @@ a{
     }
   }
   .card-title{
-    font-size: 45px;
+    font-size: 40px;
   }
 
   

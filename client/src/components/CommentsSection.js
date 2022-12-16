@@ -37,7 +37,7 @@ const CommentsSection = ({ item, model, itemId, setRefresh, refresh ,setShow }) 
 
 
   return (
-    <Row className='my-4 '>
+    <Row className='my-4 mb-5 pb-5'>
       <Col style={{ maxWidth: '800px', margin: '0 auto' }}>
         <CommentForm commentFields={commentFields} setCommentFields={setCommentFields} commentError={commentError} setCommentError={setCommentError} handleCommentSubmit={handleCommentSubmit}  />
         {item && item.comments && item.comments.sort((a, b) => (unixTimestamp(a.created_at) > unixTimestamp(b.created_at) ? -1 : 1)).map(comment => {

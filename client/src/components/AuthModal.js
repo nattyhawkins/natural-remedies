@@ -19,14 +19,14 @@ const AuthModal = ({ show, setShow, tab, setTab }) => {
       </Modal.Header>
       <Modal.Body>
         <Tabs 
-          id="controlled-tab-example"
+          id="auth"
           activeKey={tab}
           transition={false}
           onSelect={handleTabChange}
           className='d-flex'
           justify
         >
-          <Tab eventKey="register" title="Register">
+          <Tab eventKey="register" title="Register" >
             <Register setShow={setShow} setTab={setTab} error={error} setError={setError} />
           </Tab>
           <Tab eventKey="login" title="Login">

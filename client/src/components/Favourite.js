@@ -40,7 +40,7 @@ const Favourite = ({ handleFavourite, favouriteStatus, item, faveError }) => {
           <p className='fave m-0'>☆</p>
         </OverlayTrigger>
       }
-      {item && item.favourites.length > 0 && <h4>{item.favourites.length}</h4>}
+      {item && item.favourites.length > 0 && <h5>{item.favourites.length}</h5>}
     </div >
 
   )

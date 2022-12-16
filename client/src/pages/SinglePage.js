@@ -67,9 +67,10 @@ const SinglePage = ({ setShow, setIsHome, setShowAddRecipe }) => {
     try {
       e.preventDefault()
       if (!isAuthenticated()) return setShow(true)
+      console.log(itemId[0])
       const { status } = await axios.post('/api/favourites/', { 
-        'active_ingredient': model === 'active_ingredients' ? itemId[0] : null,
-        'recipe': model === 'recipes' ? itemId[0] : null,
+        'active_ingredient': model === 'active_ingredients' ? itemId : null,
+        'recipe': model === 'recipes' ? itemId : null,
       }, {
         headers: {
           Authorization: `Bearer ${getToken()}`,
