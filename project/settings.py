@@ -3,7 +3,6 @@ import django_on_heroku # put this at the top of the file
 
 # all the rest of the settings file...
 
-django_on_heroku.settings(locals()) # put this last
 
 """
 Django settings for project project.
@@ -161,3 +160,4 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'client', "build", "static"),
 )
 
+django_on_heroku.settings(locals()) # put this last
