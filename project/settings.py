@@ -1,4 +1,10 @@
 import os
+import django_on_heroku # put this at the top of the file
+
+# all the rest of the settings file...
+
+django_on_heroku.settings(locals()) # put this last
+
 """
 Django settings for project project.
 
