@@ -1,10 +1,8 @@
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Navbar, Container, Nav } from 'react-bootstrap'
 import React, { useState } from 'react'
-import AuthModal from './AuthModal'
 import { handleLogout, isAuthenticated } from '../helpers/auth'
 import bean from '../assets/logos2/4.png'
-import logo from '../assets/logos2/3.png'
 
 
 const TheNavbar = ({ setShow, show, isHome }) => {

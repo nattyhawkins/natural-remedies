@@ -7,7 +7,6 @@ import Spinner from '../components/Spinner'
 import IndexRecipes from './IndexRecipes'
 import Filters from '../components/Filters'
 import NotFound from './NotFound'
-import { getBenefits } from '../helpers/general'
 
 const IndexPage = ({ setShow, setIsHome, setShowAddRecipe }) => {
   const [ items, setItems ] = useState(false)

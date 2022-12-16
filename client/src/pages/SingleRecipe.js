@@ -6,6 +6,7 @@ import EditButtons from '../components/EditButtons'
 import Favourite from '../components/Favourite'
 import { getToken, isOwner } from '../helpers/auth'
 import IndexIngredients from './IndexIngredients'
+
 const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefresh, refresh, setShow, setBenefits, benefits, recError, setShowAddRecipe }) => {
   const [ benefitHTML, setBenefitHTML ] = useState([])
   const [ showConfirm, setShowConfirm ] = useState(false)

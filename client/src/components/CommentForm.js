@@ -1,4 +1,4 @@
-import { Button, Card, Form } from 'react-bootstrap'
+import { Button, Form } from 'react-bootstrap'
 
 const CommentForm = ({ commentFields, setCommentFields, commentError, setCommentError, handleCommentSubmit }) => {
 

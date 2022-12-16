@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, FloatingLabel, Form, Modal, Tab, Tabs } from 'react-bootstrap'
+import { Button, Form, Modal } from 'react-bootstrap'
 import { v4 as uuid } from 'uuid'
 import axios from 'axios'
 import { getToken } from '../helpers/auth'

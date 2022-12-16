@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
-import { Card, Col } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Card } from 'react-bootstrap'
 import IndexCard from '../components/IndexCard'
 import { getIngredientBenefits } from '../helpers/general'
 

@@ -11,6 +11,7 @@ const Favourite = ({ handleFavourite, favouriteStatus, item, faveError }) => {
     </Popover>
   )
 
+  
   const after = (
     <Popover id="after-popover">
       <Popover.Header as="h3" style={{ color: 'limegreen' }}>★ Added to Favourites!</Popover.Header>

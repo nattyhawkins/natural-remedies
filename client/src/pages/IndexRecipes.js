@@ -1,7 +1,5 @@
-import { useEffect, useState } from 'react'
-import { Card, Col } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
-import { v4 as uuid } from 'uuid'
+import { useEffect } from 'react'
+import { Card } from 'react-bootstrap'
 import IndexCard from '../components/IndexCard'
 import { getRecipeBenefits } from '../helpers/general'
 
