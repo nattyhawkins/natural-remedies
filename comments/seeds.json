@@ -254,13 +254,90 @@
 },
 {
   "model": "comments.comment",
-  "pk": 43,
+  "pk": 45,
   "fields": {
-    "text": "jhhh",
-    "created_at": "2022-12-15T16:07:12.526Z",
+    "text": "wow!",
+    "created_at": "2022-12-15T20:10:02.155Z",
     "active_ingredient": null,
-    "recipe": 9,
+    "recipe": 15,
     "owner": 3
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 46,
+  "fields": {
+    "text": "wonderful",
+    "created_at": "2022-12-16T10:04:48.013Z",
+    "active_ingredient": 5,
+    "recipe": null,
+    "owner": 12
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 47,
+  "fields": {
+    "text": "wow!",
+    "created_at": "2022-12-16T10:05:40.231Z",
+    "active_ingredient": 3,
+    "recipe": null,
+    "owner": 12
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 49,
+  "fields": {
+    "text": "Exactly what I need",
+    "created_at": "2022-12-16T10:07:13.928Z",
+    "active_ingredient": null,
+    "recipe": 12,
+    "owner": 3
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 50,
+  "fields": {
+    "text": "wonderful",
+    "created_at": "2022-12-16T10:07:33.748Z",
+    "active_ingredient": null,
+    "recipe": 12,
+    "owner": 2
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 51,
+  "fields": {
+    "text": "wonderful",
+    "created_at": "2022-12-16T10:22:12.973Z",
+    "active_ingredient": 7,
+    "recipe": null,
+    "owner": 3
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 52,
+  "fields": {
+    "text": "jealous of that bee",
+    "created_at": "2022-12-16T10:22:44.923Z",
+    "active_ingredient": 7,
+    "recipe": null,
+    "owner": 10
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 54,
+  "fields": {
+    "text": "Lovely",
+    "created_at": "2022-12-16T16:20:17.001Z",
+    "active_ingredient": null,
+    "recipe": 14,
+    "owner": 1
   }
 }
 ]

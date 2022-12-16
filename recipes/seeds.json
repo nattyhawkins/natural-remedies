@@ -46,8 +46,8 @@
     "steps": "Crush both the turmeric and ginger using a garlic press into a small jug.\r\n\r\nAdd a grind of black pepper into your turmeric, along with the olive oil and stir to combine.\r\n\r\nFill your mug with hot water (just off the boil) and allow to stand for a minute or two. Add the orange juice and zest and stir. Taste and sweeten with honey or maple syrup if required.",
     "owner": 1,
     "active_ingredients": [
-      2,
-      3
+      3,
+      2
     ],
     "mediums": [
       5
@@ -93,24 +93,6 @@
 },
 {
   "model": "recipes.recipe",
-  "pk": 9,
-  "fields": {
-    "name": "test",
-    "image": "https://res.cloudinary.com/dzbkgmza0/image/upload/v1671108704/Wellbean_api/uhzzto6k5jejkeiq7xyz.jpg",
-    "description": "jkjhjkkkkk",
-    "inventory": "kjhjkjh",
-    "steps": "hjkjtyjk",
-    "owner": 3,
-    "active_ingredients": [
-      1,
-      2,
-      3
-    ],
-    "mediums": []
-  }
-},
-{
-  "model": "recipes.recipe",
   "pk": 12,
   "fields": {
     "name": "Echinacea Immunitea",
@@ -120,8 +102,8 @@
     "steps": "Bring water to a boil in a pan or kettle.\r\n\r\nOnce boiling, turn the heat down to medium and add in the echinacea.\r\n\r\nPlace a lid on the pot and simmer for 5 to 10 minutes. If using a tea kettle, simply pour the boiling water into a teacup and add the echinacea to a tea ball or tea infuser. Steep for 5 to 10 minutes.\r\n\r\nStrain the loose flowers, roots, or leaves from the pot and pour into a teacup. It using a tea ball, simply remove and discard the echinacea.\r\n\r\nAdd flavourings or sweeteners such as honey and lemon if desired.",
     "owner": 2,
     "active_ingredients": [
-      2,
       3,
+      2,
       5
     ],
     "mediums": [
@@ -140,8 +122,8 @@
     "steps": "Press garlic cloves through the garlic press and into a small bowl. Set aside 10 minutes. Alternately, finely mince and mash garlic cloves with a knife, then set aside.\r\n\r\nOnce garlic has rested close to 10 minutes, add 1 tbsp honey, 1 tbsp hot water, and ¼ tsp turmeric to a glass or cup. Whisk until ingredients are fully combined.\r\n\r\nAdd fresh lemon juice, fresh orange juice, cinnamon, cayenne pepper, sea salt, and black pepper to a glass with honey. Whisk until ingredients are fully incorporated.\r\n\r\nAdd apple cider vinegar, ginger, and garlic to the glass. Whisk until ingredients are fully incorporated.\r\n \r\nConsume mixture immediately for maximum benefits.",
     "owner": 10,
     "active_ingredients": [
-      2,
       3,
+      2,
       6
     ],
     "mediums": [
@@ -160,8 +142,8 @@
     "steps": "Layer the ginger, onion, garlic, horseradish and jalapeño into a quart-sized/1 litre jar with the star anise and cinnamon stick. Cover with apple cider vinegar, adding additional vinegar to cover the contents of the jar as necessary.\r\n\r\nSeal the jar, and store it away from direct sunlight for at least 1 month and up to 6 weeks. Shake daily.\r\n\r\nStrain the vinegar, discarding the solids. Next, stir in the honey until fully dissolved. Store at room temperature up to 6 months and in the  fridge up to 18 months.",
     "owner": 3,
     "active_ingredients": [
-      2,
       3,
+      2,
       5,
       7
     ],
@@ -181,10 +163,8 @@
     "steps": "Bring the distilled, unchlorinated water to a boil. Add sugar and dissolve. Add tea bags to water and sugar mixture\r\n\r\nTurn off heat and let brew for at least 10-20 minutes. The longer you brew, the stronger the flavour. Strain your tea, if necessary, into your brewing vessel. Let cool.\r\n\r\nOnce completely cool, add your kombucha starter liquid and SCOBY. Cover with a thin cloth or a towel and rubber band to secure. Let brew for 6-14 days. Houses warmer than 21°C will take less time than cooler houses. The ideal temp is 26°C  -27°C\r\nNB. Reserve 1 cup of starter liquid to use on your next brew.\r\n\r\nWhen your kombucha is to your taste, you can drink right away or store it in flip-top bottles in the fridge or for higher carbonation proceed with a secondary fermentation stage which is also preferable if you want to add different flavours.\r\n\r\nCut single varieties or a combination of fruit or herbs into pieces, add to the bottle and then top up with kombucha, leaving four fingers of headspace to allow for the buildup of carbon dioxide. The bottle can then be left at room temperature for a day for the yeast to convert more sugar into carbon.\r\n\r\nSuggested additions:\r\nBerries, exotic fruits, unwaxed citrus fruit, dried fruit (avoid if soaked in oil, or  contain sulphur dioxide. Frozen fruit or juice/ purée.      \r\n                 \r\nHerbs - lavender and lemon balm can be used by themselves, or with fruits such as apple & mint, strawberries & thyme, raspberries & basil.\r\n                                                                               \r\nMild spices in moderation either singly or in a blend, or to complement a fruit, including: turmeric, burdock, allspice, cardamom, cinnamon, coriander, cloves, ginger, star anise, peppercorn, juniper and liquorice.\r\n\r\nHot spices like cayenne or jalapeño. Ginger goes well with apple or turmeric.\r\n\r\nVegetables such as beetroot, carrot or cucumber are great for savoury flavour. Garlic can be great to give a kick to something else, or it goes well with lemon. Mushrooms will also work – why not try some shiitake for heartiness.\r\n\r\nOther things that can work well are brewed coffee, cacao powder, maca powder, coconut water, rosehips, rose petals and tamarind.",
     "owner": 2,
     "active_ingredients": [
-      1,
-      2,
       3,
-      4,
+      2,
       6,
       8
     ],
