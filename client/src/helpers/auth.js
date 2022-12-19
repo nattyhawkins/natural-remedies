@@ -1,6 +1,8 @@
 
 import { Buffer } from 'buffer'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 
 const tokenName = 'remedies-token'
 
@@ -31,7 +33,7 @@ export const isAuthenticated = () => {
 export const handleLogout = (navigate) => {
   localStorage.removeItem(tokenName)
   window.location.reload(false)
-  
+  navigate('/')
 }
 
 export const isOwner = (token1) => {

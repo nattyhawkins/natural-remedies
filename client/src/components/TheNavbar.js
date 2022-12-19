@@ -1,14 +1,12 @@
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Navbar, Container, Nav } from 'react-bootstrap'
 import React, { useState } from 'react'
-import AuthModal from './AuthModal'
 import { handleLogout, isAuthenticated } from '../helpers/auth'
 import bean from '../assets/logos2/4.png'
-import logo from '../assets/logos2/3.png'
 
 
-const TheNavbar = ({ setShow, show, isHome }) => {
-  const [tab, setTab] = useState('login')
+const TheNavbar = ({ setShow, isHome, setTab }) => {
+  // const [tab, setTab] = useState('login')
 
   const navigate = useNavigate()
   
@@ -20,55 +18,64 @@ const TheNavbar = ({ setShow, show, isHome }) => {
   
   return (
     isHome ? 
-      <Navbar className='navbar' >
-        <Container className='navbarContainer d-flex justify-content-between'>
-          <Nav className='d-flex'>
-            <Nav.Link as={Link} to='/active_ingredients'>Ingredients</Nav.Link>
-            <Nav.Link as={Link} to='/recipes'>Recipes</Nav.Link>
-          </Nav>
-          {/* <Navbar.Brand className='title pb-0' as={Link} to='/'>
-            <img className="logo" src={logo} />
-          </Navbar.Brand> */}
-          <Nav className='d-flex'>
-            
-            {isAuthenticated() ?
-              <>
-                <div className='nav-link' onClick={() => handleLogout(navigate)}>Logout</div>
-                <Nav.Link as={Link} to={'/profile/'} >Profile</Nav.Link>
-              </>
-              :
-              <>
-                <Nav.Link as={Link} onClick={handleShow} title='register'>Register</Nav.Link>
-                <Nav.Link as={Link} onClick={handleShow} title='login'>Login</Nav.Link>
-              </>
-            }
-          </Nav>
+      <Navbar collapseOnSelect data-toggle='collapse' data-target=".navbar-collapse" className='navbar' expand="sm" variant='dark'>
+        <Container className='d-fex justify-content-end text-end'>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse className=' d-sm-flex justify-content-between' id="responsive-navbar-nav">
+            <Nav className='d-flex'>
+              <Nav.Link as={Link} to='/active_ingredients'>Ingredients</Nav.Link>
+              <Nav.Link as={Link} to='/recipes'>Recipes</Nav.Link>
+            </Nav>
+            {/* <Navbar.Brand className='title pb-0' as={Link} to='/'>
+              <img className="logo" src={logo} />
+            </Navbar.Brand> */}
+            <Nav className='d-flex'>
+              
+              {isAuthenticated() ?
+                <>
+                  <div className='nav-link' onClick={() => handleLogout(navigate)}>Logout</div>
+                  <Nav.Link as={Link} to={'/profile/'} >Profile</Nav.Link>
+                </>
+                :
+                <>
+                  <Nav.Link onClick={handleShow} title='register'>Register</Nav.Link>
+                  <Nav.Link onClick={handleShow} title='login'>Login</Nav.Link>
+                </>
+              }
+            </Nav>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
       :
-      <Navbar className='navbar normal'>
-        <Container className='navbarContainer d-flex justify-content-between'>
-          <Nav className='d-flex'>
-            <Nav.Link as={Link} to='/active_ingredients'>Ingredients</Nav.Link>
-            <Nav.Link as={Link} to='/recipes'>Recipes</Nav.Link>
-          </Nav>
-          <Navbar.Brand className='title pb-0' as={Link} to='/'> Wellbean
+      <Navbar data-toggle='collapse' data-target=".navbar-collapse" className='navbar normal' expand="sm" variant='dark'>
+        <Container >
+          <Navbar.Brand className='title pb-0 m-0 d-sm-none' as={Link} to='/'> Wellbean
             <img className="logo" src={bean} />
           </Navbar.Brand>
-          <Nav className='d-flex'>
-            
-            {isAuthenticated() ?
-              <>
-                <Nav.Link as={Link} to={'/profile/'} >Profile</Nav.Link>
-                <div className='nav-link' onClick={() => handleLogout(navigate)}>Logout</div>
-              </>
-              :
-              <>
-                <Nav.Link as={Link} onClick={handleShow} title='register'>Register</Nav.Link>
-                <Nav.Link as={Link} onClick={handleShow} title='login'>Login</Nav.Link>
-              </>
-            }
-          </Nav>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse  className='text-end d-sm-flex justify-content-between' id="responsive-navbar-nav">
+            <Nav className='d-flex'>
+              <Nav.Link as={Link} to='/active_ingredients'>Ingredients</Nav.Link>
+              <Nav.Link as={Link} to='/recipes'>Recipes</Nav.Link>
+            </Nav>
+            <Navbar.Brand className='title pb-0 d-none d-sm-block' as={Link} to='/'> Wellbean
+              <img className="logo" src={bean} />
+            </Navbar.Brand>
+            <Nav className='d-flex'>
+              
+              {isAuthenticated() ?
+                <>
+                  <Nav.Link as={Link} to={'/profile/'} >Profile</Nav.Link>
+                  <div className='nav-link' onClick={() => handleLogout(navigate)}>Logout</div>
+                </>
+                :
+                <>
+                  <Nav.Link onClick={handleShow} title='register'>Register</Nav.Link>
+                  <Nav.Link onClick={handleShow} title='login'>Login</Nav.Link>
+                </>
+              }
+            </Nav>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
   )

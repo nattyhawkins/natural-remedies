@@ -13,7 +13,7 @@ const SingleIngredient = ({ item, favouriteStatus, handleFavourite, setShow }) =
           <Favourite handleFavourite={handleFavourite} favouriteStatus={favouriteStatus} item={item}  />
         </Col>
         <Col className='flex-grow-1 p-3'>
-          <div className='d-flex justify-content-between'>
+          <div className='d-flex justify-content-center justify-content-md-between'>
             <div className='text-center text-md-start'>
               <h1>{item.name}</h1>
               <h6 className='fst-italic mb-3'>{item.latin_name}</h6>
@@ -24,11 +24,11 @@ const SingleIngredient = ({ item, favouriteStatus, handleFavourite, setShow }) =
             <Favourite handleFavourite={handleFavourite} favouriteStatus={favouriteStatus} item={item}  />
           </Row> 
           <p>{item.description}</p>
-          <div className='text-end d-flex justify-content-evenly'>
+          <div className='text-end d-flex justify-content-evenly flex-wrap'>
             {item && item.benefits.map(benefit => {
               return (
                 <Link to={`/recipes/?benefit=${benefit.name}`} key={benefit.id}>
-                  <p className='my-0 fw-bold benefit-small'>{benefit.name}</p>
+                  <p className='my-2 mx-3 fw-bold benefit-small'>{benefit.name}</p>
                 </Link>
               )
             })}

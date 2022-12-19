@@ -40,12 +40,12 @@ const App = () => {
       <BrowserRouter>
         <div className="contentWrapper">
           {!isHome &&
-            <TheNavbar setShow={setShow} isHome={isHome} />
+            <TheNavbar setShow={setShow} isHome={isHome} setTab={setTab} />
           }
           <AuthModal show={show} setShow={setShow} tab={tab} setTab={setTab}/>
           <AddRecipe showAddRecipe={showAddRecipe} setShowAddRecipe={setShowAddRecipe} ingredientsError={error} ingredients={ingredients} />
           <Routes>
-            <Route path='/' element={<Home error={error} ingredients={ingredients} setIsHome={setIsHome} setShow={setShow} isHome={isHome} setBenefitFilter={setBenefitFilter}/>} />
+            <Route path='/' element={<Home error={error} ingredients={ingredients} setIsHome={setIsHome} setShow={setShow} setTab={setTab} isHome={isHome} setBenefitFilter={setBenefitFilter}/>} />
             <Route path='/profile' element={<Profile setIsHome={setIsHome} setShow={setShow} setShowAddRecipe={setShowAddRecipe} />} />
             <Route path='/:model' element={<IndexPage setIsHome={setIsHome} setShow={setShow} benefitFilter={benefitFilter} setBenefitFilter={setBenefitFilter} setShowAddRecipe={setShowAddRecipe} />} />
             <Route path='/:model/:itemId' element={<SinglePage setIsHome={setIsHome} setShow={setShow} setShowAddRecipe={setShowAddRecipe} />} />

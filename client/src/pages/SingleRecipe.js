@@ -102,7 +102,7 @@ const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefres
           <Favourite handleFavourite={handleFavourite} favouriteStatus={favouriteStatus} item={item}  />
         </Col>
         <Col className='p-3'>
-          <div className='d-flex justify-content-between'>
+          <div className='d-flex justify-content-center justify-content-md-between'>
             <h1 className='text-center text-md-start'>{item.name}</h1>
             <div className='d-flex fs-5'>
               {isOwner(item.owner.id) &&
@@ -126,7 +126,7 @@ const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefres
       </Row>
       {!recError &&
       <Row className='collection d-flex groups-row justify-content-start flex-wrap mt-5'>
-        <h4><span className='highlight'>RECOMMENDED  </span> What&apos;s in it?</h4>
+        <h4 className='d-flex flex-wrap align-items-end'><span className='highlight me-2'>RECOMMENDED  </span> What&apos;s in it?</h4>
         {items && items.length > 0 && 
           <IndexIngredients items={items} model='active_ingredients' benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
         }

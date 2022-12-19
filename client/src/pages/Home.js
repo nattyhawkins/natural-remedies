@@ -6,7 +6,7 @@ import TheNavbar from '../components/TheNavbar'
 import { getIngredientBenefits } from '../helpers/general'
 
 
-const Home = ({ setIsHome, isHome, setShow, ingredients, error }) => {
+const Home = ({ setIsHome, isHome, setShow, ingredients, error, setTab }) => {
   const [ items, setItems ] = useState([])
   const [ benefits, setBenefits ] = useState([])
   const [ showBenefit, setShowBenefit ] = useState('')
@@ -44,7 +44,7 @@ const Home = ({ setIsHome, isHome, setShow, ingredients, error }) => {
           {items.length > 0 && items.map(item => {
             return (
               <Carousel.Item className='home image' key={item.id} interval={3000} style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url(${item.bg_image})` }}>
-                <TheNavbar setShow={setShow} isHome={isHome} />
+                <TheNavbar setShow={setShow} isHome={isHome} setTab={setTab} />
                 <Carousel.Caption className='h-100 d-flex flex-column justify-content-evenly'>
                   <>
                     <div className='feature'>

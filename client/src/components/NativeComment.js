@@ -25,17 +25,19 @@ const NativeComment = ({ comment, timeElapsed, toEdit, commentFields, setComment
               </div>
             </div>
             <div className='d-flex justify-content-end fs-5' style={{ height: '20px' }}>
+
               {/* If owner show edit & delete */}
               {isOwner(comment.owner.id) &&
                 <EditButtons editComment={editComment} showConfirm={showConfirm} setShowConfirm={setShowConfirm} deleteComment={deleteComment}  />
               }
             </div>
           </div>
-          <div className='d-flex flex-column align-items-center justify-content-start flex-sm-row align-items-sm-start' >
+          <div className='d-flex flex-column align-items-start justify-content-start flex-sm-row align-items-sm-start' >
             {/* Big screens show profile pic here */}
             <div className="image profile-pic icon d-none d-sm-flex flex-column align-items-center" 
               style={{ backgroundImage: comment.owner.profile_image ? `url(${comment.owner.profile_image})` : `url(${defaultBean})` }} 
-              alt="profile picture"></div>
+              alt="profile picture">
+            </div>
             <div className="ms-sm-3">
               {error && <small className='text-warning'>{error}</small>}
               <div >
