@@ -58,11 +58,11 @@ class RecipeDetailView(APIView):
       return Response(recipe.data)
 
   def put(self, request, pk):
-      recipe = self.get_recipe(pk)
       try:
-        recipe = RecipeSerializer(recipe, request.data, partial=True)
+        recipe = self.get_recipe(pk)
         if recipe.owner != request.user:
             raise PermissionDenied('Unauthorised')
+        recipe = RecipeSerializer(recipe, request.data, partial=True)
 
         if recipe.is_valid():
           recipe.save()

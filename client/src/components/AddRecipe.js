@@ -5,20 +5,10 @@ import axios from 'axios'
 import { getToken } from '../helpers/auth'
 import ImageUpload from './ImageUpload'
 
-const AddRecipe = ({ showAddRecipe, setShowAddRecipe }) => {
+const AddRecipe = ({ showAddRecipe, setShowAddRecipe, error, formFields, setFormFields, setError, handleRecipeSubmit }) => {
   const [ ingredientsError, setIngredientsError ] = useState(false)
   const [ ingredients, setIngredients ] = useState([])
-  const [ error, setError ] = useState([])
   const [ selectField, setSelectField ] = useState([])
-  const [formFields, setFormFields] = useState({
-    name: '',
-    image: '',
-    description: '',
-    active_ingredients: [],
-    inventory: '',
-    steps: '',
-    mediums: [],
-  })
 
   const handleClose = () => setShowAddRecipe(false)
 
@@ -41,7 +31,7 @@ const AddRecipe = ({ showAddRecipe, setShowAddRecipe }) => {
 
   useEffect(() => {
     console.log(selectField)
-    setFormFields({ ...formFields, 'active_ingredients': selectField })
+    selectField.length > 0 && setFormFields({ ...formFields, 'active_ingredients': selectField })
     if (error !== []) setError([])
   }, [selectField])
 
@@ -49,31 +39,7 @@ const AddRecipe = ({ showAddRecipe, setShowAddRecipe }) => {
     console.log(formFields)
   }, [formFields])
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    try {
-      const { data } = await axios.post('/api/recipes/', formFields,{
-        headers: {
-          Authorization: `Bearer ${getToken()}`,
-        },
-      })
-      console.log(data)
-      setFormFields({
-        name: '',
-        image: '',
-        description: '',
-        active_ingredients: '',
-        inventory: '',
-        steps: '',
-      })
-      setShowAddRecipe(false)
-      window.location.reload(false)
-    } catch (err) {
-      console.log(err.response)
-      setError(err.response.data.detail ? err.response.data.detail : err.response.statusText)
 
-    }
-  }
   //get all ingredients
   useEffect(() => {
     const getIngredients = async () => {
@@ -94,7 +60,7 @@ const AddRecipe = ({ showAddRecipe, setShowAddRecipe }) => {
         ➕ Add your own recipe
       </Modal.Header>
       <Modal.Body>
-        <Form onSubmit={handleSubmit} >
+        <Form onSubmit={handleRecipeSubmit} >
           <Form.Group className="my-3" controlId="name">
             <Form.Label>Name</Form.Label>
             <Form.Control
@@ -123,7 +89,7 @@ const AddRecipe = ({ showAddRecipe, setShowAddRecipe }) => {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="act_ingredients">
-            <Form.Label>Select featured ingredients</Form.Label>
+            <Form.Label>Select at least one featured ingredient</Form.Label>
             {ingredientsError ?
               <Form.Text className='d-block'>Something went wrong... Cannot add featured ingredients at this time</Form.Text>
               :

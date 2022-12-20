@@ -108,6 +108,7 @@ const Profile = ({ setShow, setIsHome, setShowAddRecipe }) => {
     }
   }
 
+
   return (
     error ? 
       <div className='text-center'>
@@ -119,11 +120,11 @@ const Profile = ({ setShow, setIsHome, setShowAddRecipe }) => {
         <Container className='my-5 d-flex flex-column align-items-center flex-md-row align-items-md-start'>
           {profile && 
           <>
-            <div className='me-3 dash d-flex flex-column align-items-center '>
+            <div className='me-sm-3 mb-5 dash d-flex flex-column align-items-center '>
               {editProfile &&
                 <Form className='d-flex mb-3' onSubmit={handleSubmit} >
                   <Button type='submit my-button' >Submit</Button>
-                  <ImageUpload formFields={formFields} setFormFields={setFormFields} imageKey='profile_image' />
+                  <ImageUpload formFields={formFields} setFormFields={setFormFields} imageKey='profile_image'  />
                 </Form>
               }
               <div className="profile-pic image d-flex justify-content-end" style={{ backgroundImage: profile.profile_image ? `url(${profile.profile_image})` : `url(${defaultBean})` }} alt="profile">

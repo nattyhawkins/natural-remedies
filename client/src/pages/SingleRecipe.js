@@ -2,21 +2,21 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
+import AddRecipe from '../components/AddRecipe'
 import EditButtons from '../components/EditButtons'
 import Favourite from '../components/Favourite'
 import { getToken, isOwner } from '../helpers/auth'
 import IndexIngredients from './IndexIngredients'
 
-const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefresh, refresh, setShow, setBenefits, benefits, recError, setShowAddRecipe }) => {
+const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefresh, refresh, setShow, setBenefits, benefits, recError }) => {
   const [ benefitHTML, setBenefitHTML ] = useState([])
   const [ showConfirm, setShowConfirm ] = useState(false)
   // const [ editRecipe, setEditRecipe ] = useState(false)
+  const [ showAddRecipe, setShowAddRecipe ] = useState(false)
   const [ recipeError, setRecipeError ] = useState('')
   const [ recipeFields, setRecipeFields ] = useState({
     name: '',
-    image: '',
     description: '',
-    active_ingredients: [],
     inventory: '',
     steps: '',
     mediums: [],
@@ -41,23 +41,30 @@ const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefres
 
   //handle edit comment changes
   async function handleEditRecipe(e) {
+    console.log('item', item)
     setShowAddRecipe(true)
     setRecipeFields({ ...recipeFields, 
       name: item.name,
-      image: item.image,
       description: item.description,
-      active_ingredients: item.active_ingredients,
+      image: item.image,
+      // active_ingredients: item.active_ingredients,
       inventory: item.inventory,
       steps: item.steps,
       mediums: [],
     })
   }
 
+  useEffect(() => {
+    console.log(recipeFields)
+  }, [recipeFields])
+
   //submit edit own recipe
-  async function handleEditSubmit(e) {
+  async function handleRecipeSubmit(e) {
     try {
       e.preventDefault()
-      if (recipeFields.text.length > 300) throw new Error('Character limit exceeded')
+      console.log('fields', recipeFields)
+      if (recipeFields.image === '') throw new Error('Add an image to upload')
+      if (recipeFields.active_ingredients && recipeFields.active_ingredients.length === 0) throw new Error('Please add at least 1 featured ingredient')
       await axios.put(`/api/recipes/${item.id}/`, recipeFields, {
         headers: {
           Authorization: `Bearer ${getToken()}`,
@@ -67,16 +74,15 @@ const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefres
       setShowAddRecipe(false)
       setRecipeFields({
         name: '',
-        image: '',
+        // image: '',
         description: '',
-        active_ingredients: [],
         inventory: '',
         steps: '',
         mediums: [],
       })
     } catch (err) {
       console.log(err)
-      setRecipeError(err.response.data.detail ? err.response.data.detail : err.response.statusText)
+      setRecipeError(err.message ? err.message : err.response.statusText)
     }
   }
 
@@ -84,7 +90,7 @@ const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefres
   async function handleDeleteRecipe(e) {
     try {
       e.preventDefault()
-      await axios.delete(`/api/comments/${item.id}/`, {
+      await axios.delete(`/api/recipes/${item.id}/`, {
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },
@@ -107,7 +113,10 @@ const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefres
             <h1 className='text-center text-md-start'>{item.name}</h1>
             <div className='d-flex fs-5'>
               {isOwner(item.owner.id) &&
-                <EditButtons editComment={handleEditRecipe} showConfirm={showConfirm} setShowConfirm={setShowConfirm} deleteComment={handleDeleteRecipe}  />
+                <>
+                  <EditButtons editComment={handleEditRecipe} showConfirm={showConfirm} setShowConfirm={setShowConfirm} deleteComment={handleDeleteRecipe}  />
+                  <AddRecipe showAddRecipe={showAddRecipe} setShowAddRecipe={setShowAddRecipe} setFormFields={setRecipeFields} formFields={recipeFields} error={recipeError} setError={setRecipeError} handleRecipeSubmit={handleRecipeSubmit}/>
+                </>
               }</div>
           </div>
           <Row className='d-flex img-single image w-100 my-2 d-md-none align-items-end' style={{ backgroundImage: `url(${item.image})`, borderRadius: '15px', color: 'white' }}>
