@@ -8,12 +8,8 @@
 # testing
 /coverage
 
-# production
-/build
-
 # misc
 .DS_Store
-.env
 .env.local
 .env.development.local
 .env.test.local
@@ -22,3 +18,38 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+```
+
+* Making sure you are inside `client` in the terminal, run the following
+* *If you used npm* `npm run build`
+* *If you used yarn*  `yarn build`
+
+
+### Backend
+
+* Navigate to `project/settings.py`
+
+* To the top of the file, add the following
+
+* `import os`
+
+* Find the key `TEMPLATES` in this file and completely replace what is currently there with the following:
+
+```python
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'client')
+                 ]  #Look, we have added the root folder of frontend here
+        ,
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]

@@ -1,7 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { Button, FloatingLabel, Form } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
 import { setToken } from '../helpers/auth'
 
 const Login = ({ setShow, error, setError }) => {

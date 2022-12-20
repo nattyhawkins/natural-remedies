@@ -1,13 +1,10 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Col, Container, Image, Row } from 'react-bootstrap'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import AuthModal from '../components/AuthModal'
-import Comment from '../components/Comment'
+import { Container, Row } from 'react-bootstrap'
+import { useParams } from 'react-router-dom'
 import CommentsSection from '../components/CommentsSection'
 import Spinner from '../components/Spinner'
 import { getToken, isAuthenticated, isOwner } from '../helpers/auth'
-import IndexIngredients from './IndexIngredients'
 import IndexRecipes from './IndexRecipes'
 import SingleIngredient from './SingleIngredient'
 import SingleRecipe from './SingleRecipe'
@@ -43,6 +40,7 @@ const SinglePage = ({ setShow, setIsHome, setShowAddRecipe }) => {
         setItemError(err.message ? err.message : err.response.data.message)
       }
     }
+    console.log(model, itemId)
     setIsHome(false)
     getItem()
   }, [itemId, model, refresh])
@@ -89,7 +87,7 @@ const SinglePage = ({ setShow, setIsHome, setShowAddRecipe }) => {
     const getItems = async () => {
       try {
         setRecError(false)
-        const { data } = await axios.get(`/api/${recModel}?&search=&benefit=${includes}&/`)
+        const { data } = await axios.get(`/api/${recModel}/?&search=&benefit=${includes}&/`)
         console.log('recs response-', data)
         setItems(data.slice(0, 3))
       } catch (err) {

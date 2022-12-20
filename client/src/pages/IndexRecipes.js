@@ -1,7 +1,5 @@
-import { useEffect, useState } from 'react'
-import { Card, Col } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
-import { v4 as uuid } from 'uuid'
+import { useEffect } from 'react'
+import { Card } from 'react-bootstrap'
 import IndexCard from '../components/IndexCard'
 import { getRecipeBenefits } from '../helpers/general'
 
@@ -16,7 +14,7 @@ const IndexRecipes = ({ items, model, setBenefits, benefits, refresh, setRefresh
 
   return (
     <>
-      {items.map(item => {
+      {items.length > 0 && items.map(item => {
         // Benefits set different for each item so can't se benefits state
         const { id, name, image, active_ingredients: ingredients } = item
         const list = []

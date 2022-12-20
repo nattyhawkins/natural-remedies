@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import { Card } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import { getToken } from '../helpers/auth'
 import { getTimeElapsed } from '../helpers/general'

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { Button, Carousel } from 'react-bootstrap'
+import { Carousel } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Spinner from '../components/Spinner'
 import TheNavbar from '../components/TheNavbar'

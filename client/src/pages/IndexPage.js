@@ -7,7 +7,6 @@ import Spinner from '../components/Spinner'
 import IndexRecipes from './IndexRecipes'
 import Filters from '../components/Filters'
 import NotFound from './NotFound'
-import { getBenefits } from '../helpers/general'
 
 const IndexPage = ({ setShow, setIsHome, setShowAddRecipe }) => {
   const [ items, setItems ] = useState(false)
@@ -32,7 +31,7 @@ const IndexPage = ({ setShow, setIsHome, setShowAddRecipe }) => {
       try {
         console.log('model', model)
         setError(false)
-        const { data } = await axios.get(`/api/${model}?${search}&${benefitFilter}&includes=&/`)
+        const { data } = await axios.get(`/api/${model}/?${search}&${benefitFilter}&includes=&/`)
         console.log(data)
         setItems(data)
       } catch (err) {

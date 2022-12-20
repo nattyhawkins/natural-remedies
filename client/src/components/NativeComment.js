@@ -1,7 +1,6 @@
 import { Card } from 'react-bootstrap'
 import { isOwner } from '../helpers/auth'
 import CommentForm from './CommentForm'
-import ConfirmPopUp from './ConfirmPopUp'
 import EditButtons from './EditButtons'
 import defaultBean from '../assets/logos2/def-orange.png'
 
