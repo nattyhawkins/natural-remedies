@@ -166,7 +166,7 @@ const Profile = ({ setShow, setIsHome, setShowAddRecipe }) => {
                   {faveRecipesGrouped.length > 0 ?
                     <CardCarousel model='recipes' groups={faveRecipesGrouped} refresh={refresh} setRefresh={setRefresh} setShow={setShow}  />
                     :
-                    <h5 className='mt-3'>You&apos;re favourite Recipes will be saved here. <Link to={'/recipes'} className='fw-bold'> Search Recipes now!</Link ></h5>}
+                    <h5 className='mt-3'>Your favourite Recipes will be saved here. <Link to={'/recipes'} className='fw-bold'> Search Recipes now!</Link ></h5>}
                 </Row>
               </Row>
 
@@ -177,7 +177,7 @@ const Profile = ({ setShow, setIsHome, setShowAddRecipe }) => {
                   {faveIngredientsGrouped.length > 0 ? 
                     <CardCarousel model='active_ingredients' groups={faveIngredientsGrouped} refresh={refresh} setRefresh={setRefresh} setShow={setShow}  />
                     :
-                    <h5 className='mt-3'>You&apos;re favourite Ingredients will be saved here. <Link to={'/active_ingredients'} className='fw-bold'>Search Ingredients now!</Link ></h5>}
+                    <h5 className='mt-3'>Your favourite Ingredients will be saved here. <Link to={'/active_ingredients'} className='fw-bold'>Search Ingredients now!</Link ></h5>}
                 </Row>
               </Row>
             </Col>

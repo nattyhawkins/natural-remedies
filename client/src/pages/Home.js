@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { Button, Carousel } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
@@ -6,10 +7,12 @@ import TheNavbar from '../components/TheNavbar'
 import { getIngredientBenefits } from '../helpers/general'
 
 
-const Home = ({ setIsHome, isHome, setShow, ingredients, error, setTab }) => {
+const Home = ({ setIsHome, isHome, setShow, setTab }) => {
   const [ items, setItems ] = useState([])
   const [ benefits, setBenefits ] = useState([])
   const [ showBenefit, setShowBenefit ] = useState('')
+  const [ ingredients, setIngredients ] = useState([])
+  const [ error, setError ] = useState(false)
   let index = 0
   
 
@@ -34,6 +37,22 @@ const Home = ({ setIsHome, isHome, setShow, ingredients, error, setTab }) => {
 
   useEffect(() => {
     setIsHome(true)
+  }, [])
+
+  //get all ingredients
+  useEffect(() => {
+    const getItems = async () => {
+      try {
+        setError(false)
+        const { data } = await axios.get('/api/active_ingredients/?&search=&benefit=&includes=&/')
+        console.log('home data', data)
+        setIngredients(data)
+      } catch (err) {
+        console.log(err.response)
+        setError(err.response.statusText ? err.response.statusText : 'Something went wrong...')
+      }
+    }
+    getItems()
   }, [])
 
   return (

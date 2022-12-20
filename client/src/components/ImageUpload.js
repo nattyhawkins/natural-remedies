@@ -11,10 +11,11 @@ const ImageUpload = ({ formFields, setFormFields, imageKey, setError }) => {
       formData.append('file', event.target.files[0])
       formData.append('upload_preset', process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET)
       const { data } = await axios.post(process.env.REACT_APP_CLOUDINARY_URL, formData)
-      console.log(data)
       setFormFields({ ...formFields, [imageKey]: data.secure_url })
     } catch (err) {
-      setError(err.message ? err.message : err.response.data.message)
+      console.log(err.response)
+
+      setError(err.statusText)
     }
   }
 

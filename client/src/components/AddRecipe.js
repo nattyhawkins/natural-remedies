@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { Button, FloatingLabel, Form, Modal, Tab, Tabs } from 'react-bootstrap'
+import { Button, Form, Modal } from 'react-bootstrap'
 import { v4 as uuid } from 'uuid'
 import axios from 'axios'
 import { getToken } from '../helpers/auth'
 import ImageUpload from './ImageUpload'
 
-const AddRecipe = ({ showAddRecipe, setShowAddRecipe, ingredientsError, ingredients }) => {
-  // const [ ingredientsError, setIngredientsError ] = useState(false)
-
+const AddRecipe = ({ showAddRecipe, setShowAddRecipe }) => {
+  const [ ingredientsError, setIngredientsError ] = useState(false)
+  const [ ingredients, setIngredients ] = useState([])
   const [ error, setError ] = useState([])
   const [ selectField, setSelectField ] = useState([])
   const [formFields, setFormFields] = useState({
@@ -32,7 +32,6 @@ const AddRecipe = ({ showAddRecipe, setShowAddRecipe, ingredientsError, ingredie
     if (e.target.value === 'default'){
       setSelectField([])
     } else if (selectField.includes(parseInt(e.target.value))){
-      console.log('hi')
       const removeIngredient = [... selectField].filter(ingredient => ingredient !== parseInt(e.target.value))
       setSelectField(removeIngredient)
     } else {
@@ -75,19 +74,19 @@ const AddRecipe = ({ showAddRecipe, setShowAddRecipe, ingredientsError, ingredie
 
     }
   }
-  // //get all ingredients
-  // useEffect(() => {
-  //   const getIngredients = async () => {
-  //     try {
-  //       const { data } = await axios.get('/api/active_ingredients?&search=&benefit=&includes=&/')
-  //       setIngredients(data)
-  //     } catch (err) {
-  //       console.log(err.response)
-  //       setIngredientsError(err.response.statusText ? err.response.statusText : 'Something went wrong...')
-  //     }
-  //   }
-  //   getIngredients()
-  // }, [])
+  //get all ingredients
+  useEffect(() => {
+    const getIngredients = async () => {
+      try {
+        const { data } = await axios.get('/api/active_ingredients/?&search=&benefit=&includes=&/')
+        setIngredients(data)
+      } catch (err) {
+        console.log(err.response)
+        setIngredientsError(err.response.statusText ? err.response.statusText : 'Something went wrong...')
+      }
+    }
+    getIngredients()
+  }, [])
 
   return (
     <Modal show={showAddRecipe} onHide={handleClose} size="lg" centered >
@@ -109,7 +108,7 @@ const AddRecipe = ({ showAddRecipe, setShowAddRecipe, ingredientsError, ingredie
               autoFocus
             />
           </Form.Group>
-          <ImageUpload formFields={formFields} setFormFields={setFormFields} imageKey='image' />
+          <ImageUpload formFields={formFields} setFormFields={setFormFields} imageKey='image' setError={setError} />
           <Form.Group className="my-3" controlId="desc">
             <Form.Label>Description</Form.Label>
             <Form.Control
