@@ -7,7 +7,7 @@ import Spinner from '../components/Spinner'
 import { getToken } from '../helpers/auth'
 import {  unixTimestamp } from '../helpers/general'
 import ImageUpload from '../components/ImageUpload'
-import defaultBean from '../assets/logos2/def-orange.png'
+import defaultUser from '../assets/logos2/default-basic.jpeg'
 import CardCarousel from '../components/CardCarousel'
 
 
@@ -127,7 +127,7 @@ const Profile = ({ setShow, setIsHome, setShowAddRecipe }) => {
                   <ImageUpload formFields={formFields} setFormFields={setFormFields} imageKey='profile_image'  />
                 </Form>
               }
-              <div className="profile-pic image d-flex justify-content-end" style={{ backgroundImage: profile.profile_image ? `url(${profile.profile_image})` : `url(${defaultBean})` }} alt="profile">
+              <div className="profile-pic image d-flex justify-content-end" style={{ backgroundImage: profile.profile_image ? `url(${profile.profile_image})` : `url(${defaultUser})` }} alt="profile">
                 <p className='fw-bold fs-5 edit-btn' style={{ height: '10px' }} onClick={() => setEditProfile(!editProfile)}>•••</p>
               </div>
               <h1 className='mt-2'>{profile.username}</h1>
@@ -144,10 +144,10 @@ const Profile = ({ setShow, setIsHome, setShowAddRecipe }) => {
                   <p className='mt-2'>You have not left any commments yet</p>}
               </Container>
             </div>
-            <Col className='ms-2 px-2'>
+            <Col className='ms-sm-2 px-2'>
 
               {/* MY RECIPES */}
-              <Row className='text-center mb-5 pb-5  h-10 d-flex flex-column align-items-center ' >
+              <Row className='text-center mb-5 pb-sm-5 d-flex flex-column align-items-center ' >
                 <div className='d-flex flex-column align-items-center ' >
                   <h2  ><span className='star'>✎</span> My Recipes</h2>
                   <Button className='create' onClick={() => setShowAddRecipe(true)}>+ Create</Button>
@@ -161,9 +161,9 @@ const Profile = ({ setShow, setIsHome, setShowAddRecipe }) => {
               </Row>
               
               {/* FAVE RECIPES  */}
-              <Row className='text-center my-5 pb-5 h-10 d-flex flex-column align-items-center'>
+              <Row className='text-center my-sm-5 pb-sm-5 d-flex flex-column align-items-center'>
                 <h2 className='flex-grow-1 mb-0' ><span className='star'>★</span> Recipes</h2>
-                <Row className='collection d-flex groups-row justify-content-start flex-wrap my-0'>
+                <Row className='collection px-0 d-flex groups-row justify-content-start flex-wrap my-0'>
                   {faveRecipesGrouped.length > 0 ?
                     <CardCarousel model='recipes' groups={faveRecipesGrouped} refresh={refresh} setRefresh={setRefresh} setShow={setShow}  />
                     :
@@ -172,9 +172,9 @@ const Profile = ({ setShow, setIsHome, setShowAddRecipe }) => {
               </Row>
 
               {/* FAVE INGREDIENTS */}
-              <Row className='text-center my-5 h-10 d-flex flex-column align-items-center'>
+              <Row className='text-center my-2 my-sm-5 h-10 d-flex flex-column align-items-center'>
                 <h2 className='mb-0'><span className='star'>★</span>  Ingredients</h2>
-                <Row className='collection d-flex groups-row justify-content-start flex-wrap my-0'>
+                <Row className='collection px-0 d-flex groups-row justify-content-start flex-wrap my-0'>
                   {faveIngredientsGrouped.length > 0 ? 
                     <CardCarousel model='active_ingredients' groups={faveIngredientsGrouped} refresh={refresh} setRefresh={setRefresh} setShow={setShow}  />
                     :

@@ -2,7 +2,8 @@ import { Card } from 'react-bootstrap'
 import { isOwner } from '../helpers/auth'
 import CommentForm from './CommentForm'
 import EditButtons from './EditButtons'
-import defaultBean from '../assets/logos2/def-orange.png'
+import defaultUser from '../assets/logos2/default-basic.jpeg'
+
 
 
 const NativeComment = ({ comment, timeElapsed, toEdit, commentFields, setCommentFields, commentError, setCommentError, handleEditSubmit, showConfirm, setShowConfirm, deleteComment, editComment, error }) => {
@@ -15,29 +16,29 @@ const NativeComment = ({ comment, timeElapsed, toEdit, commentFields, setComment
           <div className='d-flex justify-content-between mb-2 mb-sm-3'>
             <div className='d-flex align-items-center d-sm-block'>
               {/* Small screens show profile pic here */}
-              <div className="image profile-pic icon small me-2 d-sm-none flex-column align-items-center"
-                style={{ backgroundImage: comment.owner.profile_image ? `url(${comment.owner.profile_image})` : `url(${defaultBean})` }} 
-                alt="profile picture"></div>
-              <div className='d-sm-flex align-items-center justify-content-end'>
+              {/* <div className="image profile-pic icon small me-2 d-sm-none flex-column align-items-center"
+                style={{ backgroundImage: comment.owner.profile_image ? `url(${comment.owner.profile_image})` : `url(${defaultUser})` }} 
+                alt="profile picture"></div> */}
+              <div className='d-flex align-items-center justify-content-end'>
                 <Card.Title className="username mb-0" >@{comment.owner.username}</Card.Title>
                 <small>{timeElapsed}</small>
               </div>
             </div>
             <div className='d-flex justify-content-end fs-5' style={{ height: '20px' }}>
-
               {/* If owner show edit & delete */}
               {isOwner(comment.owner.id) &&
                 <EditButtons editComment={editComment} showConfirm={showConfirm} setShowConfirm={setShowConfirm} deleteComment={deleteComment}  />
               }
             </div>
           </div>
-          <div className='d-flex flex-column align-items-start justify-content-start flex-sm-row align-items-sm-start' >
+          <div className='d-flex justify-content-start  align-items-start' >
             {/* Big screens show profile pic here */}
-            <div className="image profile-pic icon d-none d-sm-flex flex-column align-items-center" 
-              style={{ backgroundImage: comment.owner.profile_image ? `url(${comment.owner.profile_image})` : `url(${defaultBean})` }} 
+            {/* <div className="image profile-pic icon d-none d-sm-flex flex-column align-items-center"  */}
+            <div className="image profile-pic icon align-items-center" 
+              style={{ backgroundImage: comment.owner.profile_image ? `url(${comment.owner.profile_image})` : `url(${defaultUser})` }} 
               alt="profile picture">
             </div>
-            <div className="ms-sm-3">
+            <div className="ms-2 ms-sm-3">
               {error && <small className='text-warning'>{error}</small>}
               <div >
                 {toEdit ?

@@ -291,14 +291,16 @@ a{
   cursor: pointer;
   margin: 0 0 0 20px;
   font-size: '20px';
+  font-weight: 700;
 }
 .profile{
   .section{
     border: 1px solid lightgrey;
     border-radius: 20px;
+    max-width: calc(100vw - 6px);
   }
   .dash{
-    width: 300px;
+    max-width: 300px;
   }
   .carousel-control-prev, .carousel-control-next{
     width: 5%;
@@ -327,14 +329,16 @@ a{
   border-radius: 50%;
 }
 .icon:not(.small) {
+  min-width: 100px;
   width: 100px;
   height: 100px;
   margin-top: -7px;
 }
 .icon.small{
-  width: 60px;
-  height: 60px;
-  margin-top: -6px;
+  min-width: 40px;
+  width: 40px;
+  height: 40px;
+  margin-top: -2px;
 }
 
 .username a {
@@ -370,8 +374,13 @@ a{
 }
 
 @media (max-width: 576px){
+  .profile{
+    .carousel-inner{
+      padding: 0;
+    }
+  }
   h4{
-    font-size: 4vw;
+    font-size: 0.9rem;
   }
   #overlay{
     top: 30%;
@@ -432,7 +441,7 @@ a{
 }
 
 @media (max-width: 300px){
-  
+
   .navbar {
     .navbar-toggler{
       width: 20vw;
@@ -448,5 +457,20 @@ a{
     .logo{
       height: 50px;
     }
+  }
+
+  .icon:not(.small) {
+    min-width: 40px;
+    width: 40px;
+    height: 40px;
+    margin-top: -2px;
+  }
+
+
+  .comment,  #commentInput, .btn, p{
+    font-size: 0.7rem;
+  }
+  .edit-btn, .username, h5{
+    font-size: 0.9rem;
   }
 }

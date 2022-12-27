@@ -11,7 +11,7 @@ const SingleIngredient = ({ item, favouriteStatus, handleFavourite, setShow }) =
         <Col className='image img-single flex-grow-1 d-none d-md-flex align-items-end' style={{ backgroundImage: `url(${item.image})` }}>
           <Favourite handleFavourite={handleFavourite} favouriteStatus={favouriteStatus} item={item}  />
         </Col>
-        <Col className='flex-grow-1 p-3'>
+        <Col className='flex-grow-1 py-3 px-1'>
           <div className='d-flex justify-content-center justify-content-md-between'>
             <div className='text-center text-md-start'>
               <h1>{item.name}</h1>

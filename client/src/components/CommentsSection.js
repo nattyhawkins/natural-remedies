@@ -1,9 +1,8 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
+import { useState } from 'react'
+import { Col, Row } from 'react-bootstrap'
 import { getToken, isAuthenticated } from '../helpers/auth'
 import { unixTimestamp } from '../helpers/general'
-import AuthModal from './AuthModal'
 import Comment from './Comment'
 import CommentForm from './CommentForm'
 
@@ -38,7 +37,7 @@ const CommentsSection = ({ item, model, itemId, setRefresh, refresh ,setShow }) 
 
   return (
     <Row className='my-4 mb-5 pb-5'>
-      <Col style={{ maxWidth: '800px', margin: '0 auto' }}>
+      <Col style={{ maxWidth: '800px', margin: '0 auto' }} className="px-1">
         <CommentForm commentFields={commentFields} setCommentFields={setCommentFields} commentError={commentError} setCommentError={setCommentError} handleCommentSubmit={handleCommentSubmit}  />
         {item && item.comments && item.comments.sort((a, b) => (unixTimestamp(a.created_at) > unixTimestamp(b.created_at) ? -1 : 1)).map(comment => {
           const { id: commentId } = comment

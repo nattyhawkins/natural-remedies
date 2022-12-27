@@ -108,7 +108,7 @@ const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefres
         <Col className='img-single image flex-grow-1 d-none d-md-flex align-items-end' style={{ backgroundImage: `url(${item.image})` }}>
           <Favourite handleFavourite={handleFavourite} favouriteStatus={favouriteStatus} item={item}  />
         </Col>
-        <Col className='p-3'>
+        <Col className='py-3 px-1'>
           <div className='d-flex justify-content-center justify-content-md-between'>
             <h1 className='text-center text-md-start'>{item.name}</h1>
             <div className='d-flex fs-5'>

@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom'
 import CommentForm from './CommentForm'
 import ConfirmPopUp from './ConfirmPopUp'
 import EditButtons from './EditButtons'
-import defaultBean from '../assets/logos2/def-orange.png'
+import defaultUser from '../assets/logos2/default-basic.jpeg'
+
 
 
 const ProfileComment = ({ comment, timeElapsed, toEdit, commentFields, setCommentFields, commentError, setCommentError, handleEditSubmit, showConfirm, setShowConfirm, deleteComment, editComment, error }) => {
@@ -25,7 +26,7 @@ const ProfileComment = ({ comment, timeElapsed, toEdit, commentFields, setCommen
         <div className="mt-2 me-2 image profile-pic icon small d-flex align-items-center" 
           style={{ backgroundImage: comment.recipe ? `url(${comment.recipe.image})` 
             : comment.active_ingredient ? `url(${comment.active_ingredient.image})` 
-              : `url(${defaultBean})` }} 
+              : `url(${defaultUser})` }} 
           alt="profile picture">
         </div>
         <div className='flex-grow-1'>
