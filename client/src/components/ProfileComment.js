@@ -16,11 +16,12 @@ const ProfileComment = ({ comment, timeElapsed, toEdit, commentFields, setCommen
   return (
     comment &&
     <Card className='comment mt-2'>
-      <Card.Title className='mb-0 username fs-6'>
-        {model === 'recipe' ?
-          <Link to={`/recipes/${comment.recipe.id}`}>→ {comment.recipe.name}</Link>
-          :
-          <Link to={`/active_ingredients/${comment.active_ingredient.id}`}>→ {comment.active_ingredient.name}</Link>
+      <Card.Title className='mb-0 fs-6'>
+        {comment.recipe && model === 'recipe' ?
+          <Link to={`/recipes/${comment.recipe.id}`} className="username ">→ {comment.recipe.name}</Link>
+          : 
+          comment.active_ingredient && model === 'active_ingredient' &&
+            <Link to={`/active_ingredients/${comment.active_ingredient.id}`} className="username ">→ {comment.active_ingredient.name}</Link>
         }</Card.Title> 
       <Card.Body className='pt-0 pb-0 px-0 d-flex'>
         <div className="mt-2 me-2 image profile-pic icon small d-flex align-items-center" 

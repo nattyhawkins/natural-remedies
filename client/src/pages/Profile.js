@@ -144,7 +144,7 @@ const Profile = ({ setShow, setIsHome, setShowAddRecipe }) => {
                   <p className='mt-2'>You have not left any commments yet</p>}
               </Container>
             </div>
-            <Col className='ms-sm-2 px-2'>
+            <Col className='ms-sm-2 px-2 w-100'>
 
               {/* MY RECIPES */}
               <Row className='text-center mb-5 pb-sm-5 d-flex flex-column align-items-center ' >
@@ -152,7 +152,7 @@ const Profile = ({ setShow, setIsHome, setShowAddRecipe }) => {
                   <h2  ><span className='star'>✎</span> My Recipes</h2>
                   <Button className='create' onClick={() => setShowAddRecipe(true)}>+ Create</Button>
                 </div>
-                <Row className='collection d-flex groups-row justify-content-start flex-wrap my-0'>
+                <Row className='collection d-flex groups-row justify-content-start flex-wrap px-0 my-0'>
                   {myRecipesGrouped.length > 0 ? 
                     <CardCarousel model='recipes' groups={myRecipesGrouped} refresh={refresh} setRefresh={setRefresh} setShow={setShow}  />
                     :
@@ -172,7 +172,7 @@ const Profile = ({ setShow, setIsHome, setShowAddRecipe }) => {
               </Row>
 
               {/* FAVE INGREDIENTS */}
-              <Row className='text-center my-2 my-sm-5 h-10 d-flex flex-column align-items-center'>
+              <Row className='text-center my-5 my-sm-5 d-flex flex-column align-items-center'>
                 <h2 className='mb-0'><span className='star'>★</span>  Ingredients</h2>
                 <Row className='collection px-0 d-flex groups-row justify-content-start flex-wrap my-0'>
                   {faveIngredientsGrouped.length > 0 ? 
