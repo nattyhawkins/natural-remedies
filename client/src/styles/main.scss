@@ -94,18 +94,9 @@ a{
   }
   .carousel-control-prev, .carousel-control-next{
     width: 10%;
-    // justify-content: flex-start;
     top: 10%;
     bottom: 10%;
   }
-  // .carousel-control-prev{
-  //   justify-content: flex-end;
-  // }
-  .carousel-caption{
-    right: 20%;
-    top: 20%;
-    
-    }
   
 }
 .benefit-small{
@@ -119,7 +110,7 @@ a{
   width: 800px;
   position: absolute;
   top: 35%;
-  left: 37%;
+  left: 550px;
 
   font-size: 50px;
   color: white;
@@ -275,10 +266,10 @@ a{
 
   .username {
     padding-right: 10px;
-    color: lighten($primary, 15%);
+    color: lighten($primary, 5%);
 
     &:hover {
-      color: lighten($primary, 30%);
+      color: lighten($primary, 15%);
     }
   }
 
@@ -317,6 +308,7 @@ a{
     right: 0;
     bottom: 0;
     left: 0;
+    padding: 10px 0;
 
     .index-card{
       margin: 0 10px;
@@ -368,24 +360,31 @@ a{
     font-weight: 600;
   }
   .benefits{
-    font-size: 0.9em;
+    font-size: 0.8em;
   }
 
 }
 
 @media (max-width: 576px){
+  .icon:not(.small) {
+    min-width: 50px;
+    width: 50px;
+    height: 50px;
+    margin-top: -2px;
+  }
   .profile{
     .carousel-inner{
       padding: 0;
     }
+    
   }
   h4{
-    font-size: 0.9rem;
+    font-size: 1.1rem;
   }
-  #overlay{
-    top: 30%;
-    left: 70%;
-  }
+  // #overlay{
+  //   top: 30%;
+  //   left: 70%;
+  // }
   .btn{
     width: 100%;
   }
@@ -412,7 +411,7 @@ a{
         font-weight: 900;
       }
       .select{
-        width: 50%;
+        width: 60%;
         align-self: end;
         margin: 10px 0;
         font-weight: 900;
@@ -422,11 +421,6 @@ a{
   }
 }
 @media (min-width: 576px) and (max-width: 992px){
- 
-  #overlay{
-    top: 30vh;
-    left: 50vw;
-  }
   .index{
     .fave, .card-title{
       font-size: calc(10px + 3vw);
@@ -455,19 +449,39 @@ a{
       height: 50px;
     }
   }
+}
 
-  .icon:not(.small) {
-    min-width: 40px;
-    width: 40px;
-    height: 40px;
-    margin-top: -2px;
+@media (max-width: 768px){
+  .profile .dash{
+    max-width: 450px;
   }
+}
 
+@media (max-width: 992px){
+  
+  .home{
+    #overlay{
+      top: 15%;
+      left: 0; 
+      right: 0; 
+      margin-left: auto; 
+      margin-right: auto; 
+      transform: translate(0,0);
+      -ms-transform: translate(0,0);
+      width: 100vw;
+    }
+    .slogan *, .benefit{
+      font-size: 1rem;
+    }
+    .header{
+      font-size: 1.5em;
+    }
 
-  .comment,  #commentInput, .btn, p{
-    font-size: 0.7rem;
-  }
-  .edit-btn, .username, h5{
-    font-size: 0.9rem;
+      .comment,  #commentInput, .btn, p{
+        font-size: 0.7rem;
+      }
+      .edit-btn, .username, h5{
+        font-size: 0.9rem;
+      }
   }
 }

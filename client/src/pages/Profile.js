@@ -26,17 +26,11 @@ const Profile = ({ setShow, setIsHome, setShowAddRecipe }) => {
     profile_image: '',
   })
 
-  
-  function partitionArray(array){
-    const groups = []
-    if (array.length > 0){
-      for (let i = 0; i < array.length; i += size) {
-        const group = array.slice(i, i + size)
-        groups.push(group)
-      }
-    }  
-    return groups 
-  }
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      setSize(getCarouselSize())
+    })
+  }, [])
 
   function getCarouselSize() {
     if (window.innerWidth < 576){
@@ -48,21 +42,27 @@ const Profile = ({ setShow, setIsHome, setShowAddRecipe }) => {
     }
   }
 
+  function partitionArray(array){
+    const groups = []
+    if (array.length > 0){
+      for (let i = 0; i < array.length; i += size) {
+        const group = array.slice(i, i + size)
+        groups.push(group)
+      }
+    }  
+    return groups 
+  }
+
   useEffect(() => {
     profile && setFaveRecipes(profile.favourites.filter(favourite => favourite.recipe).map(favourite => favourite.recipe))
     profile && setFaveIngredients(profile.favourites.filter(favourite => favourite.active_ingredient).map(favourite => favourite.active_ingredient))
-    profile && setMyRecipesGrouped(partitionArray(profile.recipes))
+    // profile && setMyRecipesGrouped(partitionArray(profile.recipes))
   }, [profile])
-
-  useEffect(() => {
-    window.addEventListener('resize', () => {
-      setSize(getCarouselSize())
-    })
-  }, [])
 
   useEffect(() => {
     setFaveRecipesGrouped(partitionArray(faveRecipes))
     setFaveIngredientsGrouped(partitionArray(faveIngredients))
+    profile && setMyRecipesGrouped(partitionArray(profile.recipes))
   }, [faveRecipes, faveIngredients, size, profile])
 
 
@@ -117,10 +117,10 @@ const Profile = ({ setShow, setIsHome, setShowAddRecipe }) => {
       </div>
       :
       <main className='profile'>
-        <Container className='my-5 d-flex flex-column align-items-center flex-md-row align-items-md-start'>
+        <Container className='my-5 p-0 d-flex flex-column align-items-center flex-md-row align-items-md-start'>
           {profile && 
           <>
-            <div className='me-sm-3 mb-5 dash d-flex flex-column align-items-center '>
+            <div className='ms-1 me-sm-3 mb-5 dash d-flex flex-column align-items-center '>
               {editProfile &&
                 <Form className='d-flex mb-3' onSubmit={handleSubmit} >
                   <Button type='submit my-button' >Submit</Button>
@@ -144,10 +144,10 @@ const Profile = ({ setShow, setIsHome, setShowAddRecipe }) => {
                   <p className='mt-2'>You have not left any commments yet</p>}
               </Container>
             </div>
-            <Col className='ms-sm-2 px-2 w-100'>
 
+            <Col className='ms-sm-2 px-3 w-100'>
               {/* MY RECIPES */}
-              <Row className='text-center mb-5 pb-sm-5 d-flex flex-column align-items-center ' >
+              <Row className='text-center pb-sm-5 d-flex flex-column align-items-center ' >
                 <div className='d-flex flex-column align-items-center ' >
                   <h2  ><span className='star'>✎</span> My Recipes</h2>
                   <Button className='create' onClick={() => setShowAddRecipe(true)}>+ Create</Button>
@@ -161,7 +161,7 @@ const Profile = ({ setShow, setIsHome, setShowAddRecipe }) => {
               </Row>
               
               {/* FAVE RECIPES  */}
-              <Row className='text-center my-sm-5 pb-sm-5 d-flex flex-column align-items-center'>
+              <Row className='text-center my-4 pb-sm-5 d-flex flex-column align-items-center'>
                 <h2 className='flex-grow-1 mb-0' ><span className='star'>★</span> Recipes</h2>
                 <Row className='collection px-0 d-flex groups-row justify-content-start flex-wrap my-0'>
                   {faveRecipesGrouped.length > 0 ?
@@ -172,7 +172,7 @@ const Profile = ({ setShow, setIsHome, setShowAddRecipe }) => {
               </Row>
 
               {/* FAVE INGREDIENTS */}
-              <Row className='text-center my-5 my-sm-5 d-flex flex-column align-items-center'>
+              <Row className='text-center my-sm-5 d-flex flex-column align-items-center'>
                 <h2 className='mb-0'><span className='star'>★</span>  Ingredients</h2>
                 <Row className='collection px-0 d-flex groups-row justify-content-start flex-wrap my-0'>
                   {faveIngredientsGrouped.length > 0 ? 
