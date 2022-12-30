@@ -1,6 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { Navbar, Container, Nav } from 'react-bootstrap'
-import React, { useState } from 'react'
 import { handleLogout, isAuthenticated } from '../helpers/auth'
 import bean from '../assets/logos2/4.png'
 
