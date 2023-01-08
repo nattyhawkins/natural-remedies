@@ -78,9 +78,11 @@ const IndexPage = ({ setShow, setIsHome, setShowAddRecipe }) => {
               
               {items && items.length > 0 && modelLoad === model ? 
                 modelLoad === 'active_ingredients' ?
-                  <IndexIngredients items={items} model={model} benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow} />
+                  <IndexIngredients items={items} model={model} benefits={benefits}
+                    setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow} />
                   :
-                  <IndexRecipes items={items} model={model} benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
+                  <IndexRecipes items={items} model={model} benefits={benefits}
+                    setBenefits={setBenefits}setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
                 :
                 error ?
                   <div>

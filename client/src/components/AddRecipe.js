@@ -31,7 +31,7 @@ const AddRecipe = ({ showAddRecipe, setShowAddRecipe, error, formFields, setForm
 
   useEffect(() => {
     console.log(selectField)
-    selectField.length > 0 && setFormFields({ ...formFields, 'active_ingredients': selectField })
+    setFormFields({ ...formFields, 'active_ingredients': selectField })
     if (error !== []) setError([])
   }, [selectField])
 

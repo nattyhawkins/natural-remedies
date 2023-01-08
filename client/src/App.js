@@ -51,7 +51,6 @@ const App = () => {
         steps: '',
       })
       setShowAddRecipe(false)
-      // window.location.reload(false)
     } catch (err) {
       console.log(err)
       setError(err.message ? err.message : err.response.statusText)

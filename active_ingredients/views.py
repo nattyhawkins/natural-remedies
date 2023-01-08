@@ -10,15 +10,10 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticate
 
 # Create your views here.
 class Active_IngredientListView(APIView):
-  # permission_classes = (IsAuthenticatedOrReadOnly, )
   def get(self, request):
-      # active_ingredients = Active_Ingredient.objects.all()
       search = request.query_params.get('search')
-      benefit = request.query_params.get('benefit')
       includes = request.query_params.getlist('includes', '')
-      print('benefit--', benefit)
-      print('includes--', includes)
-      print('search--', search)
+      benefit = request.query_params.get('benefit')
       benefit = benefit if benefit != 'default' else ''
       if includes[0] == '':
         active_ingredients = Active_Ingredient.objects.filter(
@@ -36,7 +31,6 @@ class Active_IngredientListView(APIView):
 
 
 class Active_IngredientDetailView(APIView):
-  # permission_classes = (IsAuthenticatedOrReadOnly, )
   def get_active_ingredient(self, pk):
       try:
         return Active_Ingredient.objects.get(pk=pk)
