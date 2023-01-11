@@ -2,4 +2,4 @@
 
 Full readme under construction
 
-[View Site!](http://wellbean-app.herokuapp.com/)
+[View site!](http://wellbean-app.herokuapp.com/)
