@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom'
 import TheNavbar from './components/TheNavbar'
 import Home from './pages/Home'
 import Profile from './pages/Profile'
@@ -28,7 +28,7 @@ const App = () => {
   })
   const [ error, setError ] = useState([])
 
-
+  // const navigate = useNavigate()
 
   const handleRecipeSubmit = async (e) => {
     e.preventDefault()
@@ -51,6 +51,7 @@ const App = () => {
         steps: '',
       })
       setShowAddRecipe(false)
+      // navigate(`/recipes/${data.id}`)
     } catch (err) {
       console.log(err)
       setError(err.message ? err.message : err.response.statusText)

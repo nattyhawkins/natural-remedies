@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Button, Form, Modal } from 'react-bootstrap'
 import { v4 as uuid } from 'uuid'
 import axios from 'axios'
-import { getToken } from '../helpers/auth'
 import ImageUpload from './ImageUpload'
 
 const AddRecipe = ({ showAddRecipe, setShowAddRecipe, error, formFields, setFormFields, setError, handleRecipeSubmit }) => {

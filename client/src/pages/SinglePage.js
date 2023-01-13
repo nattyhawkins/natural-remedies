@@ -35,6 +35,7 @@ const SinglePage = ({ setShow, setIsHome, setShowAddRecipe }) => {
         setItemError(false)
         const { data } = await axios.get(`/api/${model}/${itemId}/`)
         setItem(data)
+        console.log(data)
       } catch (err) {
         console.log(err.response)
         setItemError(err.message ? err.message : err.response.data.message)
@@ -126,7 +127,7 @@ const SinglePage = ({ setShow, setIsHome, setShowAddRecipe }) => {
   }, [items])
 
   return (
-    <main className='single px-1 px-sm-2'>
+    <main className='single px-sm-2'>
       <Container style={{ maxWidth: '1100px', margin: '0 auto' }}>
         {itemError ? 
           <div className='text-center'>

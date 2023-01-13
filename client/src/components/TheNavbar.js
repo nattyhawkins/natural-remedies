@@ -19,7 +19,7 @@ const TheNavbar = ({ setShow, isHome, setTab }) => {
   return (
     isHome ? 
       <Navbar collapseOnSelect data-toggle='collapse' data-target=".navbar-collapse" className='navbar' expand="sm" variant='dark'>
-        <Container className='d-fex justify-content-end text-end'>
+        <Container className='d-flex justify-content-end text-end'>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse className=' d-sm-flex justify-content-between' id="responsive-navbar-nav">
             <Nav className='d-flex'>

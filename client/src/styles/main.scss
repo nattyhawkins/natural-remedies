@@ -116,7 +116,7 @@ a{
   color: white;
   transform: translate(-50%,-50%);
   -ms-transform: translate(-50%,-50%);
-  z-index: 110;
+  z-index: 9;
 }
 @keyframes fadeInAnimation {
   0% {
@@ -260,18 +260,19 @@ a{
   // margin-top: 15px;
   // max-width: 780px;
 }
+.username {
+  padding-right: 10px;
+  color: lighten($primary, 5%);
+
+  &:hover {
+    color: lighten($primary, 15%);
+  }
+}
 
 .comment {
   border: none;
 
-  .username {
-    padding-right: 10px;
-    color: lighten($primary, 5%);
-
-    &:hover {
-      color: lighten($primary, 15%);
-    }
-  }
+  
 
 }
 .create{
@@ -376,7 +377,7 @@ a{
     .carousel-inner{
       padding: 0;
     }
-    
+  
   }
   h4{
     font-size: 1.1rem;
@@ -394,6 +395,9 @@ a{
   .single{
     .img-single{
       min-height: 90vw;
+    }
+    .main{
+      border-radius: 0;
     }
   }
   .index{
@@ -455,6 +459,7 @@ a{
   .profile .dash{
     max-width: 450px;
   }
+  
 }
 
 @media (max-width: 992px){

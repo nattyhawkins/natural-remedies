@@ -104,25 +104,28 @@ const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefres
 
   return (
     <>
-      <Row className='main d-flex flex-column flex-md-row p-0 my-5'>
+      <Row className='main d-flex flex-column flex-md-row p-0 my-sm-5'>
         <Col className='img-single image flex-grow-1 d-none d-md-flex align-items-end' style={{ backgroundImage: `url(${item.image})` }}>
           <Favourite handleFavourite={handleFavourite} favouriteStatus={favouriteStatus} item={item}  />
         </Col>
-        <Col className='py-3 px-1'>
-          <div className='d-flex justify-content-center justify-content-md-between'>
-            <h1 className='text-center text-md-start'>{item.name}</h1>
-            <div className='d-flex fs-5'>
-              {isOwner(item.owner.id) &&
-                <>
-                  <EditButtons editComment={handleEditRecipe} showConfirm={showConfirm} setShowConfirm={setShowConfirm} deleteComment={handleDeleteRecipe}  />
-                  <AddRecipe showAddRecipe={showAddRecipe} setShowAddRecipe={setShowAddRecipe} setFormFields={setRecipeFields} formFields={recipeFields} error={recipeError} setError={setRecipeError} handleRecipeSubmit={handleRecipeSubmit}/>
-                </>
-              }</div>
+        <Col className='d-flex flex-column justify-content-between py-3 px-1'>
+          <div>
+            <div className='d-flex flex-column-reverse justify-content-center flex-md-row justify-content-md-between'>
+              <h1 className='text-center text-md-start'>{item.name}</h1>
+              <div className='d-flex align-self-end align-self-md-start me-2 fs-5'>
+                {isOwner(item.owner.id) &&
+                  <>
+                    <EditButtons editComment={handleEditRecipe} showConfirm={showConfirm} setShowConfirm={setShowConfirm} deleteComment={handleDeleteRecipe}  />
+                    <AddRecipe showAddRecipe={showAddRecipe} setShowAddRecipe={setShowAddRecipe} setFormFields={setRecipeFields} formFields={recipeFields} error={recipeError} setError={setRecipeError} handleRecipeSubmit={handleRecipeSubmit}/>
+                  </>
+                }</div>
+            </div>
+            <Row className='d-flex img-single image w-100 my-2 d-md-none align-items-end' style={{ backgroundImage: `url(${item.image})`, borderRadius: '15px', color: 'white' }}>
+              <Favourite handleFavourite={handleFavourite} favouriteStatus={favouriteStatus} item={item}  />
+            </Row> 
+            <p className=' pe-1'> by <span className='username fw-bold'>@{item.owner.username}</span></p>
+            <p>{item.description}</p>
           </div>
-          <Row className='d-flex img-single image w-100 my-2 d-md-none align-items-end' style={{ backgroundImage: `url(${item.image})`, borderRadius: '15px', color: 'white' }}>
-            <Favourite handleFavourite={handleFavourite} favouriteStatus={favouriteStatus} item={item}  />
-          </Row> 
-          <p>{item.description}</p>
           <div className='d-flex flex-wrap justify-content-evenly' >
             {benefitHTML.length > 0 && benefitHTML.map(benefit => {
               return (
@@ -132,6 +135,7 @@ const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefres
               )
             })}
           </div>
+          <p className='m-0 btn w-25 text-center'>Method</p>
         </Col>
       </Row>
       {!recError &&

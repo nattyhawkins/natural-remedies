@@ -37,14 +37,16 @@ const ImageUpload = ({ formFields, setFormFields, imageKey, setError }) => {
         type='file'
         onChange={handleChange}
       />
-      {imageSelected && (!formFields[imageKey] ?
-        <div className='d-inline ms-4'>
-          <Spinner/> 
-          <p className='d-inline'> Uploading...</p>
-        </div>
-        :
-        <p className='d-inline ms-4'>✅ Done!</p>
-      )}
+      <div className='d-inline-block mt-2 mt-sm-0 ms-md-4'>
+        {imageSelected && (!formFields[imageKey] ?
+          <>
+            <Spinner/> 
+            <p className='m-0'> Uploading...</p>
+          </>
+          :
+          <p className='m-0'>✅ Done!</p>
+        )}
+      </div>
     </div>
   )
 }
