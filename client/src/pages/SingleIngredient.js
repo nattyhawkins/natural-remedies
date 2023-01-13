@@ -7,7 +7,7 @@ const SingleIngredient = ({ item, favouriteStatus, handleFavourite, setShow }) =
 
   return (
     <>
-      <Row className='main d-flex flex-column flex-md-row p-0 mt-5'>
+      <Row className='main d-flex flex-column flex-md-row p-0 mt-sm-5'>
         <Col className='image img-single flex-grow-1 d-none d-md-flex align-items-end' style={{ backgroundImage: `url(${item.image})` }}>
           <Favourite handleFavourite={handleFavourite} favouriteStatus={favouriteStatus} item={item}  />
         </Col>

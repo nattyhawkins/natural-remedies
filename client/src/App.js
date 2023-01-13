@@ -9,7 +9,7 @@ import { useState } from 'react'
 import AuthModal from './components/AuthModal'
 import AddRecipe from './components/AddRecipe'
 import axios from 'axios'
-import { getToken } from './helpers/auth'
+import { getToken, isAuthenticated } from './helpers/auth'
 
 const App = () => {
   const [ show, setShow ] = useState(false)
@@ -32,6 +32,7 @@ const App = () => {
 
   const handleRecipeSubmit = async (e) => {
     e.preventDefault()
+
     try {
       console.log(formFields)
       if (formFields.image === '') throw new Error('Please upload an image')

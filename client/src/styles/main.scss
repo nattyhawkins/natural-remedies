@@ -34,8 +34,10 @@ body, html {
 .btn{
   background-color: $button;
   border: none;
+  color: white;
   &:hover{
     background-color: lighten($button, 10%);
+    color: white;
   }
 }
 
@@ -74,6 +76,7 @@ a{
     font-family: railey;
     font-size: 120px;
     color: lighten($primary, 10%);
+    z-index: 9;
   }
   .feature{
     max-width: 400px;
@@ -94,8 +97,8 @@ a{
   }
   .carousel-control-prev, .carousel-control-next{
     width: 10%;
-    top: 10%;
-    bottom: 10%;
+    top: 35%;
+    bottom: 35%;
   }
   
 }
@@ -108,7 +111,7 @@ a{
 }
 #overlay {
   width: 800px;
-  position: absolute;
+  position: fixed;
   top: 35%;
   left: 550px;
 
@@ -136,10 +139,12 @@ a{
 }
 
 .navbar {
-  z-index: 10;
+  
   top: 0;
   position: sticky;
-  
+  .container, .nav-link, .collapse, .navbar-nav {
+    z-index: 120;
+  }
 
 
   .nav-link, a {
@@ -225,6 +230,10 @@ a{
     max-width: 600px;
     margin: 0 auto;
     border-radius: 15px 0 0 15px;
+  }
+  .method.btn {
+    width: 110px;
+    margin: 0 auto;
   }
 }
 
@@ -377,7 +386,9 @@ a{
     .carousel-inner{
       padding: 0;
     }
-  
+    h5{
+      font-size: medium;
+    }
   }
   h4{
     font-size: 1.1rem;
@@ -389,6 +400,7 @@ a{
   .btn{
     width: 100%;
   }
+
   .fave{
     font-size: 10vw;
   }
@@ -474,12 +486,15 @@ a{
       transform: translate(0,0);
       -ms-transform: translate(0,0);
       width: 100vw;
+      z-index: 9;
     }
     .slogan *, .benefit{
       font-size: 1rem;
     }
     .header{
       font-size: 1.5em;
+      z-index: 9;
+
     }
 
       .comment,  #commentInput, .btn, p{

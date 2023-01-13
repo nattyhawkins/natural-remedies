@@ -1,12 +1,15 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
-import { Col, Row } from 'react-bootstrap'
+import { useEffect, useRef, useState } from 'react'
+import { Button, Col, Row } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import AddRecipe from '../components/AddRecipe'
 import EditButtons from '../components/EditButtons'
 import Favourite from '../components/Favourite'
 import { getToken, isOwner } from '../helpers/auth'
 import IndexIngredients from './IndexIngredients'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAnglesDown } from '@fortawesome/free-solid-svg-icons'
+
 
 const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefresh, refresh, setShow, setBenefits, benefits, recError }) => {
   const [ benefitHTML, setBenefitHTML ] = useState([])
@@ -22,6 +25,7 @@ const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefres
     mediums: [],
   })
   const navigate = useNavigate()
+  const methodRef = useRef(null)
 
   //get benefit htmls from single recipe
   useEffect(() => {
@@ -37,7 +41,12 @@ const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefres
   }, [item])
 
 
-
+  const handleScroll = (ref) => {
+    window.scrollTo({
+      top: ref.current.offsetTop - 95,
+      behavior: 'smooth',
+    })
+  }
 
   //handle edit comment changes
   async function handleEditRecipe(e) {
@@ -108,7 +117,7 @@ const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefres
         <Col className='img-single image flex-grow-1 d-none d-md-flex align-items-end' style={{ backgroundImage: `url(${item.image})` }}>
           <Favourite handleFavourite={handleFavourite} favouriteStatus={favouriteStatus} item={item}  />
         </Col>
-        <Col className='d-flex flex-column justify-content-between py-3 px-1'>
+        <Col className='d-flex flex-column justify-content-between py-3 px-2'>
           <div>
             <div className='d-flex flex-column-reverse justify-content-center flex-md-row justify-content-md-between'>
               <h1 className='text-center text-md-start'>{item.name}</h1>
@@ -135,7 +144,7 @@ const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefres
               )
             })}
           </div>
-          <p className='m-0 btn w-25 text-center'>Method</p>
+          <Button className='mt-2 method btn' onClick={() => handleScroll(methodRef)}>Method <FontAwesomeIcon icon={faAnglesDown} className='ms-2 fs-6'/></Button>
         </Col>
       </Row>
       {!recError &&
@@ -145,7 +154,7 @@ const SingleRecipe = ({ item, favouriteStatus, handleFavourite, items, setRefres
           <IndexIngredients items={items} model='active_ingredients' benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
         }
       </Row>}
-      <Row>
+      <Row ref={methodRef} className='pt-1'>
         <h3>You will need:</h3>
         <p className='ps-3'>{item.inventory}</p>
         <h3 className='mt-2'>Method:</h3>

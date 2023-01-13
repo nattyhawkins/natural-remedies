@@ -7,6 +7,7 @@ import Spinner from '../components/Spinner'
 import IndexRecipes from './IndexRecipes'
 import Filters from '../components/Filters'
 import NotFound from './NotFound'
+import { isAuthenticated } from '../helpers/auth'
 
 const IndexPage = ({ setShow, setIsHome, setShowAddRecipe }) => {
   const [ items, setItems ] = useState(false)
@@ -72,7 +73,10 @@ const IndexPage = ({ setShow, setIsHome, setShowAddRecipe }) => {
           <>
             <Filters model={model} setSearch={setSearch} benefits={benefits} setBenefits={setBenefits} setBenefitFilter={setBenefitFilter} filterLocation={filterLocation} />
             {model === 'recipes' &&
-              <Button className='create py-2' onClick={() => setShowAddRecipe(true)}>+ Create</Button>
+              <Button className='create py-2' onClick={() => {
+                if (!isAuthenticated()) return setShow(true)
+                setShowAddRecipe(true)
+              }}>+ Create</Button>
             }
             <Row className="index-row mt-3 text-center">
               

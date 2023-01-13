@@ -27,7 +27,6 @@ export const isAuthenticated = () => {
 
 export const handleLogout = (navigate) => {
   localStorage.removeItem(tokenName)
-  window.location.reload(false)
   navigate('/')
 }
 
