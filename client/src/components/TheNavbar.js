@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Navbar, Container, Nav } from 'react-bootstrap'
 import { handleLogout, isAuthenticated } from '../helpers/auth'
 import bean from '../assets/logos2/4.png'
+import { useState } from 'react'
 
 
 const TheNavbar = ({ setShow, isHome, setTab }) => {
@@ -30,9 +31,6 @@ const TheNavbar = ({ setShow, isHome, setTab }) => {
               <Nav.Link  onClick={() => handleNavigate('/active_ingredients')} >Ingredients</Nav.Link>
               <Nav.Link onClick={() => handleNavigate('/recipes')}>Recipes</Nav.Link>
             </Nav>
-            {/* <Navbar.Brand className='title pb-0' as={Link} to='/'>
-              <img className="logo" src={logo} />
-            </Navbar.Brand> */}
             <Nav className='d-flex'>
               
               {isAuthenticated() ?
