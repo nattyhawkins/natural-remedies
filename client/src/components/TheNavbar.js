@@ -17,7 +17,7 @@ const TheNavbar = ({ setShow, isHome, setTab }) => {
  
   function handleNavigate(location){
     navigate(location)
-    setExpanded(!expanded)
+    setExpanded(false)
   }
 
   

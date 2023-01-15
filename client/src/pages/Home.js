@@ -62,7 +62,7 @@ const Home = ({ setIsHome, isHome, setShow, setTab }) => {
           
           {items.length > 0 && items.map(item => {
             return (
-              <Carousel.Item className='home image' key={item.id} interval={3000000} style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url(${item.bg_image})` }}>
+              <Carousel.Item className='home image' key={item.id} interval={3000} style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url(${item.bg_image})` }}>
                 <TheNavbar setShow={setShow} isHome={isHome} setTab={setTab} />
                 <Carousel.Caption className='my-3 d-flex justify-content-center justify-content-lg-end'>
                   <>
