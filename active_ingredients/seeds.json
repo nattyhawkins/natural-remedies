@@ -5,7 +5,6 @@
   "fields": {
     "name": "Lavender",
     "latin_name": "Lavandula angustifolia",
-    "common_names": "English lavender, common lavender, French lavender",
     "image": "https://cdn.shopify.com/s/files/1/0281/5393/7954/products/IMG-5562_530x@2x.jpg?v=1624555926",
     "bg_image": "https://images.pexels.com/photos/5126456/pexels-photo-5126456.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "description": "Lavender is native to countries in the Mediterranean region, including France, Spain, and Italy. The name lavender comes from the Latin verb “lavare,” meaning “to wash.” In ancient Rome, lavender was used as a bath additive. Lavender is used to flavor foods and beverages and as a fragrance ingredient in soaps and cosmetics. It is promoted as a dietary supplement for anxiety, depression, digestive symptoms, and other conditions. It is also promoted for topical use (application to the skin) and use in aromatherapy.",
@@ -21,7 +20,6 @@
   "fields": {
     "name": "Turmeric",
     "latin_name": "Curcuma longa",
-    "common_names": "turmeric root, Indian saffron",
     "image": "https://images.immediate.co.uk/production/volatile/sites/30/2016/09/Turmeric-powder-and-root-451f76e-scaled.jpg",
     "bg_image": "https://images.pexels.com/photos/4198656/pexels-photo-4198656.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "description": "Turmeric, a plant in the ginger family, is native to Southeast Asia and is grown commercially in that region, primarily in India. Its rhizome (underground stem) is used as a culinary spice and traditional medicine. Historically, turmeric was used in Ayurveda and other traditional Indian medical systems, as well as Eastern Asian medical systems such as traditional Chinese medicine. In India, it was traditionally used for disorders of the skin, upper respiratory tract, joints, and digestive system. Today, turmeric is promoted as a dietary supplement for a variety of conditions, including arthritis, digestive disorders, respiratory infections, allergies, liver disease, depression, and many others. Turmeric is a common spice and a major ingredient in curry powder. Curcumin is a major component of turmeric, and the activities of turmeric are commonly attributed to curcuminoids (curcumin and closely related substances). Curcumin gives turmeric its yellow color. Turmeric dietary supplements a",
@@ -37,7 +35,6 @@
   "fields": {
     "name": "Ginger",
     "latin_name": "Zingiber officinale",
-    "common_names": "Ginger root",
     "image": "https://images.pexels.com/photos/1337585/pexels-photo-1337585.jpeg?cs=srgb&dl=pexels-joris-neyt-1337585.jpg&fm=jpg",
     "bg_image": "https://images.pexels.com/photos/10899474/pexels-photo-10899474.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "description": "Native to parts of Asia, such as China, Japan, and India, ginger has a leafy stem and yellowish-green flowers. The spice comes from the rhizome (underground stem) of the plant. Ginger has been used for medicinal purposes in China for more than 2,500 years, and it has had a prominent role in Chinese, Indian, and Japanese medicine since the 1500s.",
@@ -55,7 +52,6 @@
   "fields": {
     "name": "Peppermint",
     "latin_name": "Mentha × piperita",
-    "common_names": "Mint",
     "image": "https://c1.wallpaperflare.com/preview/24/710/366/peppermint-medicinal-plant-medicinal-herbs-mint.jpg",
     "bg_image": "https://c1.wallpaperflare.com/preview/24/710/366/peppermint-medicinal-plant-medicinal-herbs-mint.jpg",
     "description": "Peppermint is a hybrid of two types of mint - water mint and spearmint. Both the leaves and the natural oil from the peppermint plant are used for beneficial purposes. helps to relax muscles, ease stomach cramps and tackle constipation, keep teeth clean, relieve itchy skin and even deter insects well as a host of aromatherapy and culinary uses.\r\n\r\nPeppermint oil is under preliminary research for its potential as a short-term treatment for irritable bowel syndrome, and has supposed uses in traditional medicine for minor ailments. Peppermint oil and leaves have a cooling effect when used topically for muscle pain, nerve pain, relief from itching, or as a fragrance. High oral doses of peppermint oil (500 mg) can cause mucosal irritation and mimic heartburn. \r\n\r\nPeppermint oil can help to clear sinuses, soothe headaches and hangovers as it also uplifts and energises, focusing and sharpening the mind.\r\n\r\nPeppermint roots bioaccumulate radium, so the plant may be effective for phytoremediation of radioactively contaminated soil.",
@@ -71,7 +67,6 @@
   "fields": {
     "name": "Echinacea",
     "latin_name": "Echinacea",
-    "common_names": "echinacea",
     "image": "https://earthsongseeds.co.uk/wp-content/uploads/2021/02/echinacea_purpurea_thumbnail.jpg",
     "bg_image": "https://www.nutraingredients.com/var/wrbm_gb_food_pharma/storage/images/_aliases/wrbm_large/3/8/3/7/887383-1-eng-GB/Significant-Large-trial-supports-echinacea-s-immune-benefits.jpg",
     "description": "Echinacea is a genus of herbaceous flowering plants in the daisy family. It has ten species, which are commonly called coneflowers. \r\n\r\nIt is widely used to treat common cold symptoms and has anti-inflammatory properties that help to reduce swelling and irritation, which may help alleviate the feeling of a sore throat. Traditionally brewed as a tea, it will also boost the immune system thanks to antioxidants that help eliminate free radicals and stave off infectious bacteria.",
@@ -88,7 +83,6 @@
   "fields": {
     "name": "Garlic",
     "latin_name": "Allium sativum",
-    "common_names": "garlic",
     "image": "https://cdn.create.vista.com/api/media/medium/226093702/stock-photo-top-view-garlic-ceramic-bowl?token=",
     "bg_image": null,
     "description": "Garlic is an herb related to onion, leeks, and chives. It is commonly used for conditions related to the heart and blood system.\r\n\r\nGarlic produces a chemical called allicin. This is what seems to make garlic work for certain conditions. Allicin also makes garlic smell. Some products are made \"odorless\" by aging the garlic, but this process can also change the effects of garlic.\r\n\r\nPeople commonly use garlic for high blood pressure, high levels of cholesterol or other fats in the blood, and hardening of the arteries. It is also used for the common cold, osteoarthritis, and many other conditions, but there is no good scientific evidence to support these uses. There is also no good evidence to support using garlic for COVID-19.",
@@ -105,7 +99,6 @@
   "fields": {
     "name": "Honey",
     "latin_name": "Mel",
-    "common_names": "Honey",
     "image": "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F19%2F2020%2F09%2F21%2FGettyImages-586275037-2000.jpg",
     "bg_image": "https://media.istockphoto.com/id/1173786233/photo/honey-jar-honeycomb-and-bee-pollen.jpg?s=612x612&w=0&k=20&c=KUAtWM8-z90_R05VRKveXjfaMD0_zXSLBQZmQZHjfqk=",
     "description": "Honey is a sweet fluid made by honeybees using the nectar of flowering plants. There are about 320 different varieties of honey, which vary in color, odor and flavor.\r\n\r\nHoney contains mostly sugar, as well as a mix of amino acids, vitamins, minerals, iron, zinc and antioxidants. In addition to its use as a natural sweetener, honey is used as an anti-inflammatory, antioxidant and antibacterial agent. People commonly use honey orally to treat coughs and topically to treat burns and promote wound healing.\r\n\r\nAntioxidants in honey might be associated with reduced risk of heart disease.\r\n\r\nStudies suggest that eucalyptus honey, citrus honey and labiatae honey can act as a reliable cough suppressant for some people with upper respiratory infections and acute nighttime cough.\r\n\r\nEvidence suggests honey might help relieve gastrointestinal tract conditions such as diarrhea associated with gastroenteritis. Honey might also be effective as part of oral rehydration therapy.\r\n\r\nStudies suggest that honey might offer antidepressant, anticonvulsant and anti-anxiety benefits. In some studies, honey has been shown to help prevent memory disorders.\r\n\r\nTopical use of medical-grade honey has been shown to promote wound healing, particularly in burns.",
@@ -123,7 +116,6 @@
   "fields": {
     "name": "Green Tea",
     "latin_name": "Camellia sinensis",
-    "common_names": "greentea",
     "image": "https://images.pexels.com/photos/39347/tea-farmhouse-hand-fresh-39347.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "bg_image": "https://images.pexels.com/photos/39347/tea-farmhouse-hand-fresh-39347.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "description": "Green, black, and oolong teas all come from the same plant, Camellia sinensis, but are prepared using different methods. To produce green tea, leaves from the plant are steamed, pan fried, and dried.\r\n\r\nTea has been used for medicinal purposes in China and Japan for thousands of years.\r\nGreen tea as a beverage or dietary supplement is promoted for improving mental alertness, relieving digestive symptoms and headaches, and promoting weight loss. Green tea and its components, including epigallocatechin-3-gallate (EGCG), have been studied for their possible protective effects against heart disease and cancer.\r\n\r\nThe U.S. Food and Drug Administration (FDA) has approved a topical ointment, sinecatechins (brand name Veregen), which includes extracted components of green tea leaves and is used for the treatment of genital warts. \r\n\r\nThe health benefits of green tea for a wide variety of ailments, including different types of cancer, heart disease, and liver disease, were reported. Many of these beneficial effects of green tea are related to its catechin, particularly (-)-epigallocatechin-3-gallate, content. There is evidence from in vitro and animal studies on the underlying mechanisms of green tea catechins and their biological actions. There are also human studies on using green tea catechins to treat metabolic syndrome, such as obesity, type II diabetes, and cardiovascular risk factors.",

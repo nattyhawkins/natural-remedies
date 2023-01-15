@@ -4,7 +4,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$390000$mtVTg3lgpWyRPMIwODDQTs$i1yeANJ8hiYjUOn8o5jzVqx0hSPP4uhQB9sAh4CtG9k=",
-    "last_login": "2022-12-08T15:42:47Z",
+    "last_login": "2023-01-15T16:20:31Z",
     "is_superuser": true,
     "first_name": "",
     "last_name": "",
@@ -15,7 +15,9 @@
     "username": "natella2",
     "profile_image": null,
     "groups": [],
-    "user_permissions": []
+    "user_permissions": [
+      26
+    ]
   }
 },
 {
@@ -71,82 +73,6 @@
     "email": "baileys@email.com",
     "username": "old_greg",
     "profile_image": "http://oldgreggg.weebly.com/uploads/2/8/9/9/28994853/2461502.png?1398868838",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "jwt_auth.user",
-  "pk": 11,
-  "fields": {
-    "password": "pbkdf2_sha256$390000$lCCNxbEc22vGUYhVIyfDY1$Dsg/BJBb6Msea7p2gai/XS5SNzPjW69/Lbq1MmIi2aQ=",
-    "last_login": null,
-    "is_superuser": false,
-    "first_name": "",
-    "last_name": "",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2022-12-15T21:36:20.920Z",
-    "email": "new@email.com",
-    "username": "newname",
-    "profile_image": null,
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "jwt_auth.user",
-  "pk": 12,
-  "fields": {
-    "password": "pbkdf2_sha256$390000$06x84ZYrW15TggmBBTgngl$X0yTP+AK7tFGqdrm4Orc+iDg6eejIbEe7ONdd+4Y3kA=",
-    "last_login": null,
-    "is_superuser": false,
-    "first_name": "",
-    "last_name": "",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2022-12-16T09:52:42.943Z",
-    "email": "natalie@email.com",
-    "username": "natalie",
-    "profile_image": null,
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "jwt_auth.user",
-  "pk": 13,
-  "fields": {
-    "password": "pbkdf2_sha256$390000$qYeQJB3cd6NueEbdP55z5b$9hbPtpwC3j5StbqHrqN4I6wIkVD79k5I9M7u3+Zj68g=",
-    "last_login": null,
-    "is_superuser": false,
-    "first_name": "",
-    "last_name": "",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2022-12-16T11:54:57.283Z",
-    "email": "santa@email.com",
-    "username": "santa",
-    "profile_image": null,
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "jwt_auth.user",
-  "pk": 14,
-  "fields": {
-    "password": "pbkdf2_sha256$390000$q3c7kuAFv19N7qF03CwpRb$vhxfnGRbPyej7PwD75AQMPNM98eCzfqjx8YPtS1M/ao=",
-    "last_login": null,
-    "is_superuser": false,
-    "first_name": "",
-    "last_name": "",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2022-12-16T16:19:47.747Z",
-    "email": "hello@email.com",
-    "username": "hello",
-    "profile_image": null,
     "groups": [],
     "user_permissions": []
   }
