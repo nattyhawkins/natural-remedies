@@ -19,10 +19,6 @@ class Recipe(models.Model):
         related_name="recipes",
         default=None, blank=True,
     )
-    # favourite = models.ManyToManyField(
-    #     'favourite.Medium',
-    #     related_name="recipes",
-    # )
     owner = models.ForeignKey(
     'jwt_auth.User',
     related_name='recipes',

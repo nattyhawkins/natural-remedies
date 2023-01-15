@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import Comment from '../components/Comment'
 import Spinner from '../components/Spinner'
 import { getToken } from '../helpers/auth'
-import {  unixTimestamp } from '../helpers/general'
+import { unixTimestamp } from '../helpers/general'
 import ImageUpload from '../components/ImageUpload'
 import defaultUser from '../assets/logos2/default-basic.jpeg'
 import CardCarousel from '../components/CardCarousel'
@@ -120,11 +120,11 @@ const Profile = ({ setShow, setIsHome, setShowAddRecipe }) => {
         <Container className='my-5 p-0 d-flex flex-column align-items-center flex-md-row align-items-md-start'>
           {profile && 
           <>
-            <div className='ms-1 me-sm-3 mb-5 dash d-flex flex-column align-items-center '>
+            <div className='mx-sm-3 mb-5 dash d-flex flex-column align-items-center '>
               {editProfile &&
-                <Form className='d-flex mb-3' onSubmit={handleSubmit} >
-                  <Button type='submit my-button' >Submit</Button>
+                <Form className='d-flex flex-column mb-3 px-2 dash' onSubmit={handleSubmit} >
                   <ImageUpload formFields={formFields} setFormFields={setFormFields} imageKey='profile_image'  />
+                  <Button type='submit' >Submit</Button>
                 </Form>
               }
               <div className="profile-pic image d-flex justify-content-end" style={{ backgroundImage: profile.profile_image ? `url(${profile.profile_image})` : `url(${defaultUser})` }} alt="profile">

@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react'
 import Spinner from '../components/Spinner'
 
-const NotFound = ({ setIsHome }) => {
+const NotFound = () => {
 
-  useEffect(() => {
-    setIsHome(false)
+  // useEffect(() => {
+  //   setIsHome(false)
 
-  }, [])
+  // }, [])
 
   return (
     <main className='text-center'>
       <Spinner />
-      <h1>Not Found</h1>
+      <h1>Oops! Page does not exist</h1>
     </main>
   )
 }

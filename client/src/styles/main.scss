@@ -34,8 +34,10 @@ body, html {
 .btn{
   background-color: $button;
   border: none;
+  color: white;
   &:hover{
     background-color: lighten($button, 10%);
+    color: white;
   }
 }
 
@@ -74,6 +76,18 @@ a{
     font-family: railey;
     font-size: 120px;
     color: lighten($primary, 10%);
+    z-index: 9;
+  }
+  .nav-link{
+    // display: inline-block;
+    // max-width: 200px;
+    // background-color: white;
+    z-index: 120;
+    width: 100px;
+    align-self: end;
+    // position: fixed;
+    // text-align: center;
+    // margin: 0 auto;
   }
   .feature{
     max-width: 400px;
@@ -94,8 +108,8 @@ a{
   }
   .carousel-control-prev, .carousel-control-next{
     width: 10%;
-    top: 10%;
-    bottom: 10%;
+    top: 35%;
+    bottom: 35%;
   }
   
 }
@@ -108,7 +122,7 @@ a{
 }
 #overlay {
   width: 800px;
-  position: absolute;
+  position: fixed;
   top: 35%;
   left: 550px;
 
@@ -116,7 +130,11 @@ a{
   color: white;
   transform: translate(-50%,-50%);
   -ms-transform: translate(-50%,-50%);
-  z-index: 110;
+  z-index: 9;
+  *{
+  z-index: 9;
+
+  }
 }
 @keyframes fadeInAnimation {
   0% {
@@ -136,10 +154,13 @@ a{
 }
 
 .navbar {
-  z-index: 10;
+  
   top: 0;
   position: sticky;
-  
+  z-index: 120;
+  .container, .nav-link, .collapse, .navbar-nav {
+    z-index: 121;
+  }
 
 
   .nav-link, a {
@@ -226,6 +247,10 @@ a{
     margin: 0 auto;
     border-radius: 15px 0 0 15px;
   }
+  .method.btn {
+    width: 110px;
+    margin: 0 auto;
+  }
 }
 
 
@@ -260,18 +285,19 @@ a{
   // margin-top: 15px;
   // max-width: 780px;
 }
+.username {
+  padding-right: 10px;
+  color: lighten($primary, 5%);
+
+  &:hover {
+    color: lighten($primary, 15%);
+  }
+}
 
 .comment {
   border: none;
 
-  .username {
-    padding-right: 10px;
-    color: lighten($primary, 5%);
-
-    &:hover {
-      color: lighten($primary, 15%);
-    }
-  }
+  
 
 }
 .create{
@@ -376,24 +402,27 @@ a{
     .carousel-inner{
       padding: 0;
     }
-    
+    h5{
+      font-size: medium;
+    }
   }
   h4{
     font-size: 1.1rem;
   }
-  // #overlay{
-  //   top: 30%;
-  //   left: 70%;
-  // }
+
   .btn{
     width: 100%;
   }
+
   .fave{
     font-size: 10vw;
   }
   .single{
     .img-single{
       min-height: 90vw;
+    }
+    .main{
+      border-radius: 0;
     }
   }
   .index{
@@ -453,28 +482,37 @@ a{
 
 @media (max-width: 768px){
   .profile .dash{
-    max-width: 450px;
+    max-width: min(450px, 100vw);
   }
+  
 }
 
 @media (max-width: 992px){
   
   .home{
     #overlay{
-      top: 15%;
-      left: 0; 
-      right: 0; 
-      margin-left: auto; 
-      margin-right: auto; 
-      transform: translate(0,0);
-      -ms-transform: translate(0,0);
-      width: 100vw;
+      top: 20%;
+      left: 50%; 
+      right: 50%; 
+      // margin-left: auto; 
+      // margin-right: auto; 
+      transform: translate(-50%, 10%);
+      -ms-transform: translate(-50%, 0%);
+      // display: flex;
+      // flex-direction: column;
+      // align-items: center;
+
+      width: 230px;
+      
+      z-index: 9;
     }
     .slogan *, .benefit{
       font-size: 1rem;
     }
     .header{
       font-size: 1.5em;
+      z-index: 9;
+
     }
 
       .comment,  #commentInput, .btn, p{

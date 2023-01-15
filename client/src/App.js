@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom'
 import TheNavbar from './components/TheNavbar'
 import Home from './pages/Home'
 import Profile from './pages/Profile'
@@ -9,7 +9,7 @@ import { useState } from 'react'
 import AuthModal from './components/AuthModal'
 import AddRecipe from './components/AddRecipe'
 import axios from 'axios'
-import { getToken } from './helpers/auth'
+import { getToken, isAuthenticated } from './helpers/auth'
 
 const App = () => {
   const [ show, setShow ] = useState(false)
@@ -28,10 +28,11 @@ const App = () => {
   })
   const [ error, setError ] = useState([])
 
-
+  // const navigate = useNavigate()
 
   const handleRecipeSubmit = async (e) => {
     e.preventDefault()
+
     try {
       console.log(formFields)
       if (formFields.image === '') throw new Error('Please upload an image')
@@ -51,7 +52,7 @@ const App = () => {
         steps: '',
       })
       setShowAddRecipe(false)
-      // window.location.reload(false)
+      // navigate(`/recipes/${data.id}`)
     } catch (err) {
       console.log(err)
       setError(err.message ? err.message : err.response.statusText)

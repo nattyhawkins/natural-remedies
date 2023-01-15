@@ -28,7 +28,7 @@ const ImageUpload = ({ formFields, setFormFields, imageKey, setError }) => {
 
 
   return (
-    <div className='field'>
+    <div className='field mb-2 '>
       <label>Upload Image</label>
       <br />
       
@@ -38,12 +38,16 @@ const ImageUpload = ({ formFields, setFormFields, imageKey, setError }) => {
         onChange={handleChange}
       />
       {imageSelected && (!formFields[imageKey] ?
-        <div className='d-inline ms-4'>
-          <Spinner/> 
-          <p className='d-inline'> Uploading...</p>
-        </div>
+        <>
+          <div className='d-inline-block mt-sm-0 ms-md-4'>
+            <Spinner className='mt-2 mb-0 m-sm-0'/> 
+            {/* <p className='m-0'> Uploading...</p> */}
+          </div>
+        </>
         :
-        <p className='d-inline ms-4'>✅ Done!</p>
+        <div className='d-inline-block mt-sm-0 ms-md-4'>
+          <p className='mt-2 mb-0 m-sm-0'>✅</p>
+        </div>
       )}
     </div>
   )

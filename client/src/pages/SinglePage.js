@@ -35,6 +35,7 @@ const SinglePage = ({ setShow, setIsHome, setShowAddRecipe }) => {
         setItemError(false)
         const { data } = await axios.get(`/api/${model}/${itemId}/`)
         setItem(data)
+        console.log(data)
       } catch (err) {
         console.log(err.response)
         setItemError(err.message ? err.message : err.response.data.message)
@@ -55,10 +56,6 @@ const SinglePage = ({ setShow, setIsHome, setShowAddRecipe }) => {
     if (isAuthenticated() && item && item.favourites.some(favourite => isOwner(favourite.owner.id))) return setFavouriteStatus(201)
     setFavouriteStatus(204)
   }, [item])
-
-  useEffect(() => {
-    console.log(recModel + 'AND' + recLoad)
-  }, [model])
 
 
   async function handleFavourite(e) {
@@ -88,7 +85,6 @@ const SinglePage = ({ setShow, setIsHome, setShowAddRecipe }) => {
       try {
         setRecError(false)
         const { data } = await axios.get(`/api/${recModel}/?&search=&benefit=${includes}&/`)
-        console.log('recs response-', data)
         setItems(data.slice(0, 3))
       } catch (err) {
         console.log(err.response)
@@ -98,15 +94,9 @@ const SinglePage = ({ setShow, setIsHome, setShowAddRecipe }) => {
     includes && getItems()
   }, [recModel, includes])
 
+
+  //set recModel state to oppose model
   useEffect(() => {
-    setRecLoad(recModel)
-  }, [items])
-
-
-
-  //set recModel state
-  useEffect(() => {
-    console.log('items state --', items)
     if (item)
       if (model === 'active_ingredients') { 
         setRecModel('recipes')
@@ -118,9 +108,9 @@ const SinglePage = ({ setShow, setIsHome, setShowAddRecipe }) => {
       }
   }, [model, item, items])
 
+  //set the reccomendation request parameter 'includes' depending on recModel
   useEffect(() => {
-    console.log('items state --', items)
-    if (item && recModel === recLoad)
+    if (item)
       if (model === 'active_ingredients') {       
         setIncludes(`&includes=${item.name}`)
       } else if (model === 'recipes'){
@@ -132,9 +122,12 @@ const SinglePage = ({ setShow, setIsHome, setShowAddRecipe }) => {
       }
   }, [item])
 
+  useEffect(() => {
+    setRecLoad(recModel)
+  }, [items])
 
   return (
-    <main className='single px-1 px-sm-2'>
+    <main className='single px-sm-2'>
       <Container style={{ maxWidth: '1100px', margin: '0 auto' }}>
         {itemError ? 
           <div className='text-center'>
@@ -149,13 +142,16 @@ const SinglePage = ({ setShow, setIsHome, setShowAddRecipe }) => {
                   <SingleIngredient item={item} favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} setShow={setShow}/>
                   {!recError && 
                   <Row className='collection d-flex groups-row justify-content-start flex-wrap mt-5'>
-                    <h4><span className='highlight'>RECOMMENDED  </span> Recipes with {item.name}</h4>
-                    <IndexRecipes items={items} model='recipes' benefits={benefits} setBenefits={setBenefits} setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
+                    <h4 className='highlight'>RECOMMENDED</h4>
+                    <IndexRecipes items={items} model='recipes' benefits={benefits} setBenefits={setBenefits} 
+                      setRefresh={setRefresh} refresh={refresh} setShow={setShow}/>
                   </Row>
                   }
                 </>
                 : modelLoad === 'recipes' ?
-                  <SingleRecipe item={item} items={items} setShowAddRecipe={setShowAddRecipe} recError={recError} favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} setShow={setShow} setRefresh={setRefresh} refresh={refresh} benefits={benefits} setBenefits={setBenefits}/>
+                  <SingleRecipe item={item} items={items} setShowAddRecipe={setShowAddRecipe} recError={recError} 
+                    favouriteStatus={favouriteStatus} handleFavourite={handleFavourite} setShow={setShow} setRefresh={setRefresh} 
+                    refresh={refresh} benefits={benefits} setBenefits={setBenefits}/>
                   :
                   <></>
               )}

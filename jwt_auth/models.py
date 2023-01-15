@@ -11,7 +11,6 @@ class User(AbstractUser):
         to = 'comments.Comment',
         field_name = 'comments',
         related_name="owner",
-        
     )
     favourites = models.ManyToOneRel(
         field = 'ForeignKey',
@@ -23,6 +22,5 @@ class User(AbstractUser):
         field = 'ForeignKey',
         to = 'recipes.Recipe',
         field_name = 'recipes',
-        related_name="owner",
-        
+        related_name="owner",  
     )

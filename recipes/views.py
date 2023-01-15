@@ -12,21 +12,16 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 class RecipeListView(APIView):
   permission_classes = (IsAuthenticatedOrReadOnly, )
   def get(self, request):
-      # try:
         search = request.query_params.get('search')
         benefit = request.query_params.get('benefit')
         benefit = benefit if benefit != 'default' else ''
         includes = request.query_params.get('includes')
-        print('benefit--', benefit)
-        print('includes--', includes)
         recipes = Recipe.objects.filter(
           name__icontains=search, 
           active_ingredients__benefits__name__icontains=benefit,
           active_ingredients__name__icontains=includes,
           ).distinct()
         serialized_recipes = SemiPopulatedRecipeSerializer(recipes, many=True)
-        # if len(serialized_recipes.data) == 0:
-        #   raise NotFound('No matches, please try something else...')
         return Response(serialized_recipes.data, status.HTTP_200_OK)
 
   def post(self, request):
@@ -82,33 +77,3 @@ class RecipeDetailView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
       except Exception as e:
         return Response(str(e), status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-  # favourite
-  # def post(self, request, pk):
-  #     # return Response(print('incoming---', request.user.id))
-  #     request.data['owner'] = request.user.id
-  #     recipe = self.get_recipe(pk)
-  #     try:
-  #       fav_owner = UserSerializer(pk=request.user.id)
-  #       if fav_owner.is_valid():
-  #         if 
-  #         fav_owner.save()
-  #         return Response(fav_owner.data, status.HTTP_201_CREATED)
-  #       else: 
-  #         return Response(fav_owner.errors, status.HTTP_422_UNPROCESSABLE_ENTITY)
-  #     except Exception as e:
-  #       return Response(str(e), status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-  #     except Recipe.DoesNotExist as e:
-  #       return Response(str(e))
-
-      # request.data['owner'] = request.user.id
-      # try:
-      #   new_recipe = RecipeSerializer(data=request.data)
-      #   if new_recipe.is_valid():
-      #     new_recipe.save()
-      #     return Response(new_recipe.data, status.HTTP_201_CREATED)
-      #   else: 
-      #     return Response(new_recipe.errors, status.HTTP_422_UNPROCESSABLE_ENTITY)
-      # except Exception as e:
-      #   return Response(str(e), status.HTTP_500_INTERNAL_SERVER_ERROR)
