@@ -29,14 +29,13 @@ const AddRecipe = ({ showAddRecipe, setShowAddRecipe, error, formFields, setForm
   }
 
   useEffect(() => {
-    console.log(selectField)
     setFormFields({ ...formFields, 'active_ingredients': selectField })
     if (error !== []) setError([])
   }, [selectField])
 
-  useEffect(() => {
-    console.log(formFields)
-  }, [formFields])
+  // useEffect(() => {
+  //   console.log(formFields)
+  // }, [formFields])
 
 
   //get all ingredients
