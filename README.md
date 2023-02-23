@@ -35,7 +35,7 @@ This was my final project for the General Assembly SEI course, completed solo ov
 - `cd client` to go to the frontend directory
 - `npm i` to install frontend dependencies
 - `npm run build`
-- cd .. to go back to main directory and run `python manage.py runserver` to start the app
+- `cd ..` to go back to main directory and run `python manage.py runserver` to start the app
 
 ## Brief
 The project must:
