@@ -30,7 +30,7 @@ This was my final project for the General Assembly SEI course, completed solo ov
 ## Code Installation
 - Clone or download the repo
 - `pipenv` to install Python packages
-- For each of the following models: jwt_auth, benefits, active_ingredients, recipes, comments -> run:
+- For each of the following models: jwt_auth, benefits, active_ingredients, recipes, comments -> run:  
     `python manage.py loaddata <MODEL>/seeds.json` to install data from database
 - `cd client` to go to the frontend directory
 - `npm i` to install frontend dependencies
