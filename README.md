@@ -3,7 +3,7 @@
 
 This was my final project for the General Assembly SEI course, completed solo over 8 days. Wellbean is a full-stack application where users can search, favourite, review and post natural remedies and their ingredients, all saved to registered users’ profiles.
 
-[View site](http://wellbean-app.herokuapp.com/) Feel free to try registering with a made up an email address
+[View site](http://wellbean-app.herokuapp.com/) Feel free to try registering with a made up email address
 
 ![Wellbean](/client/src/assets/readme/hero.png)
 
