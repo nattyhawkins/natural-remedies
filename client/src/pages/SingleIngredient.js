@@ -2,9 +2,8 @@ import { Col, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Favourite from '../components/Favourite'
 
-const SingleIngredient = ({ item, favouriteStatus, handleFavourite, setShow }) => {
+const SingleIngredient = ({ item, favouriteStatus, handleFavourite }) => {
   
-
   return (
     <>
       <Row className='main d-flex flex-column flex-md-row p-0 mt-sm-5'>

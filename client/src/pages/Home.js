@@ -59,7 +59,6 @@ const Home = ({ setIsHome, isHome, setShow, setTab }) => {
     !error ?
       <main className='home '>
         <Carousel fade wrap>
-          
           {items.length > 0 && items.map(item => {
             return (
               <Carousel.Item className='home image' key={item.id} interval={3000} style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url(${item.bg_image})` }}>
