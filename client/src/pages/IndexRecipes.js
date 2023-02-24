@@ -10,8 +10,6 @@ const IndexRecipes = ({ items, model, setBenefits, benefits, refresh, setRefresh
     getRecipeBenefits(items).length > benefits.length && setBenefits(getRecipeBenefits(items))
   }, [items])
 
-  
-
   return (
     <>
       {items.length > 0 && items.map(item => {

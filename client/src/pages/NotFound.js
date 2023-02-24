@@ -3,11 +3,6 @@ import Spinner from '../components/Spinner'
 
 const NotFound = () => {
 
-  // useEffect(() => {
-  //   setIsHome(false)
-
-  // }, [])
-
   return (
     <main className='text-center'>
       <Spinner />

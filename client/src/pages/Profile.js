@@ -56,7 +56,6 @@ const Profile = ({ setShow, setIsHome, setShowAddRecipe }) => {
   useEffect(() => {
     profile && setFaveRecipes(profile.favourites.filter(favourite => favourite.recipe).map(favourite => favourite.recipe))
     profile && setFaveIngredients(profile.favourites.filter(favourite => favourite.active_ingredient).map(favourite => favourite.active_ingredient))
-    // profile && setMyRecipesGrouped(partitionArray(profile.recipes))
   }, [profile])
 
   useEffect(() => {
