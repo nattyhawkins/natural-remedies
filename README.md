@@ -33,10 +33,10 @@ This was my final project for the General Assembly SEI course, completed solo ov
 - `pipenv shell` to activate virtual environment
 - For each of the following models: jwt_auth, benefits, active_ingredients, recipes, comments -> run:  
     `python manage.py loaddata <MODEL>/seeds.json` to install data from database
-- `client` to go to the frontend directory
+- `client` to go to the front end directory
 - `npm i` to install frontend dependencies
 - `npm run build`
-- `..` to go back to main directory and run `python manage.py runserver` to start the app
+- `..` to go back to main directory, run `python manage.py runserver` to start the app then navigate to server address provided
 
 ## Brief
 The project must:
